@@ -1,0 +1,10 @@
+{
+  "name": "wasp-website",
+  "version": "0.0.0",
+  "private": true,
+  "workspaces": [
+    "web",
+    "chat-service",
+    "shared"
+  ]
+}

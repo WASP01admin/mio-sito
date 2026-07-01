@@ -1,0 +1,26 @@
+{
+  "name": "@wasp/chat-service",
+  "version": "0.0.0",
+  "private": true,
+  "description": "Standalone real-time chat backend for WASP, isolated from /web so it can be scaled or deployed independently.",
+  "main": "dist/index.js",
+  "scripts": {
+    "dev": "tsx watch src/index.ts",
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@wasp/shared": "*",
+    "cors": "^2.8.5",
+    "express": "^4.21.2",
+    "socket.io": "^4.8.1"
+  },
+  "devDependencies": {
+    "@types/cors": "^2.8.17",
+    "@types/express": "^4.17.21",
+    "@types/node": "^20",
+    "tsx": "^4.19.2",
+    "typescript": "^5"
+  }
+}

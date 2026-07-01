@@ -1,0 +1,40 @@
+# dependencies
+node_modules/
+
+# env files
+.env
+.env.local
+.env.*.local
+
+# next.js
+.next/
+out/
+
+# chat-service build output
+chat-service/dist/
+
+# testing
+coverage/
+
+# misc
+.DS_Store
+*.pem
+
+# debug logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# editor / local tooling
+.vscode/*
+!.vscode/extensions.json
+.idea/
+.claude/
