@@ -106,5 +106,44 @@
         "If the donation is made in favor of WASP, the donor should know that we don't withhold any amount for administrative costs, and the full sum will be dedicated entirely to animals."
       ]
     }
+  },
+  "Donation": {
+    "heading": "Make a donation",
+    "subtext": "1 Euro minimum",
+    "noCashStamp": "WE DON'T ACCEPT CASH DONATIONS",
+    "methods": {
+      "satispay": {
+        "label": "Satispay"
+      },
+      "stripe": {
+        "label": "Stripe Payment"
+      },
+      "cards": {
+        "label": "PayPal, Visa, Mastercard, American Express"
+      },
+      "bankTransfer": {
+        "label": "Bank Transfer"
+      }
+    },
+    "note": "N.B. if you want to donate to a specific Animal Welfare Organization, you must specify it in the donation's 'notes', thank you."
+  },
+  "Footer": {
+    "wordmark": "WASP",
+    "social": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "tiktok": "TikTok",
+      "youtube": "YouTube",
+      "telegram": "Telegram"
+    },
+    "nav": {
+      "home": "Home",
+      "about": "About Us",
+      "contact": "Contact",
+      "privateArea": "Private Area",
+      "walletCard": "Wallet Card"
+    },
+    "backToTop": "Back to top",
+    "copyright": "© 2026 WASP — World Animal Solidarity Project"
   }
 }
