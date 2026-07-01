@@ -1,6 +1,75 @@
 {
   "HomePage": {
-    "title": "World Animal Solidarity Project",
-    "placeholder": "Content coming soon."
+    "title": "World Animal Solidarity Project"
+  },
+  "Header": {
+    "wordmark": "WASP",
+    "openMenu": "Open menu",
+    "closeMenu": "Close menu",
+    "nav": {
+      "home": "WASP Home",
+      "mapOrganizations": "Map - Organizations",
+      "mapAnimalFriends": "Map - Animal Friends",
+      "chat": "WASP Chat",
+      "eventsCalendar": "Event Calendar",
+      "newsNetwork": "WASP News Network"
+    },
+    "walletLink": "Your WASP Card"
+  },
+  "Hero": {
+    "wordmark": "WASP",
+    "tagline": "World Animal Solidarity Project",
+    "subtitle": "Registered Animal Welfare Philanthropic Association",
+    "badge": "NEW!!!",
+    "headline": "ANIMAL RIGHTS ACTIVISTS OF THE WORLD, UNITE!",
+    "subheadline": "(with the virtual WASP card in your phone's wallet)"
+  },
+  "MembershipForm": {
+    "heading": "Get your WASP Card",
+    "pricing": {
+      "freeTitle": "FREE",
+      "freeDescription": "if you're a member, volunteer, or activist of any animal welfare organization",
+      "paidTitle": "2 EURO",
+      "paidDescription": "for 1 year, if you sign up directly as a WASP member, with no organization"
+    },
+    "trustBadges": [
+      "NO ADS",
+      "NO PERSONAL DATA",
+      "NO DATA COLLECTION",
+      "NO HIDDEN COSTS"
+    ],
+    "explanation": "The card is delivered instantly to your Apple/Google Wallet. No phone number or personal data required: just an email, only to verify you're not a bot.",
+    "fields": {
+      "nickname": {
+        "label": "Nickname",
+        "placeholder": "Your nickname"
+      },
+      "organization": {
+        "label": "Organization Code or Name / City",
+        "placeholder": "E.g. WASP-1234 or Organization Name, City"
+      },
+      "email": {
+        "label": "Verification email",
+        "hint": "not visible",
+        "placeholder": "name@example.com"
+      },
+      "image": {
+        "label": "Image (optional)"
+      }
+    },
+    "submit": "SEND",
+    "info": {
+      "toggleLabel": "Useful information before signing up",
+      "nicknameRules": "The nickname can't contain profanity, hate speech, or racism.",
+      "organizationNotFound": "If you can't find your organization, message WASP to have it added.",
+      "emailMatching": "To protect your anonymity and that of others, the same email must also be shared with your organization for matching purposes: two different emails will prevent the card from being issued."
+    },
+    "qrCode": {
+      "caption": "Sign-up is mobile-only - scan the QR CODE with your phone if you're on a PC/Tablet"
+    },
+    "cta": {
+      "text": "IF YOU DON'T BELONG TO ANY ANIMAL WELFARE ORGANIZATION, SIGN UP FOR WASP (always 1 minute) AND GET YOUR WASP CARD RIGHT AWAY",
+      "link": "SIGN UP HERE"
+    }
   }
 }
