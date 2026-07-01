@@ -76,7 +76,10 @@ export default function DonationSection() {
   ];
 
   return (
-    <section className="bg-white px-4 py-10 text-black sm:px-8 sm:py-16">
+    <section
+      id="donation"
+      className="bg-white/90 px-4 py-10 text-black sm:px-8 sm:py-16 scroll-mt-4"
+    >
       <div className="mx-auto flex max-w-xl flex-col items-center gap-2 text-center">
         <h2 className="text-xl font-bold sm:text-2xl">{t("heading")}</h2>
         <p className="text-sm text-gray-600 sm:text-base">{t("subtext")}</p>

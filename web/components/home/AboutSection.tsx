@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { useTranslations } from "next-intl";
+import { Link } from "@/i18n/navigation";
 
 export default function AboutSection() {
   const t = useTranslations("About");
@@ -6,7 +8,7 @@ export default function AboutSection() {
   const ruleItems = t.raw("rules.items") as string[];
 
   return (
-    <section className="bg-white px-4 py-10 text-black sm:px-8 sm:py-16">
+    <section className="bg-white/90 px-4 py-10 text-black sm:px-8 sm:py-16">
       <div className="mx-auto flex max-w-xl flex-col items-center gap-4 text-center">
         <p className="text-sm leading-relaxed sm:text-base">
           {t("mission.paragraph1")}
@@ -18,19 +20,20 @@ export default function AboutSection() {
           {t("mission.paragraph3")}
         </p>
 
-        <div
-          aria-hidden="true"
-          className="mt-4 flex h-40 w-40 items-center justify-center rounded-full border-2 border-dashed border-black text-xs font-semibold sm:h-56 sm:w-56"
-        >
-          MASCOTTE
-        </div>
+        <Image
+          src="/images/mascot-wasp.png"
+          alt="WASP mascot"
+          width={320}
+          height={213}
+          className="mt-4 h-auto w-64 rounded-lg sm:w-80"
+        />
 
-        <button
-          type="button"
+        <Link
+          href="/registrati"
           className="mt-2 rounded-md bg-black px-5 py-3 text-base font-bold text-wasp-yellow transition-colors hover:bg-black/80"
         >
           {t("cta")}
-        </button>
+        </Link>
 
         <div className="mt-10 flex flex-col gap-4">
           <p className="text-sm leading-relaxed sm:text-base">
@@ -42,7 +45,13 @@ export default function AboutSection() {
         </div>
 
         <h2 className="mt-10 text-lg font-bold sm:text-xl">
-          {t("studies.heading")}
+          {t.rich("studies.heading", {
+            link: (chunks) => (
+              <Link href="/studi-e-sondaggi" className="underline decoration-2 underline-offset-2">
+                {chunks}
+              </Link>
+            ),
+          })}
         </h2>
 
         <ul className="mt-2 flex flex-col gap-6 sm:flex-row sm:gap-4">
@@ -62,9 +71,12 @@ export default function AboutSection() {
           ))}
         </ul>
 
-        <p className="mt-10 rounded-lg bg-wasp-yellow px-4 py-4 text-sm font-extrabold uppercase leading-relaxed text-black sm:text-base">
+        <a
+          href="#donation"
+          className="mt-10 block rounded-lg bg-wasp-yellow px-4 py-4 text-sm font-extrabold uppercase leading-relaxed text-black transition-colors hover:bg-wasp-yellow/80 sm:text-base"
+        >
           {t("callout")}
-        </p>
+        </a>
 
         <div className="mt-10 flex flex-col gap-4">
           <p className="text-sm leading-relaxed sm:text-base">

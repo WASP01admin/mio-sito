@@ -7,12 +7,19 @@
     "openMenu": "Apri il menu",
     "closeMenu": "Chiudi il menu",
     "nav": {
-      "home": "Home WASP",
-      "mapOrganizations": "Mappa - Associazioni",
-      "mapAnimalFriends": "Mappa - Amici Animali",
-      "chat": "WASP Chat",
-      "eventsCalendar": "Calendario Eventi",
-      "newsNetwork": "WASP News Network"
+      "home": "Home",
+      "about": "Chi Siamo",
+      "studies": "Studi e Sondaggi",
+      "organizations": "Organizzazioni",
+      "calendar": "Calendario",
+      "news": "Notizie",
+      "images": "Immagini",
+      "projects": "Progetti",
+      "animalFriends": "Amici degli Animali",
+      "walletCard": "Tessera Wallet",
+      "vipWasps": "VIP WASPs",
+      "privateArea": "Area Privata",
+      "contact": "Contatti"
     },
     "walletLink": "La tua WASP Card"
   },
@@ -20,18 +27,22 @@
     "wordmark": "WASP",
     "tagline": "World Animal Solidarity Project",
     "subtitle": "Associazione Filantropica Animalista Registrata",
-    "badge": "NOVITA'!!!",
+    "explanation": "WASP e' una piattaforma gratuita che unisce tutti gli animalisti del mondo. La nostra WASP CARD e' una tessera virtuale che si unisce alle altre nel tuo cellulare ed e' emessa solo a chi e' iscritto (o fa parte in qualche modo) ad una qualsiasi Associazione Animalista. In totale anonimato e sicurezza ti permette di accedere a molti servizi riservati solo ai veri amanti degli animali. Con questa tessera farai parte del Movimento Animalista assieme a chi la pensa come te.",
     "headline": "ANIMALISTI DEL MONDO, UNITEVI!",
-    "subheadline": "(con la tessera virtuale WASP nel wallet del tuo cellulare)"
+    "subheadline": "...con la tessera virtuale WASP nel wallet del tuo cellulare",
+    "cardGallery": {
+      "frontAlt": "WASP Card - fronte",
+      "backAlt": "WASP Card - retro",
+      "closeLabel": "Chiudi"
+    }
   },
   "MembershipForm": {
-    "heading": "Richiedi la tua WASP Card",
+    "heading": "Richiedi la tua WASP Card (in 1 minuto)",
     "pricing": {
       "freeTitle": "GRATIS",
-      "freeDescription": "se sei socio, volontario o attivista di una qualsiasi associazione animalista",
-      "paidTitle": "2 EURO",
-      "paidDescription": "per 1 anno, se ti iscrivi direttamente come socio WASP, senza associazione"
+      "freeDescription": "se sei socio, volontario o attivista di una qualsiasi associazione animalista"
     },
+    "noOrgCta": "clicca <link>QUI</link> se non hai o appartieni ad una organizzazione animalista e iscriviti a WASP (1 minuto)",
     "trustBadges": [
       "NO PUBBLICITA'",
       "NO DATI PERSONALI",
@@ -46,7 +57,7 @@
       },
       "organization": {
         "label": "Codice o Nome Associazione / Città",
-        "placeholder": "Es. WASP-1234 oppure Nome Associazione, Città"
+        "placeholder": "esempio: ITA0123 oppure Amici Pelosi / Roma"
       },
       "email": {
         "label": "Email di verifica",
@@ -61,11 +72,17 @@
     "info": {
       "toggleLabel": "Informazioni utili prima di iscriverti",
       "nicknameRules": "Il nickname non può contenere volgarità, incitamento all'odio o razzismo.",
-      "organizationNotFound": "Se non trovi la tua associazione, scrivi a WASP per farla aggiungere.",
+      "organizationNotFound": "Se non trovi la tua associazione, scrivi a WASP <link>QUI</link> per farla aggiungere.",
       "emailMatching": "Per proteggere l'anonimato tuo e degli altri, la stessa email va comunicata anche alla tua associazione ai fini di verifica: due email diverse non permetteranno l'emissione della card."
     },
+    "orgSuggestModal": {
+      "title": "Segnala un'associazione mancante",
+      "placeholder": "Nome dell'associazione da aggiungere",
+      "submit": "INVIA",
+      "closeLabel": "Chiudi"
+    },
     "qrCode": {
-      "caption": "Iscrizione solo da cellulare - inquadra il QR CODE dal cellulare se sei su PC/Tablet"
+      "caption": "l'iscrizione e' possibile solo da cellulare - inquadra il QR CODE dal cellulare se sei su PC/Tablet"
     },
     "cta": {
       "text": "SE NON APPARTIENI A NESSUNA ASSOCIAZIONE ANIMALISTA, ISCRIVITI A WASP (sempre 1 minuto) E OTTIENI SUBITO LA TUA WASP CARD",
@@ -75,7 +92,7 @@
   "About": {
     "mission": {
       "paragraph1": "WASP e' una piattaforma sicura che unisce gli amanti degli animali di tutto il mondo. Crediamo che costruendo una rete di solidarieta' reciproca con chi la pensa come noi, possiamo cambiare la cultura dominante che ci ha portato fin qui. Spendere i nostri soldi consapevolmente puo' essere una strategia vincente.",
-      "paragraph2": "Per esempio: perche' entrare in un negozio qualunque quando sappiamo (dalla mappa degli Amici) che il negozio a fianco e' gestito da un animalista? E forse avremmo un 'trattamento speciale' proprio perche' anche noi lo siamo!",
+      "paragraph2": "Per esempio: perche' acquistare prodotti o servizi in un posto qualsiasi? Ci sono molte aziende e negozi che fanno regolari donazioni per gli animali, se offrono gli stessi beni e servizi non e' meglio rifornirsi da loro? Inoltre, proprio perche' siamo amanti degli animali potremmo ricevere un trattamento speciale! La Mappa degli Amici degli Animali ci indica i negozi/aziende che donano alle Organizzazioni Animaliste... e loro, se sono disponibili ad offrire un trattamento speciale agli animalisti, sapranno che lo siamo mostrandogli la WASP CARD!",
       "paragraph3": "Il nostro potere di acquisto e', appunto, un potere... anzi, un SUPER POTERE! Usiamolo!"
     },
     "cta": "DIVENTA UNA WASP E AIUTACI",
@@ -84,7 +101,7 @@
       "paragraph2": "Se invece non hanno donato, convincili a diventare Amici degli Animali. Come? Con i numeri!"
     },
     "studies": {
-      "heading": "Recenti studi e un nostro sondaggio dimostrano che:",
+      "heading": "Recenti <link>studi e un nostro sondaggio</link> dimostrano che:",
       "items": [
         "Nel tempo i consumatori sono diventati piu' eticamente attenti a come spendono i loro soldi.",
         "I temi piu' sensibili e piu' a cuore dei consumatori sono: tutela degli animali e dell'ambiente.",
@@ -102,7 +119,7 @@
       "items": [
         "Non accettare MAI soldi contanti, tutte le donazioni devono essere tracciabili (anche quelle di 1 Euro). Se lo fai sarai espulsa/o a vita da WASP.",
         "La donazione (di qualsiasi importo pari o superiore a 1 Euro) puo' essere fatta a qualsiasi Organizzazione Animalista (iscritta al Registro Nazionale - la lista completa la trovi sul nostro sito) oltre che a noi.",
-        "Se, oltre alla donazione, il commerciante, la ditta o l'impresa si impegnano a dare un 'trattamento speciale' (puo' essere in qualsiasi forma o cosa) ai nostri tesserati... faccelo sapere cosi' sulla mappa verranno identificati in maniera diversa dagli altri. Saranno Amici Speciali!",
+        "Se, oltre alla donazione, il commerciante, la ditta o l'impresa si impegna a dare un 'trattamento speciale' (puo' essere in qualsiasi forma o cosa) ai nostri tesserati... faccelo sapere cosi' sulla mappa verranno identificati in maniera diversa dagli altri. Saranno Amici Speciali!",
         "Se la donazione viene fatta a favore di WASP, il donatore deve sapere che non tratteniamo nessuna spesa per costi di amministrazione e la somma sara' dedicata interamente a favore degli animali."
       ]
     }
@@ -145,5 +162,11 @@
     },
     "backToTop": "Torna su",
     "copyright": "© 2026 WASP — World Animal Solidarity Project"
+  },
+  "RegisterPage": {
+    "title": "Registrati a WASP"
+  },
+  "MarketAnalysisPage": {
+    "title": "Studi e Sondaggi"
   }
 }

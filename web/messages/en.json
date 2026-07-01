@@ -7,12 +7,19 @@
     "openMenu": "Open menu",
     "closeMenu": "Close menu",
     "nav": {
-      "home": "WASP Home",
-      "mapOrganizations": "Map - Organizations",
-      "mapAnimalFriends": "Map - Animal Friends",
-      "chat": "WASP Chat",
-      "eventsCalendar": "Event Calendar",
-      "newsNetwork": "WASP News Network"
+      "home": "Home",
+      "about": "About Us",
+      "studies": "Studies & Surveys",
+      "organizations": "Organizations",
+      "calendar": "Calendar",
+      "news": "News",
+      "images": "Images",
+      "projects": "Projects",
+      "animalFriends": "Friends of Animals",
+      "walletCard": "Wallet Card",
+      "vipWasps": "VIP WASPs",
+      "privateArea": "Private Area",
+      "contact": "Contact"
     },
     "walletLink": "Your WASP Card"
   },
@@ -20,18 +27,22 @@
     "wordmark": "WASP",
     "tagline": "World Animal Solidarity Project",
     "subtitle": "Registered Animal Welfare Philanthropic Association",
-    "badge": "NEW!!!",
+    "explanation": "WASP is a free platform that unites animal rights activists from all over the world. Our WASP CARD is a virtual card that joins the others in your phone and is only issued to those who are enrolled in (or are part of, in some way) any Animal Welfare Organization. In total anonymity and security, it gives you access to many services reserved only for true animal lovers. With this card you'll be part of the Animal Rights Movement together with people who think like you.",
     "headline": "ANIMAL RIGHTS ACTIVISTS OF THE WORLD, UNITE!",
-    "subheadline": "(with the virtual WASP card in your phone's wallet)"
+    "subheadline": "...with the virtual WASP card in your phone's wallet",
+    "cardGallery": {
+      "frontAlt": "WASP Card - front",
+      "backAlt": "WASP Card - back",
+      "closeLabel": "Close"
+    }
   },
   "MembershipForm": {
-    "heading": "Get your WASP Card",
+    "heading": "Get your WASP Card (in 1 minute)",
     "pricing": {
       "freeTitle": "FREE",
-      "freeDescription": "if you're a member, volunteer, or activist of any animal welfare organization",
-      "paidTitle": "2 EURO",
-      "paidDescription": "for 1 year, if you sign up directly as a WASP member, with no organization"
+      "freeDescription": "if you're a member, volunteer, or activist of any animal welfare organization"
     },
+    "noOrgCta": "click <link>HERE</link> if you don't have or belong to an animal welfare organization and sign up for WASP (1 minute)",
     "trustBadges": [
       "NO ADS",
       "NO PERSONAL DATA",
@@ -46,7 +57,7 @@
       },
       "organization": {
         "label": "Organization Code or Name / City",
-        "placeholder": "E.g. WASP-1234 or Organization Name, City"
+        "placeholder": "example: ITA0123 or Amici Pelosi / Rome"
       },
       "email": {
         "label": "Verification email",
@@ -61,11 +72,17 @@
     "info": {
       "toggleLabel": "Useful information before signing up",
       "nicknameRules": "The nickname can't contain profanity, hate speech, or racism.",
-      "organizationNotFound": "If you can't find your organization, message WASP to have it added.",
+      "organizationNotFound": "If you can't find your organization, message WASP <link>HERE</link> to have it added.",
       "emailMatching": "To protect your anonymity and that of others, the same email must also be shared with your organization for matching purposes: two different emails will prevent the card from being issued."
     },
+    "orgSuggestModal": {
+      "title": "Report a missing organization",
+      "placeholder": "Name of the organization to add",
+      "submit": "SEND",
+      "closeLabel": "Close"
+    },
     "qrCode": {
-      "caption": "Sign-up is mobile-only - scan the QR CODE with your phone if you're on a PC/Tablet"
+      "caption": "sign-up is only possible from a phone - scan the QR CODE with your phone if you're on a PC/Tablet"
     },
     "cta": {
       "text": "IF YOU DON'T BELONG TO ANY ANIMAL WELFARE ORGANIZATION, SIGN UP FOR WASP (always 1 minute) AND GET YOUR WASP CARD RIGHT AWAY",
@@ -75,7 +92,7 @@
   "About": {
     "mission": {
       "paragraph1": "WASP is a safe platform that unites animal lovers from all over the world. We believe that by building a network of mutual solidarity with people who think like us, we can change the dominant culture that got us here. Spending our money consciously can be a winning strategy.",
-      "paragraph2": "For example: why walk into a random shop when we know (from the Friends map) that the shop next door is run by an animal activist? And maybe we'd get some 'special treatment' precisely because we are too!",
+      "paragraph2": "For example: why buy products or services just anywhere? There are many businesses and shops that regularly donate to animals - if they offer the same goods and services, isn't it better to shop with them? Also, precisely because we're animal lovers, we might get special treatment! The Friends of Animals Map shows us the shops/businesses that donate to Animal Welfare Organizations... and they, if willing to offer special treatment to animal rights activists, will know we are one by seeing the WASP CARD!",
       "paragraph3": "Our purchasing power is, indeed, a power... in fact, a SUPER POWER! Let's use it!"
     },
     "cta": "BECOME A WASP AND HELP US",
@@ -84,7 +101,7 @@
       "paragraph2": "If they haven't donated, convince them to become Friends of Animals. How? With numbers!"
     },
     "studies": {
-      "heading": "Recent studies and one of our surveys show that:",
+      "heading": "Recent <link>studies and one of our surveys</link> show that:",
       "items": [
         "Over time, consumers have become more ethically attentive to how they spend their money.",
         "The topics consumers care about most and are most sensitive to are: animal welfare and the environment.",
@@ -145,5 +162,11 @@
     },
     "backToTop": "Back to top",
     "copyright": "© 2026 WASP — World Animal Solidarity Project"
+  },
+  "RegisterPage": {
+    "title": "Sign up for WASP"
+  },
+  "MarketAnalysisPage": {
+    "title": "Studies & Surveys"
   }
 }
