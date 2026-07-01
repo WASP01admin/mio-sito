@@ -71,5 +71,40 @@
       "text": "IF YOU DON'T BELONG TO ANY ANIMAL WELFARE ORGANIZATION, SIGN UP FOR WASP (always 1 minute) AND GET YOUR WASP CARD RIGHT AWAY",
       "link": "SIGN UP HERE"
     }
+  },
+  "About": {
+    "mission": {
+      "paragraph1": "WASP is a safe platform that unites animal lovers from all over the world. We believe that by building a network of mutual solidarity with people who think like us, we can change the dominant culture that got us here. Spending our money consciously can be a winning strategy.",
+      "paragraph2": "For example: why walk into a random shop when we know (from the Friends map) that the shop next door is run by an animal activist? And maybe we'd get some 'special treatment' precisely because we are too!",
+      "paragraph3": "Our purchasing power is, indeed, a power... in fact, a SUPER POWER! Let's use it!"
+    },
+    "cta": "BECOME A WASP AND HELP US",
+    "businessPitch": {
+      "paragraph1": "Ask your dentist or your trusted shop whether they've made a donation for animals. Often these donations are kept in the shadows, which is a shame, because businesses that donate to animals could be listed on the Friends Map FOR FREE... you just have to know about it!",
+      "paragraph2": "If they haven't donated, convince them to become Friends of Animals. How? With numbers!"
+    },
+    "studies": {
+      "heading": "Recent studies and one of our surveys show that:",
+      "items": [
+        "Over time, consumers have become more ethically attentive to how they spend their money.",
+        "The topics consumers care about most and are most sensitive to are: animal welfare and the environment.",
+        "Businesses that meet these growing market demands thrive."
+      ]
+    },
+    "callout": "TO BECOME A FRIEND OF ANIMALS YOU NEED TO MAKE ANY DONATION (even 1 Euro) TO ANY ANIMAL WELFARE ORGANIZATION",
+    "friendsExplanation": {
+      "paragraph1": "Friends of Animals will be VISIBLE on the map for one year (after which they can renew their listing). Their donation makes them FRIENDS and will bring them new earnings in the form of new conscious customers. It benefits them (the businesses), it benefits us (consumers), and it benefits the animals (who will be the beneficiaries of this virtuous circle).",
+      "ps": "P.S. In the future we'll make a ranking to honor the most virtuous WASPs!",
+      "movement": "With your WASP card you're part of a Movement... in motion! It will be a long process, but sooner or later 'the market' will notice us conscious consumers, and then things will change. Shops, firms, and businesses will become (even if just out of opportunity) more generous with donations... but also more conscious. And that's the cultural change we want!"
+    },
+    "rules": {
+      "heading": "When you activate as a WASP, always remember these four things:",
+      "items": [
+        "NEVER accept cash, all donations must be traceable (even 1 Euro ones). If you do, you will be permanently expelled from WASP.",
+        "The donation (of any amount equal to or greater than 1 Euro) can be made to any Animal Welfare Organization (registered with the National Registry - the full list is on our website) as well as to us.",
+        "If, in addition to the donation, the merchant, firm, or business commits to giving our members 'special treatment' (in any form), let us know so they can be identified differently on the map. They'll be Special Friends!",
+        "If the donation is made in favor of WASP, the donor should know that we don't withhold any amount for administrative costs, and the full sum will be dedicated entirely to animals."
+      ]
+    }
   }
 }

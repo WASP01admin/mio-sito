@@ -71,5 +71,40 @@
       "text": "SE NON APPARTIENI A NESSUNA ASSOCIAZIONE ANIMALISTA, ISCRIVITI A WASP (sempre 1 minuto) E OTTIENI SUBITO LA TUA WASP CARD",
       "link": "ISCRIVITI QUI"
     }
+  },
+  "About": {
+    "mission": {
+      "paragraph1": "WASP e' una piattaforma sicura che unisce gli amanti degli animali di tutto il mondo. Crediamo che costruendo una rete di solidarieta' reciproca con chi la pensa come noi, possiamo cambiare la cultura dominante che ci ha portato fin qui. Spendere i nostri soldi consapevolmente puo' essere una strategia vincente.",
+      "paragraph2": "Per esempio: perche' entrare in un negozio qualunque quando sappiamo (dalla mappa degli Amici) che il negozio a fianco e' gestito da un animalista? E forse avremmo un 'trattamento speciale' proprio perche' anche noi lo siamo!",
+      "paragraph3": "Il nostro potere di acquisto e', appunto, un potere... anzi, un SUPER POTERE! Usiamolo!"
+    },
+    "cta": "DIVENTA UNA WASP E AIUTACI",
+    "businessPitch": {
+      "paragraph1": "Chiedi al tuo dentista o al tuo negozio di fiducia se hanno fatto una donazione per gli animali. Spesso accade che queste donazioni sono tenute all'ombra, ed e' un peccato perche' le ditte che donano agli animali potrebbero essere inserite nella Mappa degli Amici GRATUITAMENTE... basta saperlo!",
+      "paragraph2": "Se invece non hanno donato, convincili a diventare Amici degli Animali. Come? Con i numeri!"
+    },
+    "studies": {
+      "heading": "Recenti studi e un nostro sondaggio dimostrano che:",
+      "items": [
+        "Nel tempo i consumatori sono diventati piu' eticamente attenti a come spendono i loro soldi.",
+        "I temi piu' sensibili e piu' a cuore dei consumatori sono: tutela degli animali e dell'ambiente.",
+        "Le aziende che vanno incontro a queste crescenti esigenze di mercato prosperano."
+      ]
+    },
+    "callout": "PER ESSERE AMICI DEGLI ANIMALI BISOGNA FARE UNA QUALSIASI DONAZIONE (anche 1 Euro) AD UNA QUALSIASI ORGANIZZAZIONE ANIMALISTA",
+    "friendsExplanation": {
+      "paragraph1": "Gli Amici degli Animali saranno VISIBILI sulla mappa per un anno (poi potranno rinnovare la loro posizione). La loro donazione li rende AMICI e portera' loro nuovi guadagni sottoforma di nuovi clienti consapevoli. Conviene a loro (le ditte), conviene a noi (consumatori) e conviene agli animali (che saranno i beneficiari di questo circolo virtuoso).",
+      "ps": "P.S. In futuro faremo una classifica per omaggiare le WASP piu' virtuose!",
+      "movement": "Con la tua tessera WASP fai parte di un Movimento... in movimento! Sara' un processo lungo, ma prima o poi 'il mercato' si accorgera' di noi consumatori consapevoli, e allora le cose cambieranno. I negozi, le ditte e le aziende diventeranno (anche se per mera opportunita') piu' generosi con le donazioni... ma anche piu' consapevoli. Ed e' questo il cambiamento culturale che vogliamo!"
+    },
+    "rules": {
+      "heading": "Quando ti attivi come WASP ricorda sempre queste quattro cose:",
+      "items": [
+        "Non accettare MAI soldi contanti, tutte le donazioni devono essere tracciabili (anche quelle di 1 Euro). Se lo fai sarai espulsa/o a vita da WASP.",
+        "La donazione (di qualsiasi importo pari o superiore a 1 Euro) puo' essere fatta a qualsiasi Organizzazione Animalista (iscritta al Registro Nazionale - la lista completa la trovi sul nostro sito) oltre che a noi.",
+        "Se, oltre alla donazione, il commerciante, la ditta o l'impresa si impegnano a dare un 'trattamento speciale' (puo' essere in qualsiasi forma o cosa) ai nostri tesserati... faccelo sapere cosi' sulla mappa verranno identificati in maniera diversa dagli altri. Saranno Amici Speciali!",
+        "Se la donazione viene fatta a favore di WASP, il donatore deve sapere che non tratteniamo nessuna spesa per costi di amministrazione e la somma sara' dedicata interamente a favore degli animali."
+      ]
+    }
   }
 }
