@@ -10,11 +10,17 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",
-    "@wasp/shared": "*",
+    "@types/leaflet.markercluster": "^1.5.6",
+    "leaflet": "^1.9.4",
+    "leaflet.markercluster": "^1.5.3",
+    "lucide-react": "^1.23.0",
     "next": "16.2.9",
     "next-intl": "^4.13.1",
     "react": "19.2.4",
-    "react-dom": "19.2.4"
+    "react-dom": "19.2.4",
+    "resend": "^6.16.0",
+    "server-only": "^0.0.1",
+    "socket.io-client": "^4.8.3"
   },
   "devDependencies": {
     "@tailwindcss/postcss": "^4",
@@ -23,6 +29,7 @@
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "16.2.9",
+    "pg": "^8.22.0",
     "tailwindcss": "^4",
     "typescript": "^5"
   }

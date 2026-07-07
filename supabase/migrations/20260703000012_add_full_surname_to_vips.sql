@@ -1,0 +1,48 @@
+-- Add full surname column to vips table
+alter table vips add column if not exists surname varchar(100);
+
+-- Update existing VIPs with full surnames
+update vips set surname = 'Giannini' where first_name = 'Sabrina';
+update vips set surname = 'Innocenzi' where first_name = 'Giulia';
+update vips set surname = 'Gervais' where first_name = 'Ricky';
+update vips set surname = 'Biagiarelli' where first_name = 'Lorenzo';
+update vips set surname = 'Hack' where first_name = 'Margherita';
+update vips set surname = 'Brambilla' where first_name = 'Michela';
+update vips set surname = 'Cirinnà' where first_name = 'Monica';
+update vips set surname = 'Wertmüller' where first_name = 'Massimo';
+update vips set surname = 'Di Eusanio' where first_name = 'Elisa';
+update vips set surname = 'Cardinale' where first_name = 'Claudia';
+update vips set surname = 'Bertazzi' where first_name = 'Danilo';
+update vips set surname = 'Poggi' where first_name = 'Daniela';
+update vips set surname = 'Cherubini' where first_name = 'Jovanotti';
+update vips set surname = 'Canzian' where first_name = 'Red';
+update vips set surname = 'Turci' where first_name = 'Paola';
+update vips set surname = 'Cattaneo' where first_name = 'Ivan';
+update vips set surname = 'Caffo' where first_name = 'Leonardo';
+update vips set surname = 'Rivera' where first_name = 'Annamaria';
+update vips set surname = 'Tamaro' where first_name = 'Susanna';
+update vips set surname = 'Goggi' where first_name = 'Silvia';
+update vips set surname = 'Berrino' where first_name = 'Franco';
+update vips set surname = 'Apuzzo' where first_name = 'Stefano';
+update vips set surname = 'Maugeri' where first_name = 'Paola' and bio like '%MTV%';
+update vips set surname = 'Bergamasco' where first_name = 'Mirco';
+update vips set surname = 'Joli' where first_name = 'Elena';
+update vips set surname = 'Leemann' where first_name = 'Pietro';
+update vips set surname = 'Perego' where first_name = 'Carlotta';
+update vips set surname = 'De Petris' where first_name = 'Michela' and bio like '%oncologo%';
+update vips set surname = 'Merciadri' where first_name = 'Vasco';
+update vips set surname = 'Fedi' where first_name = 'Bruno' and bio like '%urologo%';
+update vips set surname = 'Pocar' where first_name = 'Valerio';
+update vips set surname = 'Biolé' where first_name = 'Filippo';
+update vips set surname = 'Lombardi Vallauri' where first_name = 'Luigi';
+update vips set surname = 'Ciatti' where first_name = 'Rita';
+update vips set surname = 'De Giorgio' where first_name = 'Francesco';
+update vips set surname = 'Giacovazzo' where first_name = 'Piergiorgio';
+update vips set surname = 'Locatelli' where first_name = 'Claudio';
+update vips set surname = 'Terzani' where first_name = 'Tiziano';
+update vips set surname = 'Bozzetto' where first_name = 'Bruno' and bio like '%animazione%';
+update vips set surname = 'Pettinato' where first_name = 'Tuono';
+update vips set surname = 'Brunod' where first_name = 'Bruno' and bio like '%montagna%';
+update vips set surname = 'De Angelis' where first_name = 'Doranna';
+update vips set surname = 'Brunaccioni' where first_name = 'Massimo' and bio like '%Natural Bodybuilding%';
+update vips set surname = 'Franchi' where first_name = 'Elisabetta';

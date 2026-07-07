@@ -1,43 +1,155 @@
 "use client";
 
-import { useId, useState } from "react";
-import { useTranslations } from "next-intl";
+import { useEffect, useId, useRef, useState } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { Link } from "@/i18n/navigation";
+import type { AssociationSearchResult } from "@wasp/shared";
+import { validateNickname, NICKNAME_MAX_LENGTH } from "@/lib/nickname-validation";
 
 interface MembershipFormData {
   nickname: string;
-  organization: string;
   email: string;
   image: File | null;
 }
 
 const initialFormData: MembershipFormData = {
   nickname: "",
-  organization: "",
   email: "",
   image: null,
 };
 
-export default function MembershipForm() {
+const MIN_QUERY_LENGTH = 3;
+const DEBOUNCE_MS = 300;
+
+type SubmitState = "idle" | "submitting" | "success" | "error";
+type SuccessStatus = "verify_email_sent" | "association_not_found_email_sent";
+
+interface MembershipFormProps {
+  isMobile: boolean;
+}
+
+export default function MembershipForm({ isMobile }: MembershipFormProps) {
   const t = useTranslations("MembershipForm");
+  const locale = useLocale();
   const formId = useId();
   const [formData, setFormData] = useState<MembershipFormData>(initialFormData);
   const [isInfoOpen, setIsInfoOpen] = useState(false);
   const [isOrgSuggestOpen, setIsOrgSuggestOpen] = useState(false);
   const [orgSuggestion, setOrgSuggestion] = useState("");
 
+  const [orgQuery, setOrgQuery] = useState("");
+  const [selectedAssociation, setSelectedAssociation] =
+    useState<AssociationSearchResult | null>(null);
+  const [suggestions, setSuggestions] = useState<AssociationSearchResult[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
+  const [showDropdown, setShowDropdown] = useState(false);
+
+  const [submitState, setSubmitState] = useState<SubmitState>("idle");
+  const [successStatus, setSuccessStatus] = useState<SuccessStatus | null>(null);
+  const [errorKey, setErrorKey] = useState<string | null>(null);
+
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
   const trustBadges = t.raw("trustBadges") as string[];
 
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log("WASP membership signup:", formData);
+  useEffect(() => {
+    if (debounceRef.current) clearTimeout(debounceRef.current);
+
+    if (selectedAssociation || orgQuery.trim().length < MIN_QUERY_LENGTH) {
+      return;
+    }
+
+    debounceRef.current = setTimeout(async () => {
+      try {
+        const res = await fetch(
+          `/api/associations?q=${encodeURIComponent(orgQuery.trim())}`
+        );
+        const data = await res.json();
+        setSuggestions(data.results ?? []);
+      } catch {
+        setSuggestions([]);
+      } finally {
+        setIsSearching(false);
+        setShowDropdown(true);
+      }
+    }, DEBOUNCE_MS);
+
+    return () => {
+      if (debounceRef.current) clearTimeout(debounceRef.current);
+    };
+  }, [orgQuery, selectedAssociation]);
+
+  function handleOrgInputChange(value: string) {
+    setOrgQuery(value);
+    setSelectedAssociation(null);
+
+    const meetsMinLength = value.trim().length >= MIN_QUERY_LENGTH;
+    setIsSearching(meetsMinLength);
+    if (!meetsMinLength) {
+      setSuggestions([]);
+      setShowDropdown(false);
+    }
   }
 
-  function handleOrgSuggestSubmit(event: React.FormEvent<HTMLFormElement>) {
+  function handleSelectSuggestion(assoc: AssociationSearchResult) {
+    setSelectedAssociation(assoc);
+    setOrgQuery(`${assoc.name} — ${assoc.city}`);
+    setSuggestions([]);
+    setShowDropdown(false);
+  }
+
+  async function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    console.log("WASP missing organization suggestion:", orgSuggestion);
-    setOrgSuggestion("");
-    setIsOrgSuggestOpen(false);
+    setErrorKey(null);
+
+    const nicknameResult = validateNickname(formData.nickname);
+    if (!nicknameResult.valid) {
+      setErrorKey(`nickname_${nicknameResult.error}`);
+      setSubmitState("error");
+      return;
+    }
+
+    setSubmitState("submitting");
+
+    const body = new FormData();
+    body.set("nickname", nicknameResult.value);
+    body.set("email", formData.email);
+    body.set("locale", locale);
+    if (selectedAssociation) {
+      body.set("associationId", selectedAssociation.id);
+    } else {
+      body.set("associationQuery", orgQuery.trim());
+    }
+    if (formData.image) body.set("photo", formData.image);
+
+    try {
+      const res = await fetch("/api/register", { method: "POST", body });
+      const data = await res.json();
+      if (!res.ok || !data.ok) {
+        setErrorKey(data.error ?? "generic");
+        setSubmitState("error");
+        return;
+      }
+      setSuccessStatus(data.status as SuccessStatus);
+      setSubmitState("success");
+    } catch {
+      setErrorKey("generic");
+      setSubmitState("error");
+    }
+  }
+
+  async function handleOrgSuggestSubmit(event: React.FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    try {
+      await fetch("/api/associations/suggest", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ suggestion: orgSuggestion }),
+      });
+    } finally {
+      setOrgSuggestion("");
+      setIsOrgSuggestOpen(false);
+    }
   }
 
   return (
@@ -49,6 +161,12 @@ export default function MembershipForm() {
         <h2 className="text-center text-xl font-bold sm:text-2xl">
           {t("heading")}
         </h2>
+
+        {!isMobile && (
+          <p className="mt-4 rounded-md border border-yellow-300 bg-yellow-50 p-3 text-center text-sm font-semibold text-yellow-900">
+            {t("mobileWarning")}
+          </p>
+        )}
 
         {/* Pricing */}
         <div className="mt-6 rounded-xl border-2 border-wasp-yellow bg-black px-5 py-6 text-center">
@@ -89,142 +207,195 @@ export default function MembershipForm() {
           {t("explanation")}
         </p>
 
-        {/* Form */}
-        <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
-          <div className="flex flex-col gap-1">
-            <label htmlFor={`${formId}-nickname`} className="text-sm font-semibold">
-              {t("fields.nickname.label")}
-            </label>
-            <input
-              id={`${formId}-nickname`}
-              type="text"
-              required
-              placeholder={t("fields.nickname.placeholder")}
-              value={formData.nickname}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, nickname: e.target.value }))
-              }
-              className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
-            />
+        {submitState === "success" ? (
+          <div className="mt-8 rounded-md border border-green-300 bg-green-50 p-4 text-center text-sm font-semibold text-green-900">
+            {successStatus === "verify_email_sent"
+              ? t("success.verifyEmailSent")
+              : t("success.associationNotFoundEmailSent")}
           </div>
+        ) : (
+          <form onSubmit={handleSubmit} className="mt-8 flex flex-col gap-4">
+            <div className="flex flex-col gap-1">
+              <label htmlFor={`${formId}-nickname`} className="text-sm font-semibold">
+                {t("fields.nickname.label")}
+              </label>
+              <input
+                id={`${formId}-nickname`}
+                type="text"
+                required
+                maxLength={NICKNAME_MAX_LENGTH}
+                placeholder={t("fields.nickname.placeholder")}
+                value={formData.nickname}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, nickname: e.target.value }))
+                }
+                className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+              />
+            </div>
 
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor={`${formId}-organization`}
-              className="text-sm font-semibold"
-            >
-              {t("fields.organization.label")}
-            </label>
-            <input
-              id={`${formId}-organization`}
-              type="text"
-              placeholder={t("fields.organization.placeholder")}
-              value={formData.organization}
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  organization: e.target.value,
-                }))
-              }
-              className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label htmlFor={`${formId}-email`} className="text-sm font-semibold">
-              {t("fields.email.label")}{" "}
-              <span className="font-normal text-gray-500">
-                ({t("fields.email.hint")})
-              </span>
-            </label>
-            <input
-              id={`${formId}-email`}
-              type="email"
-              required
-              placeholder={t("fields.email.placeholder")}
-              value={formData.email}
-              onChange={(e) =>
-                setFormData((prev) => ({ ...prev, email: e.target.value }))
-              }
-              className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
-            />
-          </div>
-
-          <div className="flex flex-col gap-1">
-            <label
-              htmlFor={`${formId}-image`}
-              className="flex items-center gap-2 text-sm font-semibold"
-            >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth={1.5}
-                className="h-4 w-4 shrink-0"
-                aria-hidden="true"
+            <div className="relative flex flex-col gap-1">
+              <label
+                htmlFor={`${formId}-organization`}
+                className="text-sm font-semibold"
               >
-                <rect x="3" y="3" width="18" height="18" rx="2" />
-                <circle cx="8.5" cy="8.5" r="1.5" />
-                <path d="M21 15l-5-5L5 21" />
-              </svg>
-              {t("fields.image.label")}
-            </label>
-            <input
-              id={`${formId}-image`}
-              type="file"
-              accept="image/*"
-              onChange={(e) =>
-                setFormData((prev) => ({
-                  ...prev,
-                  image: e.target.files?.[0] ?? null,
-                }))
-              }
-              className="text-sm"
-            />
-          </div>
+                {t("fields.organization.label")}
+              </label>
+              <input
+                id={`${formId}-organization`}
+                type="text"
+                required
+                autoComplete="off"
+                placeholder={t("fields.organization.placeholder")}
+                value={orgQuery}
+                onChange={(e) => handleOrgInputChange(e.target.value)}
+                onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
+                onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
+                className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+              />
 
-          {/* Info toggle */}
-          <div className="rounded-md border border-gray-200 bg-gray-50 p-3">
-            <button
-              type="button"
-              onClick={() => setIsInfoOpen((prev) => !prev)}
-              aria-expanded={isInfoOpen}
-              className="flex w-full items-center gap-2 text-left text-sm font-semibold"
-            >
-              <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-black text-xs">
-                i
-              </span>
-              {t("info.toggleLabel")}
-            </button>
-            {isInfoOpen && (
-              <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-gray-700">
-                <li>{t("info.nicknameRules")}</li>
-                <li>
-                  {t.rich("info.organizationNotFound", {
-                    link: (chunks) => (
-                      <button
-                        type="button"
-                        onClick={() => setIsOrgSuggestOpen(true)}
-                        className="text-blue-600 underline"
-                      >
-                        {chunks}
-                      </button>
-                    ),
-                  })}
-                </li>
-                <li>{t("info.emailMatching")}</li>
-              </ul>
+              {selectedAssociation && (
+                <p className="text-xs text-gray-600">
+                  {t("fields.organization.selectedPrefix")}{" "}
+                  <strong>
+                    {selectedAssociation.name} — {selectedAssociation.city}
+                  </strong>{" "}
+                  ({selectedAssociation.code})
+                </p>
+              )}
+
+              {showDropdown && !selectedAssociation && (
+                <div className="absolute top-full z-10 mt-1 w-full rounded-md border border-gray-300 bg-white shadow-lg">
+                  {isSearching ? (
+                    <p className="px-3 py-2 text-sm text-gray-500">
+                      {t("fields.organization.searching")}
+                    </p>
+                  ) : suggestions.length > 0 ? (
+                    <ul>
+                      {suggestions.map((assoc) => (
+                        <li key={assoc.id}>
+                          <button
+                            type="button"
+                            onClick={() => handleSelectSuggestion(assoc)}
+                            className="block w-full px-3 py-2 text-left text-sm hover:bg-gray-100"
+                          >
+                            {assoc.name} — {assoc.city}{" "}
+                            <span className="text-gray-400">({assoc.code})</span>
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="px-3 py-2 text-sm text-gray-500">
+                      {t("fields.organization.noMatches")}
+                    </p>
+                  )}
+                </div>
+              )}
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label htmlFor={`${formId}-email`} className="text-sm font-semibold">
+                {t("fields.email.label")}{" "}
+                <span className="font-normal text-gray-500">
+                  ({t("fields.email.hint")})
+                </span>
+              </label>
+              <input
+                id={`${formId}-email`}
+                type="email"
+                required
+                placeholder={t("fields.email.placeholder")}
+                value={formData.email}
+                onChange={(e) =>
+                  setFormData((prev) => ({ ...prev, email: e.target.value }))
+                }
+                className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+              />
+            </div>
+
+            <div className="flex flex-col gap-1">
+              <label
+                htmlFor={`${formId}-image`}
+                className="flex items-center gap-2 text-sm font-semibold"
+              >
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={1.5}
+                  className="h-4 w-4 shrink-0"
+                  aria-hidden="true"
+                >
+                  <rect x="3" y="3" width="18" height="18" rx="2" />
+                  <circle cx="8.5" cy="8.5" r="1.5" />
+                  <path d="M21 15l-5-5L5 21" />
+                </svg>
+                {t("fields.image.label")}
+              </label>
+              <input
+                id={`${formId}-image`}
+                type="file"
+                accept="image/*"
+                onChange={(e) =>
+                  setFormData((prev) => ({
+                    ...prev,
+                    image: e.target.files?.[0] ?? null,
+                  }))
+                }
+                className="text-sm"
+              />
+            </div>
+
+            {/* Info toggle */}
+            <div className="rounded-md border border-gray-200 bg-gray-50 p-3">
+              <button
+                type="button"
+                onClick={() => setIsInfoOpen((prev) => !prev)}
+                aria-expanded={isInfoOpen}
+                className="flex w-full items-center gap-2 text-left text-sm font-semibold"
+              >
+                <span className="flex h-5 w-5 shrink-0 items-center justify-center rounded-full border border-black text-xs">
+                  i
+                </span>
+                {t("info.toggleLabel")}
+              </button>
+              {isInfoOpen && (
+                <ul className="mt-3 list-disc space-y-2 pl-6 text-sm text-gray-700">
+                  <li>{t("info.nicknameRules")}</li>
+                  <li>
+                    {t.rich("info.organizationNotFound", {
+                      link: (chunks) => (
+                        <button
+                          type="button"
+                          onClick={() => setIsOrgSuggestOpen(true)}
+                          className="text-blue-600 underline"
+                        >
+                          {chunks}
+                        </button>
+                      ),
+                    })}
+                  </li>
+                  <li>{t("info.emailMatching")}</li>
+                </ul>
+              )}
+            </div>
+
+            {submitState === "error" && errorKey && (
+              <p className="rounded-md border border-red-300 bg-red-50 px-3 py-2 text-sm font-semibold text-red-800">
+                {t(`errors.${errorKey}`)}
+              </p>
             )}
-          </div>
 
-          <button
-            type="submit"
-            className="mt-2 rounded-md bg-black px-4 py-3 text-base font-bold text-wasp-yellow transition-colors hover:bg-black/80"
-          >
-            {t("submit")}
-          </button>
-        </form>
+            <button
+              type="submit"
+              disabled={submitState === "submitting"}
+              className="mt-2 rounded-md bg-black px-4 py-3 text-base font-bold text-wasp-yellow transition-colors hover:bg-black/80 disabled:opacity-50"
+            >
+              {submitState === "submitting" ? t("submitting") : t("submit")}
+            </button>
+          </form>
+        )}
 
         {/* QR code placeholder */}
         <div className="mt-10 flex flex-col items-center gap-3">

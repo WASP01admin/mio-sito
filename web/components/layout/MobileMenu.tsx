@@ -11,16 +11,16 @@ export default function MobileMenu() {
   const navLinks: Array<{ key: string; href: string }> = [
     { key: "home", href: "/" },
     { key: "about", href: "#" },
-    { key: "studies", href: "#" },
-    { key: "organizations", href: "#" },
-    { key: "calendar", href: "#" },
-    { key: "news", href: "#" },
+    { key: "studies", href: "/studi-e-sondaggi" },
+    { key: "organizations", href: "/maps" },
+    { key: "calendar", href: "/private-area/calendar" },
+    { key: "news", href: "/news" },
     { key: "images", href: "#" },
-    { key: "projects", href: "#" },
-    { key: "animalFriends", href: "#" },
-    { key: "walletCard", href: "#" },
-    { key: "vipWasps", href: "#" },
-    { key: "privateArea", href: "#" },
+    { key: "projects", href: "/projects" },
+    { key: "animalFriends", href: "/maps/donors" },
+    { key: "walletCard", href: "/registrati" },
+    { key: "vipWasps", href: "/vip" },
+    { key: "privateArea", href: "/private-area" },
     { key: "contact", href: "#" },
   ];
 
@@ -68,16 +68,7 @@ export default function MobileMenu() {
 
         <nav className="mt-8 flex flex-1 flex-col gap-4 overflow-y-auto">
           {navLinks.map((link) =>
-            link.href === "/" ? (
-              <Link
-                key={link.key}
-                href="/"
-                onClick={() => setIsOpen(false)}
-                className="text-base font-medium tracking-wide hover:text-wasp-yellow"
-              >
-                {t(`nav.${link.key}`)}
-              </Link>
-            ) : (
+            link.href === "#" ? (
               <a
                 key={link.key}
                 href={link.href}
@@ -86,6 +77,15 @@ export default function MobileMenu() {
               >
                 {t(`nav.${link.key}`)}
               </a>
+            ) : (
+              <Link
+                key={link.key}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="text-base font-medium tracking-wide hover:text-wasp-yellow"
+              >
+                {t(`nav.${link.key}`)}
+              </Link>
             )
           )}
         </nav>

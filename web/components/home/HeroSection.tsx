@@ -1,10 +1,14 @@
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { headers } from "next/headers";
+import { userAgent } from "next/server";
+import { getTranslations } from "next-intl/server";
 import WaspCardGallery from "./WaspCardGallery";
 import MembershipForm from "./MembershipForm";
 
-export default function HeroSection() {
-  const tHero = useTranslations("Hero");
+export default async function HeroSection() {
+  const tHero = await getTranslations("Hero");
+  const { device } = userAgent({ headers: await headers() });
+  const isMobile = device.type === "mobile";
 
   return (
     <>
@@ -34,7 +38,7 @@ export default function HeroSection() {
         </div>
       </section>
 
-      <MembershipForm />
+      <MembershipForm isMobile={isMobile} />
     </>
   );
 }

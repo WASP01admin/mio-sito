@@ -1,0 +1,66 @@
+{
+  "timestamp": "2026-07-03T18:33:36.713073",
+  "investigation": "dropped_records_deep_dive",
+  "summary": {
+    "originally_kept": 3405,
+    "dropped_no_name": 3025,
+    "salvageable_with_data": 377,
+    "completely_empty": 2648,
+    "potential_total": 3782
+  },
+  "data_in_dropped": {
+    "with_email": 370,
+    "with_website": 370,
+    "with_address": 38,
+    "with_city": 0,
+    "with_country": 5,
+    "with_any_field": 377
+  },
+  "data_patterns": {
+    "address": 1,
+    "email+website+address": 37,
+    "email+website": 328,
+    "website": 3,
+    "email": 3,
+    "country": 3,
+    "email+website+country": 2
+  },
+  "by_file": {
+    "associazioni anglofone1.csv": {
+      "total": 538,
+      "salvageable": 0
+    },
+    "associazioni anglofone2.csv": {
+      "total": 1148,
+      "salvageable": 0
+    },
+    "associazioni anglofone3.csv": {
+      "total": 897,
+      "salvageable": 0
+    },
+    "associazioni anglofone4.csv": {
+      "total": 9,
+      "salvageable": 0
+    },
+    "associazioni anglofone5.csv": {
+      "total": 4,
+      "salvageable": 0
+    },
+    "ASSOCs - NEW Z.csv": {
+      "total": 40,
+      "salvageable": 40
+    },
+    "ASSOCs - UK.csv": {
+      "total": 329,
+      "salvageable": 329
+    },
+    "ASSOCs - US.csv": {
+      "total": 55,
+      "salvageable": 3
+    },
+    "ENG ASSOCIATION LIST 26 sept 23 - Sheet1.csv": {
+      "total": 5,
+      "salvageable": 5
+    }
+  }
+}

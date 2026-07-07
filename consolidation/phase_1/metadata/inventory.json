@@ -1,0 +1,38 @@
+{
+  "timestamp": "2026-07-03T18:07:06.637803",
+  "phase": "phase_1_deduplication",
+  "files_processed": 22,
+  "total_records": 12555,
+  "coordinates_extracted": 249,
+  "files": {
+    "ASSOCIATIONS - IRELAND.csv": 22,
+    "ASSOCIATIONS - NZ.csv": 47,
+    "associazioni anglofone1.csv": 556,
+    "associazioni anglofone2.csv": 1169,
+    "associazioni anglofone3.csv": 910,
+    "associazioni anglofone4.csv": 900,
+    "associazioni anglofone5.csv": 36,
+    "associazioni bohhhUntitled spreadsheet - Associazioni Animaliste Bergamo.csv": 44,
+    "ASSOCIAZIONI ITA - Sheet1.csv": 60,
+    "Associazioni_Animaliste_Bergamo.xlsx - Associazioni Animaliste Bergamo.csv": 23,
+    "Associazioni_Animaliste_Brescia.xlsx - Associazioni Animaliste Brescia.csv": 20,
+    "Associazioni_Animali_Piemonte1.xlsx - Associazioni Animali Piemonte.csv": 110,
+    "ASSOCs - AUSTRALIA.csv": 90,
+    "ASSOCs - CANADA.csv": 317,
+    "ASSOCs - NEW Z.csv": 48,
+    "ASSOCs - UK.csv": 334,
+    "ASSOCs - US.csv": 3458,
+    "ENG ASSOCIATION LIST 26 sept 23 - Sheet1.csv": 4217,
+    "Lista associazioni 26 sept 23 - Sheet1.csv": 61,
+    "PIEMONTE - Cani PIEMONTE.csv": 13,
+    "VALLE D AOSTA - AOSTA.csv": 8,
+    "VALLE D AOSTA - Gatti .csv": 112
+  },
+  "excluded_files": [
+    "ASSOCs - NL.csv",
+    "ASSOCs - SWISS.csv",
+    "ASSOCs - GER.csv",
+    "ASSOCs - ROMANIA.csv",
+    "ASSOCIATIONS - SouthAfrika.csv"
+  ]
+}

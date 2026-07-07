@@ -50,6 +50,7 @@
       "NO COSTI OCCULTI"
     ],
     "explanation": "La card viene consegnata istantaneamente nel wallet Apple/Google. Non serve il numero di telefono né alcun dato personale: basta un'email, solo per verificare che tu non sia un bot.",
+    "mobileWarning": "⚠️ Solo da cellulare: completa questa registrazione e apri l'email di verifica direttamente dal tuo smartphone (iPhone o Android) per aggiungere correttamente la card al wallet digitale.",
     "fields": {
       "nickname": {
         "label": "Nickname",
@@ -57,7 +58,11 @@
       },
       "organization": {
         "label": "Codice o Nome Associazione / Città",
-        "placeholder": "esempio: ITA0123 oppure Amici Pelosi / Roma"
+        "placeholder": "esempio: ITA0123 oppure Amici Pelosi / Roma",
+        "searching": "Ricerca in corso...",
+        "noMatches": "Nessun risultato trovato. Se invii comunque, ti scriveremo via email per aggiungere la tua associazione.",
+        "selectedPrefix": "Selezionata:",
+        "changeSelection": "Cambia"
       },
       "email": {
         "label": "Email di verifica",
@@ -69,6 +74,25 @@
       }
     },
     "submit": "INVIA",
+    "submitting": "Invio in corso...",
+    "success": {
+      "verifyEmailSent": "Controlla la tua email — ti abbiamo inviato un link di verifica. Non l'hai ricevuta dopo qualche minuto? Controlla la cartella spam e verifica di aver scritto correttamente la tua email — altrimenti, compila di nuovo il modulo.",
+      "associationNotFoundEmailSent": "Non abbiamo trovato la tua associazione. Controlla la tua email per i prossimi passi."
+    },
+    "errors": {
+      "nickname_required": "Inserisci un nickname.",
+      "nickname_too_short": "Il nickname deve avere almeno 2 caratteri.",
+      "nickname_too_long": "Il nickname può avere al massimo 20 caratteri (verrà usato anche come nome utente in chat).",
+      "nickname_too_many_symbols": "Il nickname deve contenere almeno un paio di lettere o numeri.",
+      "nickname_inappropriate": "Scegli un nickname diverso.",
+      "invalid_email": "Inserisci un indirizzo email valido.",
+      "association_required": "Seleziona o inserisci la tua organizzazione.",
+      "email_already_registered": "Questa email è già registrata. Controlla la tua casella per il link di verifica.",
+      "photo_upload_failed": "Non siamo riusciti a caricare la tua foto. Riprova.",
+      "email_send_failed": "Non siamo riusciti a inviare l'email. Riprova tra poco.",
+      "server_error": "Qualcosa è andato storto. Riprova.",
+      "generic": "Qualcosa è andato storto. Riprova."
+    },
     "info": {
       "toggleLabel": "Informazioni utili prima di iscriverti",
       "nicknameRules": "Il nickname non può contenere volgarità, incitamento all'odio o razzismo.",
@@ -166,7 +190,88 @@
   "RegisterPage": {
     "title": "Registrati a WASP"
   },
+  "DirectMembershipForm": {
+    "mobileWarning": "⚠️ Solo da cellulare: completa questa registrazione e apri l'email di verifica direttamente dal tuo smartphone (iPhone o Android) per aggiungere correttamente la card al wallet digitale.",
+    "fields": {
+      "nickname": {
+        "label": "Nickname",
+        "placeholder": "Il tuo nickname"
+      },
+      "firstName": {
+        "label": "Nome",
+        "placeholder": "Nome"
+      },
+      "lastName": {
+        "label": "Cognome",
+        "placeholder": "Cognome"
+      },
+      "fiscalCode": {
+        "label": "Codice Fiscale",
+        "hint": "o l'equivalente documento/codice identificativo del tuo paese",
+        "placeholder": "es. RSSMRA85M01H501Z"
+      },
+      "email": {
+        "label": "Email di verifica",
+        "hint": "non visibile",
+        "placeholder": "nome@esempio.it"
+      },
+      "image": {
+        "label": "Immagine (opzionale)"
+      }
+    },
+    "submit": "INVIA",
+    "submitting": "Invio in corso...",
+    "success": {
+      "verifyEmailSent": "Controlla la tua email — ti abbiamo inviato un link di verifica. Non l'hai ricevuta dopo qualche minuto? Controlla la cartella spam e verifica di aver scritto correttamente la tua email — altrimenti, compila di nuovo il modulo."
+    },
+    "errors": {
+      "nickname_required": "Inserisci un nickname.",
+      "nickname_too_short": "Il nickname deve avere almeno 2 caratteri.",
+      "nickname_too_long": "Il nickname può avere al massimo 20 caratteri (verrà usato anche come nome utente in chat).",
+      "nickname_too_many_symbols": "Il nickname deve contenere almeno un paio di lettere o numeri.",
+      "nickname_inappropriate": "Scegli un nickname diverso.",
+      "invalid_email": "Inserisci un indirizzo email valido.",
+      "name_required": "Inserisci nome e cognome.",
+      "fiscal_code_required": "Inserisci il tuo codice fiscale.",
+      "email_already_registered": "Questa email è già registrata. Controlla la tua casella per il link di verifica.",
+      "photo_upload_failed": "Non siamo riusciti a caricare la tua foto. Riprova.",
+      "email_send_failed": "Non siamo riusciti a inviare l'email. Riprova tra poco.",
+      "server_error": "Qualcosa è andato storto. Riprova.",
+      "generic": "Qualcosa è andato storto. Riprova."
+    }
+  },
   "MarketAnalysisPage": {
     "title": "Studi e Sondaggi"
+  },
+  "RegistrationSuccess": {
+    "pending": {
+      "title": "Ecco la tua WASP Card!",
+      "statusBadge": "Stato: Temporanea",
+      "codeLabel": "Il tuo codice tessera:",
+      "explanation": "Questa è la tua card temporanea, già valida da aggiungere al wallet. Per diventare permanente (valida 1 anno) ci serve la conferma della tua associazione.",
+      "associationCta": "Abbiamo già scritto alla tua associazione, ma il modo più veloce è che tu stesso/a la contatti e le chieda di risponderci al più presto. Più in fretta confermano, più in fretta la tua card diventa permanente!",
+      "walletComingSoon": "I pulsanti Aggiungi a Apple Wallet / Google Wallet appariranno qui appena l'integrazione wallet sarà attiva.",
+      "enterChat": "Entra nella Chat WASP"
+    },
+    "renewed": {
+      "title": "Iscrizione rinnovata!",
+      "explanation": "La tua WASP Card è stata prolungata per un altro anno."
+    },
+    "mobileWarning": "⚠️ Solo da cellulare: continua dal tuo smartphone (iPhone o Android) per aggiungere correttamente la card al wallet digitale."
+  },
+  "RegistrationError": {
+    "title": "Qualcosa è andato storto",
+    "reasons": {
+      "missing_token": "A questo link manca il token di verifica.",
+      "invalid_token": "Questo link di verifica non è valido. Potrebbe essere già stato usato.",
+      "expired_token": "Questo link di verifica è scaduto.",
+      "server_error": "Si è verificato un errore imprevisto. Riprova tra poco."
+    },
+    "resend": {
+      "heading": "Richiedi un nuovo link",
+      "emailPlaceholder": "nome@esempio.it",
+      "submit": "Invia nuovo link",
+      "confirmation": "Se quell'email ha una registrazione in sospeso, abbiamo appena inviato un nuovo link di verifica."
+    }
   }
 }

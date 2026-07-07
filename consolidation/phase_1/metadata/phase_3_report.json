@@ -1,0 +1,27 @@
+{
+  "timestamp": "2026-07-03T18:26:19.069071",
+  "phase": "phase_3_validation_cleanup",
+  "input_records": 6430,
+  "output_records": 3405,
+  "dropped_records": 3025,
+  "validation_stats": {
+    "total_loaded": 6430,
+    "valid_name": 3405,
+    "valid_email": 3121,
+    "valid_website": 3079,
+    "valid_phone": 87,
+    "kept": 3405,
+    "dropped_no_name": 3025,
+    "issues": []
+  },
+  "columns": [
+    "name",
+    "city",
+    "country",
+    "address",
+    "postal_code",
+    "email",
+    "phone",
+    "website"
+  ]
+}

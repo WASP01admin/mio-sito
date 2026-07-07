@@ -50,6 +50,7 @@
       "NO HIDDEN COSTS"
     ],
     "explanation": "The card is delivered instantly to your Apple/Google Wallet. No phone number or personal data required: just an email, only to verify you're not a bot.",
+    "mobileWarning": "⚠️ Mobile Only: Please complete this registration and open the verification email directly on your smartphone (iPhone or Android) to successfully add the card to your digital wallet.",
     "fields": {
       "nickname": {
         "label": "Nickname",
@@ -57,7 +58,11 @@
       },
       "organization": {
         "label": "Organization Code or Name / City",
-        "placeholder": "example: ITA0123 or Amici Pelosi / Rome"
+        "placeholder": "example: ITA0123 or Amici Pelosi / Rome",
+        "searching": "Searching...",
+        "noMatches": "No matches found. If you submit anyway, we'll email you to help add your association.",
+        "selectedPrefix": "Selected:",
+        "changeSelection": "Change"
       },
       "email": {
         "label": "Verification email",
@@ -69,6 +74,25 @@
       }
     },
     "submit": "SEND",
+    "submitting": "Sending...",
+    "success": {
+      "verifyEmailSent": "Check your email — we've sent you a verification link. Didn't get it after a few minutes? Check your spam folder, and make sure you typed your email correctly — if not, just fill out the form again.",
+      "associationNotFoundEmailSent": "We couldn't find your association. Check your email for next steps."
+    },
+    "errors": {
+      "nickname_required": "Please enter a nickname.",
+      "nickname_too_short": "Your nickname needs at least 2 characters.",
+      "nickname_too_long": "Your nickname can be at most 20 characters (it doubles as your chat handle).",
+      "nickname_too_many_symbols": "Your nickname needs at least a couple of letters or numbers.",
+      "nickname_inappropriate": "Please choose a different nickname.",
+      "invalid_email": "Please enter a valid email address.",
+      "association_required": "Please select or enter your organization.",
+      "email_already_registered": "This email is already registered. Check your inbox for a verification link.",
+      "photo_upload_failed": "We couldn't upload your photo. Please try again.",
+      "email_send_failed": "We couldn't send the email. Please try again shortly.",
+      "server_error": "Something went wrong. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    },
     "info": {
       "toggleLabel": "Useful information before signing up",
       "nicknameRules": "The nickname can't contain profanity, hate speech, or racism.",
@@ -166,7 +190,88 @@
   "RegisterPage": {
     "title": "Sign up for WASP"
   },
+  "DirectMembershipForm": {
+    "mobileWarning": "⚠️ Mobile Only: Please complete this registration and open the verification email directly on your smartphone (iPhone or Android) to successfully add the card to your digital wallet.",
+    "fields": {
+      "nickname": {
+        "label": "Nickname",
+        "placeholder": "Your nickname"
+      },
+      "firstName": {
+        "label": "First name",
+        "placeholder": "First name"
+      },
+      "lastName": {
+        "label": "Last name",
+        "placeholder": "Last name"
+      },
+      "fiscalCode": {
+        "label": "Fiscal code",
+        "hint": "Codice Fiscale, or your country's equivalent ID/SSN",
+        "placeholder": "e.g. RSSMRA85M01H501Z"
+      },
+      "email": {
+        "label": "Verification email",
+        "hint": "not visible",
+        "placeholder": "name@example.com"
+      },
+      "image": {
+        "label": "Image (optional)"
+      }
+    },
+    "submit": "SEND",
+    "submitting": "Sending...",
+    "success": {
+      "verifyEmailSent": "Check your email — we've sent you a verification link. Didn't get it after a few minutes? Check your spam folder, and make sure you typed your email correctly — if not, just fill out the form again."
+    },
+    "errors": {
+      "nickname_required": "Please enter a nickname.",
+      "nickname_too_short": "Your nickname needs at least 2 characters.",
+      "nickname_too_long": "Your nickname can be at most 20 characters (it doubles as your chat handle).",
+      "nickname_too_many_symbols": "Your nickname needs at least a couple of letters or numbers.",
+      "nickname_inappropriate": "Please choose a different nickname.",
+      "invalid_email": "Please enter a valid email address.",
+      "name_required": "Please enter your first and last name.",
+      "fiscal_code_required": "Please enter your fiscal code.",
+      "email_already_registered": "This email is already registered. Check your inbox for a verification link.",
+      "photo_upload_failed": "We couldn't upload your photo. Please try again.",
+      "email_send_failed": "We couldn't send the email. Please try again shortly.",
+      "server_error": "Something went wrong. Please try again.",
+      "generic": "Something went wrong. Please try again."
+    }
+  },
   "MarketAnalysisPage": {
     "title": "Studies & Surveys"
+  },
+  "RegistrationSuccess": {
+    "pending": {
+      "title": "Your WASP Card is on its way!",
+      "statusBadge": "Status: Temporary",
+      "codeLabel": "Your membership code:",
+      "explanation": "This is your temporary card, already valid to add to your wallet. To become permanent (valid for 1 year), we need your association to confirm your membership.",
+      "associationCta": "We've already emailed your association, but the fastest way is for you to reach out to them directly and ask them to reply as soon as possible. The sooner they confirm, the sooner your card becomes permanent!",
+      "walletComingSoon": "Add to Apple Wallet / Add to Google Wallet buttons will appear here once wallet integration is live.",
+      "enterChat": "Enter WASP Chat"
+    },
+    "renewed": {
+      "title": "Membership renewed!",
+      "explanation": "Your WASP Card has been extended for another year."
+    },
+    "mobileWarning": "⚠️ Mobile Only: Please continue on your smartphone (iPhone or Android) to successfully add the card to your digital wallet."
+  },
+  "RegistrationError": {
+    "title": "Something went wrong",
+    "reasons": {
+      "missing_token": "This link is missing a verification token.",
+      "invalid_token": "This verification link isn't valid. It may have already been used.",
+      "expired_token": "This verification link has expired.",
+      "server_error": "We hit an unexpected error. Please try again shortly."
+    },
+    "resend": {
+      "heading": "Request a new link",
+      "emailPlaceholder": "name@example.com",
+      "submit": "Send new link",
+      "confirmation": "If that email has a pending registration, we've just sent a new verification link."
+    }
   }
 }

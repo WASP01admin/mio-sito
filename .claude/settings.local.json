@@ -1,0 +1,17 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npm -v)",
+      "Bash(git --version)",
+      "Bash(npm install *)",
+      "Bash(npm run *)",
+      "Skill(run)",
+      "Read(//c/Users/robbu/AppData/Local/Temp/claude/C--Users-robbu-Documents-mio-sito/029a4790-f95e-4eb7-b4b3-bab3e29fb3d8/scratchpad/**)",
+      "Bash(npx playwright *)",
+      "Bash(node webkit-debug.js)",
+      "Bash(node touch-repro-webkit2.js)",
+      "Read(//tmp/**)",
+      "Bash(curl -s -o /dev/null -w '%{http_code}\\\\n' http://192.168.1.247:3000/it --max-time 3)"
+    ]
+  }
+}
