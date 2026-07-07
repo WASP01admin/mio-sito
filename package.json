@@ -8,7 +8,7 @@
     "shared"
   ],
   "scripts": {
-    "build": "cd web && npm run build"
+    "build": "npm run build -w shared && npm run build -w chat-service && npm run build -w web"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",
