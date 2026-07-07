@@ -7,6 +7,9 @@
     "chat-service",
     "shared"
   ],
+  "scripts": {
+    "build": "cd web && npm run build"
+  },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",
     "csv-parse": "^7.0.1",
