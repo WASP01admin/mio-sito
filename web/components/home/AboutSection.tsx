@@ -8,7 +8,14 @@ export default function AboutSection() {
   const ruleItems = t.raw("rules.items") as string[];
 
   return (
-    <section className="bg-white/90 px-4 py-10 text-black sm:px-8 sm:py-16">
+    <section
+      className="bg-white/90 px-4 py-10 text-black sm:px-8 sm:py-16"
+      style={{
+        backgroundImage: "url('/images/honeycomb-bg.png')",
+        backgroundRepeat: "repeat",
+        width: "100%",
+      }}
+    >
       <div className="mx-auto flex max-w-xl flex-col items-center gap-4 text-center">
         <p className="text-sm leading-relaxed sm:text-base">
           {t("mission.paragraph1")}

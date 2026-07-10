@@ -18,6 +18,7 @@ interface AssociationRow {
   website: string | null;
   facebook_url: string | null;
   contact_person: string | null;
+  password: string | null;
 }
 
 interface EditFormData {
@@ -37,6 +38,7 @@ interface EditFormData {
   postal_code: string | null;
   contact_person: string | null;
   extra_details: string | null;
+  password: string | null;
 }
 
 interface AssociationsPageProps {
@@ -86,7 +88,7 @@ export default async function AdminAssociationsPage({
   let query = supabaseAdmin
     .from("associations")
     .select(
-      "id, code, name, city, country, address, lat, lng, email, email_secondary, phone, website, facebook_url, contact_person"
+      "id, code, name, city, country, address, lat, lng, email, email_secondary, phone, website, facebook_url, contact_person, password"
     );
 
   if (searchQuery) {

@@ -273,5 +273,106 @@
       "submit": "Send new link",
       "confirmation": "If that email has a pending registration, we've just sent a new verification link."
     }
+  },
+  "ChiSiamo": {
+    "title": "About Us",
+    "intro": {
+      "paragraph1": "We are a secular animal welfare philanthropic association registered [C.F. XXYY]",
+      "paragraph2": "We are the only Animal Welfare Organization in Italy that uses 100% of the donations received in favor of animals. We don't keep even 1 cent of donations to cover administrative or website management costs. Everything donated for animals goes exclusively to animals.",
+      "paragraph3": "We don't collect or transmit data. Our website and WASP CARD have no advertising."
+    },
+    "documents": {
+      "heading": "Official Documents",
+      "attoCostitutivo": "Incorporation Deed",
+      "statuto": "Statute"
+    },
+    "faq": {
+      "heading": "Frequently Asked Questions",
+      "1": {
+        "question": "Why is getting a card from an Animal Welfare Organization free, while getting one directly from WASP costs 2 Euros?",
+        "answer": "The card is only for animal lovers. If you're part of an Animal Welfare Organization, it means you've already given something to animals, and we recognize that, so we don't ask for anything. We're honored to have you on our side."
+      },
+      "2": {
+        "question": "How will my 2 Euros be used (for those who don't belong to other Animal Welfare Organizations)?",
+        "answer": "1 Euro will be allocated to donations (minimum amount). 1 Euro represents a nominal fee that helps us distinguish those who truly believe in this project from those who would only do it to benefit from many free services. We'll use the second Euro to cover server and software expenses (the first will go to animals)."
+      }
+    }
+  },
+  "Missione": {
+    "title": "Our Mission",
+    "missionStatement": "Wasps are everywhere... individually they are irrelevant; but a swarm of wasps can change an entire ecosystem. We animal lovers should learn from wasps and unite to try to change our ecosystem [understood as an ECOnomic system, not ECOlogical], that is, the one based on the exploitation of every form of animal life, inflicting suffering and death on those below us in the food chain. This is why we are wasps (WASPs)... our swarm can make the difference!",
+    "philosophy": {
+      "paragraph1": "WASP is not in competition with other Animal Welfare Organizations for funds, donations, goods, or volunteer staff. We want to cooperate, not compete. This is why we chose not to participate in 5x1000 fundraising. Rather, we believe there is a need for a 'cultural revolution' to truly change things.",
+      "paragraph2": "We're trying to create the conditions for this to happen using the same tools that dictate market laws: supply and demand. With our purchasing power we could make a difference simply by making ethical choices. For example, rewarding all activities that demonstrate care for animal welfare."
+    },
+    "objectivesHeading": "Our 10 Objectives",
+    "objectives": {
+      "1": {
+        "title": "Make the (global) Animal Rights Movement more functional and efficient",
+        "description": "WASP is a platform that aims to bring together everything that revolves around the Animal Rights World. Not just Organizations and individuals, but also data and information that, being scattered across the internet, would be very difficult to have at hand."
+      },
+      "2": {
+        "title": "Facilitate communication and cooperation between Animal Welfare Organizations",
+        "description": "The global events calendar, news, and the card in the Wallet are just some of the tools we share with the entire Animal Rights World to promote unity and cooperation between individual subjects and Organizations within the Movement for the protection and safeguarding of animals."
+      },
+      "3": {
+        "title": "Create an 'invisible' but tangible alliance among all those who care about animals",
+        "description": "We firmly believe in the power of 'conscious spending' which, over time, could establish itself as a very effective tool for modifying how supply and demand for goods and services evolve. By conscious spending we mean making choices aimed at rewarding shops, firms, and businesses that are close to and donate resources to animals."
+      },
+      "4": {
+        "title": "Offer information services of various levels",
+        "description": "In addition to the services mentioned above, there are others of an operational nature that deserve to be mentioned. Our card allows us to reach one or a group of registered members by sending them a notification directly on their card. For example, in case of an emergency situation where we need to quickly gather all available volunteers. We also have a bulletin board where all Animal Welfare Organizations can display their projects and attract larger memberships."
+      },
+      "5": {
+        "title": "Cultivate a global community of animal rights activists on a completely safe and reliable platform",
+        "description": "Our card allows all members to access a chat service reserved only for those with our card. This 'enclosure' makes the chat experience completely safe because (although everyone is covered by the anonymity of their Nickname) they are still individuals who belong to the Animal Rights Movement and, if needed, can be traced."
+      },
+      "6": {
+        "title": "Encourage cross-pollination",
+        "description": "Contact (through integrated chat and beyond) between animal rights activists from different and global Organizations promotes the technical and cultural enrichment of individuals, but also that of their respective associations, making the Animal Rights Movement stronger and more resilient."
+      },
+      "7": {
+        "title": "Emancipate the Animal Rights Movement through recognition and awareness",
+        "description": "With the WASP card, the individual will enjoy a sense of belonging and by activating as a WASP [that is, by being more 'conscious' in spending and involving the firms they know to donate], they would be an integral and proactive part of this ambitious initiative."
+      },
+      "8": {
+        "title": "Provide Animal Welfare Organizations with new fundraising tools",
+        "description": "By distributing WASP cards to their members/volunteers/associates/staff, etc., Animal Welfare Organizations would benefit from any donations their registered members manage to collect. Even if donations are directed to us, if they were procured by a member of Organization XYZ, we will transfer that entire donation to the coffers of XYZ."
+      },
+      "9": {
+        "title": "Raise funds for projects carried out by Animal Welfare Organizations",
+        "description": "Donations made to WASP will be allocated to other Animal Welfare Organizations since it's unlikely we'll be able to set up a better project than those who've been doing them all along."
+      },
+      "10": {
+        "title": "Keep our administrative costs to a minimum",
+        "description": "WASP is essentially a 'virtual' initiative that offers quality (free) intangible services. We don't manage a domestic animal shelter, so our daily operating costs are lower, which allows us to withhold nothing from donations and transfer all value received in favor of the real beneficiaries: animals."
+      }
+    }
+  },
+  "Bilancio": {
+    "title": "Financial Reports",
+    "transparencyStatement": "For us, transparency is a non-negotiable measure of trust, which is why we don't accept cash donations. All transactions must be transparent and traceable, even the smallest ones.",
+    "documentsHeading": "Financial Documents",
+    "documentsDescription": "Download our annual financial report to verify how we use every euro received.",
+    "downloadButton": "Download Report 2026",
+    "explanation": "Our accounts are public and verifiable. Every donation received is tracked and used exclusively to support animal welfare organizations and their projects."
+  },
+  "Sponsors": {
+    "title": "Sponsors",
+    "explanation": "Sponsors are not donors, they are patrons who voluntarily contribute to covering the direct expenses of our Association (e.g., server costs, digital equipment, software updates, etc.). Once all direct expenses are covered, excess funds (coming from sponsors) can be transferred to donations or kept in cash reserves to cover the following year's operating expenses.",
+    "bankTransferHeading": "Become a Sponsor",
+    "bankDetails": {
+      "beneficiary": "WASP Association",
+      "iban": "XXXXXXXXXXXXXXXXXXXXXXXXX",
+      "bank": "UNICREDIT - Orlando Branch, Rome - Italy",
+      "swift": "XXXXXXX / XXXXXXXXXXXX",
+      "important": "PLEASE SPECIFY IN THE MEMO THAT THIS IS A 'SPONSORSHIP' and not a donation, thank you."
+    },
+    "sponsorsListHeading": "Our Sponsors",
+    "table": {
+      "name": "Name",
+      "website": "Website"
+    },
+    "noSponsorsYet": "We currently have no registered sponsors. If you'd like to support WASP as a sponsor, please use the bank details above."
   }
 }

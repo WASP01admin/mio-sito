@@ -12,7 +12,9 @@ export default async function HeroSection() {
 
   return (
     <>
-      <section className="flex flex-col items-center gap-1 bg-black px-4 py-8 text-center text-white sm:px-8 sm:py-12">
+      <section
+        className="flex flex-col items-center gap-1 bg-black px-4 py-8 text-center text-white sm:px-8 sm:py-12"
+      >
         <Image
           src="/images/logo-wasp.png"
           alt={tHero("wordmark")}

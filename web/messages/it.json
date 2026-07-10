@@ -273,5 +273,106 @@
       "submit": "Invia nuovo link",
       "confirmation": "Se quell'email ha una registrazione in sospeso, abbiamo appena inviato un nuovo link di verifica."
     }
+  },
+  "ChiSiamo": {
+    "title": "Chi Siamo",
+    "intro": {
+      "paragraph1": "Siamo un Associazione filantropica animalista laica registrata [C.F. XXYY]",
+      "paragraph2": "Siamo l'unica Organizzazone Animalista in Italia che utilizza il 100% delle donazioni ricevute a favore degli animali. Non tratteniamo neanche 1 centesimo delle donazioni per coprire costi di amministrazione o gestione del sito. Tutto cio' che e' donato per gli animali va esclusivamente agli animali.",
+      "paragraph3": "Non raccogliamo e non trasmettiamo dati. Il sito e la nostra WASP CARD non hanno pubblicita'."
+    },
+    "documents": {
+      "heading": "Documenti Ufficiali",
+      "attoCostitutivo": "Atto Costitutivo",
+      "statuto": "Statuto"
+    },
+    "faq": {
+      "heading": "Domande Frequenti",
+      "1": {
+        "question": "Perche' fare la tessera con un Organizzazione Animalista e' gratis mentre farla direttamente con WASP costa 2 Euro?",
+        "answer": "La tessera e' solo per gli amanti degli animali, se fai parte di un'Organizzazione Animalista significa che hai gia' dato qualcosa agli animali e noi te lo riconosciamo e quindi non chiediamo nulla, siamo onorati di averti dalla nostra parte."
+      },
+      "2": {
+        "question": "Come verranno usati i miei 2 Euro (per coloro che non appertengono ad altre Organizzazioni Animaliste)?",
+        "answer": "1 Euro sara' destinato alle donazioni (importo minimo). 1 Euro rappresenta una quota nominale che ci serve a distinguere chi veramente crede in questo progetto e chi lo farebbe solo per beneficiare di molti servizi gratuitamente. Useremo il secondo Euro per coprire le spese del server e del software (il primo sara' destinato agli animali)."
+      }
+    }
+  },
+  "Missione": {
+    "title": "Missione",
+    "missionStatement": "Le vespe sono ovunque... singolarmente sono irrilevanti; ma uno sciame di vespe puo' cambiare un intero ecosistema. Noi amanti degli animali dovrebbemmo imparare dalle vespe ed unirci per cercare di cambiare il nostro ecosistema [inteso come sistema ECOnomico, non ECOlogico], ovvero quello basato sullo sfruttamento di ogni forma di vita animale infliggendo sofferenza e morte a chi e' al di sotto di noi nella catena alimentare. E' per questo motivo che siamo vespe (WASPs)... il nostro sciame puo' fare la differenza!",
+    "philosophy": {
+      "paragraph1": "WASP non e' in competizione con le altre Organizzazioni Animaliste per avere fondi, donazioni, beni o personale volontario. Noi vogliamo cooperare non competere. Per questo motivo abbiamo scelto di non partecipare alla raccolta fondi 5x1000. PIuttosto, crediamo che ci sia bisogno di una rivoluzione 'culturale' per cambiare veramente le cose.",
+      "paragraph2": "Stiamo cercando di creare le condizioni affinche' questo possa accadere usando gli stessi strumenti che dettano le leggi del mercato, ovvero: la domanda e l'offerta. Con nostro potere d'acquisto potremmo fare la differenza semplicemente facendo scelte etiche. Per esempio premiando tutte le attivita' che dimostrano di avere a cuore il benessere degli animali."
+    },
+    "objectivesHeading": "I Nostri 10 Obiettivi",
+    "objectives": {
+      "1": {
+        "title": "Rendere il Movimento Animalista (globale) piu' funzionale ed efficente",
+        "description": "WASP e' una piattaforma che ambisce a raggruppare tutto cio' che ruota attorno al Mondo Animalista. Non solo le Organizzazioni e gli individui, ma anche dati e informazioni che, essendo sparpagliate in rete, sarebbe molto difficile avere a portata di mano."
+      },
+      "2": {
+        "title": "Facilitare la comunicazione e la cooperazione tra Organizzazioni Animaliste",
+        "description": "Il calendario degli eventi globale, le notizie, la tessera nel Wallet sono solo alcuni strumenti che condividiamo con tutto il Mondo Animalista per favorire l'unione e la cooperazione sia tra singoli soggetti che tra le Organizzazioni all'interno del Movimento per la salvaguardia e tutela degli animali."
+      },
+      "3": {
+        "title": "Creare una 'invisibile' ma tangibile alleanza tra tutti coloro che hanno gli animali a cuore",
+        "description": "Crediamo fermamente nel potere della 'spesa consapevole' che, nel tempo, potrebbe affermarsi come uno strumento molto efficace per modificare il modo in cui la domanda e l'offerta di beni e servizi si evolveranno. Per spesa consapevole intendiamo fare scelte mirate a premiare i negozi, le ditte le imprese che sono vicine e donano risorse a favore degli animali."
+      },
+      "4": {
+        "title": "Offrire servizi di informazione di vario livello",
+        "description": "Oltre ai servizi citati sopra, ce ne sono altri di natura operativa che meritano essere menzionati. La nostra carta infatti ci permette di raggiungere uno, o un insieme di gruppi di tesserati inviando loro una notifica direttamente sulla loro carta. Per esempio nel caso di una situazione di emergenza dove e' necessario convogliare al piu' presto tutti i volontari disponibili. Poi abbiamo una bacheca dove tutte le Organizzazioni Animaliste possono esporre i loro progetti ed ambire ad adesioni piu' corpose."
+      },
+      "5": {
+        "title": "Coltivare una comunita' globale di animalisti su una piattaforma del tutto sicura e affidabile",
+        "description": "La nostra card permette a tutti i titolari di accedere ad un servizio di chat riservato solo a chi ha la nostra tessera. Questo 'recinto' rende del tutto sicura l'esperienza della chat perche' (ancorche' tutti sono coperti dall'anonimato del proprio Nickname) si tratta comunque di individui che appartengono al Movimento Animalista e, qualora ce ne fosse bisogno, possono essere rintracciati."
+      },
+      "6": {
+        "title": "Incentivare l'impollinazione incrociata",
+        "description": "Il contatto (tramite la chat integrata ma non solo) tra animalisti provenienti da Organizzazioni diverse e globali si favorisce l'arricchimento - tecnico e culturale- dei singoli, ma anche quello delle rispettive associazioni, rendendo il Movimento Animalista piu' forte e resiliente."
+      },
+      "7": {
+        "title": "Emancipare il Movimento Animalista attraverso il riconoscimento e la consapevolezza",
+        "description": "Con la tessera WASP l'individuo godra' di un senso di appartenenza e attivandosi come WASP [ovvero facendo una spesa piu' 'consapevole' e coinvolgendo le ditte che conosce a donare, sarebbe parte integrante e pro-attiva di questa ambiziosa iniziativa."
+      },
+      "8": {
+        "title": "Fornire alle Organizzazioni Animaliste nuovi strumenti di raccolta fondi",
+        "description": "Distribuendo le WASP cards ai propri soci/volontari/associati/staff etc le Organizzazioni Animaliste godrebbero delle eventuali donazioni che i lori tesserati riuscirebbero a raccogliere. Anche se le donazioni saranno indirizzate a noi, se sono state procurate da un tesserato membro di Organizzazione XYZ, noi trasferiremo interamente quella donazione nelle casse di XYZ."
+      },
+      "9": {
+        "title": "Raccogliere fondi per progetti eseguiti da Organizzazioni Animaliste",
+        "description": "Le donazioni che verranno fatte a WASP saranno comunque destinate ad altre Organizzazioni Animaliste dato che difficilmente noi saremo capaci di mettere in piedi un progetto migliore di chi li fa da sempre."
+      },
+      "10": {
+        "title": "Mantere i nostri costi amministrativi al minimo",
+        "description": "WASP e' un' iniziativa essenzialmente 'virtuale' che offre servizi di qualita' (gratuiti) non tangibili. Non gestiamo un rifugio per animali domestici, per tanto i nostri costi di gestione giornaliera sono piu' contenuti e questo ci permette di non trattenere nulla dalle donazioni e di trasferire tutto il valore ricevuto a favore dei veri beneficiari: gli animali."
+      }
+    }
+  },
+  "Bilancio": {
+    "title": "Bilancio",
+    "transparencyStatement": "Per noi la trasparenza e' un metro di fiducia irrinunciabile, per questo non accettiamo donazioni in contanti. Tutte le transazioni devono essere trasparenti e tracciabili, anche le piu' piccole.",
+    "documentsHeading": "Documenti Finanziari",
+    "documentsDescription": "Scarica il nostro bilancio annuale per verificare come utilizziamo ogni euro ricevuto.",
+    "downloadButton": "Scarica Bilancio 2026",
+    "explanation": "I nostri conti sono pubblici e verificabili. Ogni donazione ricevuta è tracciata e utilizzata esclusivamente per sostenere le organizzazioni animaliste e i loro progetti."
+  },
+  "Sponsors": {
+    "title": "Sponsors",
+    "explanation": "Gli sponsors non sono donatori, sono mecenati, contribuiscono volontariamente al sostenimento delle spese vive della nostra Associazione (es. costi dei servers, degli apparati digitali, aggiornamento del software etc.). Una volta coperte tutte le spese 'vive' i fondi in eccesso (provenienti dagli sponsors) possono essere trasferiti alle donazioni oppure lasciati in giacenza di cassa per coprire le spese correnti dell'anno successivo.",
+    "bankTransferHeading": "Contribuisci come Sponsor",
+    "bankDetails": {
+      "beneficiary": "Associazione WASP",
+      "iban": "XXXXXXXXXXXXXXXXXXXXXXXXX",
+      "bank": "UNICREDIT - Filiale Orlando, Roma - Italia",
+      "swift": "XXXXXXX / XXXXXXXXXXXX",
+      "important": "SPECIFICA NELLA CAUSALE CHE SI TRATTA DI 'SPONSORIZZAZIONE' e non di una donazione, grazie."
+    },
+    "sponsorsListHeading": "I Nostri Sponsors",
+    "table": {
+      "name": "Nome",
+      "website": "Sito Web"
+    },
+    "noSponsorsYet": "Al momento non abbiamo ancora sponsors registrati. Se desideri supportare WASP come sponsor, utilizza i dati bancari sopra."
   }
 }

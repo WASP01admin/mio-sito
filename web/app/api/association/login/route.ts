@@ -16,7 +16,7 @@ export async function POST(request: NextRequest) {
     // Look up association by code (7-digit format: ITA0125)
     const { data: association, error } = await supabaseAdmin
       .from("associations")
-      .select("id, code, name, password_hash")
+      .select("id, code, name, password")
       .eq("code", username)
       .single();
 
@@ -27,8 +27,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Verify password
-    if (!association.password_hash || !verifyPassword(password, association.password_hash)) {
+    // Verify password (plain text comparison for now)
+    if (!association.password || association.password !== password) {
       return NextResponse.json(
         { error: "Invalid credentials" },
         { status: 401 }
@@ -53,6 +53,17 @@ export async function POST(request: NextRequest) {
     response.cookies.set({
       name: ASSOCIATION_SESSION_COOKIE,
       value: token,
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "lax",
+      maxAge: 24 * 60 * 60, // 24 hours
+      path: "/",
+    });
+
+    // Also set association code for /api/association/me
+    response.cookies.set({
+      name: "association_code",
+      value: association.code,
       httpOnly: true,
       secure: process.env.NODE_ENV === "production",
       sameSite: "lax",

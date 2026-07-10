@@ -20,6 +20,7 @@ interface EditFormData {
   postal_code: string | null;
   contact_person: string | null;
   extra_details: string | null;
+  password: string | null;
 }
 
 interface EditAssociationModalProps {
@@ -72,6 +73,7 @@ export default function EditAssociationModal({
         postal_code: formData.postal_code || null,
         contact_person: formData.contact_person || null,
         extra_details: formData.extra_details || null,
+        password: formData.password || null,
       });
 
       if (!result.success) {
@@ -179,6 +181,12 @@ export default function EditAssociationModal({
           <div>
             <label className="block text-xs font-semibold text-gray-700 mb-1">Contact Person</label>
             <input type="text" placeholder="Name or title" value={formData.contact_person ?? ''} onChange={(e) => handleChange('contact_person', e.target.value)} className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:outline-none" />
+          </div>
+
+          {/* Password */}
+          <div>
+            <label className="block text-xs font-semibold text-gray-700 mb-1">Password</label>
+            <input type="text" placeholder="System-generated or custom" value={formData.password ?? ''} onChange={(e) => handleChange('password', e.target.value)} className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:outline-none font-mono" />
           </div>
 
           {/* Extra Details */}

@@ -79,6 +79,11 @@ export default function DonationSection() {
     <section
       id="donation"
       className="bg-white/90 px-4 py-10 text-black sm:px-8 sm:py-16 scroll-mt-4"
+      style={{
+        backgroundImage: "url('/images/honeycomb-bg.png')",
+        backgroundRepeat: "repeat",
+        width: "100%",
+      }}
     >
       <div className="mx-auto flex max-w-xl flex-col items-center gap-2 text-center">
         <h2 className="text-xl font-bold sm:text-2xl">{t("heading")}</h2>
@@ -93,7 +98,7 @@ export default function DonationSection() {
           {paymentMethods.map((method) => (
             <label
               key={method.id}
-              className={`flex items-center gap-4 rounded-lg border-2 p-4 text-left transition-colors ${
+              className={`flex items-center gap-4 rounded-lg border-2 bg-gray-50 p-4 text-left transition-colors ${
                 selectedMethod === method.id
                   ? "border-black"
                   : "border-gray-200"

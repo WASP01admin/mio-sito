@@ -222,13 +222,18 @@ export default function AssociationNewsPage() {
               />
               <div>
                 <label className="block text-xs text-gray-600 mb-2">📸 Image (optional)</label>
-                <input
-                  type="file"
-                  accept="image/*"
-                  onChange={(e) => setImageFile(e.target.files?.[0] || null)}
-                  className="w-full text-sm"
-                  disabled={submitting}
-                />
+                <label className="block w-full px-4 py-2 border border-gray-300 rounded text-sm bg-gray-50 cursor-pointer hover:bg-gray-100 transition-colors">
+                  <input
+                    type="file"
+                    accept="image/*"
+                    onChange={(e) => setImageFile(e.target.files?.[0] || null)}
+                    className="hidden"
+                    disabled={submitting}
+                  />
+                  <span className="text-gray-700">
+                    {imageFile ? `📎 ${imageFile.name}` : "Browse... No file selected."}
+                  </span>
+                </label>
               </div>
               <button
                 type="submit"

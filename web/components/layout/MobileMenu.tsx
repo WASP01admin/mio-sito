@@ -10,7 +10,7 @@ export default function MobileMenu() {
 
   const navLinks: Array<{ key: string; href: string }> = [
     { key: "home", href: "/" },
-    { key: "about", href: "#" },
+    { key: "about", href: "/chi-siamo" },
     { key: "studies", href: "/studi-e-sondaggi" },
     { key: "organizations", href: "/maps" },
     { key: "calendar", href: "/private-area/calendar" },
@@ -47,7 +47,7 @@ export default function MobileMenu() {
       />
 
       <aside
-        className={`fixed right-0 top-0 z-50 flex h-full w-full flex-col bg-black p-6 text-white transition-transform duration-300 ease-in-out sm:w-80 ${
+        className={`fixed right-0 top-0 z-[9999] flex h-full w-full flex-col bg-black p-6 text-white transition-transform duration-300 ease-in-out sm:w-80 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
         aria-hidden={!isOpen}

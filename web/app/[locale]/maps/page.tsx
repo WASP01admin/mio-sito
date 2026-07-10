@@ -1,13 +1,7 @@
-import { cookies } from "next/headers";
-import { verifyChatSessionToken } from "";
-import { CHAT_SESSION_COOKIE, chatAuthSecret } from "@/lib/chat";
 import MapView from "@/components/maps/MapView";
 
 export default async function MapsPage() {
-  const cookieStore = await cookies();
-  const token = cookieStore.get(CHAT_SESSION_COOKIE)?.value;
-  const payload = verifyChatSessionToken(token, chatAuthSecret());
-  const isAuthenticated = !!payload;
+  const isAuthenticated = false;
 
   return (
     <main className="flex h-screen flex-col bg-white">

@@ -4,7 +4,7 @@ import DonationSection from "@/components/home/DonationSection";
 
 export default function HomePage() {
   return (
-    <main className="flex flex-1 flex-col">
+    <main className="flex flex-col">
       <HeroSection />
       <AboutSection />
       <DonationSection />

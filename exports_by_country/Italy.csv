@@ -1,0 +1,691 @@
+Name,Address,Lat,Lon,Email,Website,Facebook,Extra1,Extra2
+WASP VIP / Honorary Member,,41.9005351,12.4568794,,,,ITAVIP0,N/A
+Amici Pelosi,,41.8933203,12.4829321,info@waspnest.org,,,ITA0123,Roma
+ENPA Roma - Ente Nazionale Protezione Animali,"Via Luigi Bodio 74, 00191 Roma",41.9451474,12.4643868,,https://www.enparoma.org,,ER-ENPA,RM
+Canile Comunale di Ponte Marconi,"Via della Magliana 856, 00148 Roma",41.8259241,12.4100901,,https://www.baubau.eu,,CCDPM,RM
+"LAV - Lega Anti Vivisezione, sede nazionale Roma","Via Ettore Romagnoli 36, Roma",41.9414945,12.5470633,,https://www.lav.it,,L-LAVSN,RM
+ALFA - Ass. Love for Animals ODV,Roma (RM),41.7536374,12.2857399,,https://www.associazione-alfa.org,,A-ALFAO,RM
+Rifugio delle Code Felici ONLUS,Roma (RM),41.7536374,12.2857399,,https://www.rifugiocodefelici.it,,RDCFO,RM
+Ass. Quintomondo - Animalisti Volontari ONLUS,"Via Castorano 16, Roma",41.9887779,12.5088128,,https://www.nuovacuccia.org,,AQ-AVO,RM
+Ass. ASTA ODV,"Via Sante Bargellini 18, Roma",41.9100664,12.546235,,https://www.associazioneasta.org,,AAO,RM
+I Gatti di Torpignattara - Colonia Felina Villa De Sanctis,"Via di San Marcellino, Roma",41.8779504,12.5493193,,https://www.igattiditorpignattara.com,,IGDT-CF,RM
+Ass. Canili Lazio ODV - Oasi Locatelli Mazzano Romano,Mazzano Romano (RM),42.2053733,12.395276,,,,ACLO-OL,RM
+Ass. Animalista Franca Valeri ONLUS,"Via Mosca 110, 00069 Trevignano Romano",42.1597102,12.2379647,,https://www.cani-francavaleri.org,,AAFVO,RM
+Ass. ASPA ONLUS,"Via Monte Fumaiolo 12/F, 00061 Anguillara Sabazia",42.0885653,12.2767041,,https://www.aspaanguillara.org,,AAO1,RM
+Ass. Pet Village - Roma Sud,"Via Ardeatina Km. 18, Roma",41.5102518,12.5816679,,,,APV-RS,RM
+Ass. GrottaferrataFido ONLUS,Grottaferrata (RM),41.7858337,12.6667628,,,,AGO,RM
+Rifugio Francoise - Montelibretti,Montelibretti (RM),42.1450271,12.732576,,,,RF-M,RM
+Arcipelago 2000 ONLUS,Roma (RM),41.7536374,12.2857399,,https://www.arcipelago2000.it,,A2O,RM
+WWF Lazio - Sezione Regionale,"Via Po 25/c, 00198 Roma",41.9139494,12.4947605,,https://www.wwf.it,,WL-SR,RM
+Canile Pellini Rachele - Aprilia,"Via Torre del Padiglione 73, 04011 Aprilia",41.5745532,12.7008928,,,,CPR-A,LT
+Canile Galileo Galilei - Latina,"Via Bassianese 36, 04100 Latina",41.4451188,12.9403126,,,,CGG-L,LT
+Ass. Oltre i Confini di Specie ODV,"Via Casella 1, 04100 Latina",41.4429143,12.8786886,,https://www.oltreiconfinidispecie.it,,AOICDSO,LT
+Borgo Hermada - Terracina,"Strada Migliara 57, 04019 Terracina",41.331232,13.1714663,,,,BH-T,LT
+Rifugio LAPA - Cassino,"Via Cimarosa 12, 03043 Cassino",41.4882914,13.834513,,,,RL-C,FR
+Hotel Dog - Ceccano,"Via Gaeta 392, 03023 Ceccano",41.6146132,13.3367206,,,,HD-C,FR
+Rifugio Le Orme - Ferentino,Ferentino (FR),41.6468944,13.2495815,,https://www.rifugioleorme.altervista.org,,RLO-F,FR
+A.N.P.A.N.A. Frosinone,"Via Cavour, 03100 Frosinone",41.641246,13.3515552,,https://www.anpana.it,,ANPA,FR
+Ass. Garibaldi - L'Isola che c'è - Vetralla,"Via Cassia 2/c, Cura di Vetralla, 01019 Vetralla",42.3156731,12.0625866,,,,AG-LCC-,VT
+World Animal Solidarity Project,,43.5601941,10.3351606,,,,ITAWASP,Global
+Contact: nfo,,,,nfo@hawr.co.uk,https://hawr.co.uk/,,OTH2758,
+Contact: info,,,,info@rspcadrb.org.uk,https://www.rspca.org.uk/local/doncaster-rotherham-and-district-branch,,OTH2794,
+L.I.D.A. - Sezione Chieri,,45.0138842,7.8223544,,,,OTH0010,Chieri (TO)
+L.I.D.A. - Tutela Felini Torino,,45.0677551,7.6824892,,,,OTH0002,Torino (TO)
+Rifugio Miao,"""Via Cervetti Cesare 22",45.0072629,7.5369192,,,,OTH0040,Orbassano (TO)
+"""No Place 2 Go Rescue",US +1,39.019838,16.2032397,,,,OTH0790,"Inc."""
+"""Rescue Angels of Southern Maryland",US +1,39.019838,16.2032397,,,,OTH0957,"Inc."""
+"""Swan Sanctuary",UK +44,,,,,,OTH2145,"Shepperton"""
+Location: address,address,,,,,,OTH2436,
+L.I.D.A. - Sezione Cuneo,,,,,,,OTH0011,Cuneo (CN)
+L.I.D.A. - Cirié Valli di Lanzo,"""Corso Nazioni Unite 32",,,,,,OTH0001,Cirié (TO)
+L.I.D.A. - Sezione Alba-Bra,,,,,,,OTH0003,Bra (CN)
+L.I.D.A. - Sezione Carrù-Mondovì-Ceva,,,,,,,OTH0004,Carrù (CN)
+L.I.D.A. - Sezione Fossano-Savigliano,,,,,,,OTH0005,Fossano (CN)
+L.I.D.A. - Sezione Garessio-Ormea,,,,,,,OTH0006,Garessio (CN)
+Gattile di Cuneo (L.I.D.A.),"""Via Barolo 43/a",,,,,,OTH0007,Cuneo (CN)
+L.I.D.A. - Sezione Asti,,,,,,,OTH0009,Valfenera (AT)
+L.I.D.A. - Sezione Novara,,,,,,,OTH0012,Novara (NO)
+L.I.D.A. - Sezione Pinerolo,"""Strada Poirino 101",,,,0121 321904,,OTH0013,Pinerolo (TO)
+L.I.D.A. - Sezione Pino Torinese,,,,,,,OTH0014,Pino Torinese (TO)
+L.I.D.A. - Sezione Torino,,,,,,,OTH0015,Torino (TO)
+La Cuccia - Associazione per la Protezione degli Animali,"""Via Masini 29",,,,,,OTH0016,Galliate (NO)
+La Fattoria,"""c/o C.I.B.I. S.a.s.",,,"13100 Vercelli (VC)""",info@canilevercelli.it,,OTH0017,Vercelli (VC)
+La Rondine - Ass. di Protezione Animali ONLUS,"""Frazione Loreto",,,"12045 Fossano (CN)""",associazionelarondine@libero.it,,OTH0018,Fossano (CN)
+La Scintilla,"""Via per Gozzano 68/A",,,,39 0322 831308,,OTH0019,Borgomanero (NO)
+La Vie en Rose,"""Via del Ruata",,,,39 349 397 5981,,OTH0020,Vigone (TO)
+RIFUGIO L'ANELLO DI RE SALOMONE,Strada Boschetto 38,,,info@lanellodiresalomone.net,lanellodiresalomone.net,,OTH0021,Piverone (TO)
+Le Code Lunghe,"""Via Chiesa della Salute 6/C",,,,39 347 114 4944,,OTH0022,Torino (TO)
+Le Sfigatte,,,,,,,OTH0023,Torino (TO)
+Lega Animalista Piemontese,"""Frazione Levata",,,"15062 Bosco Marengo (AL)""",lap.alessandria@gmail.com,,OTH0024,Bosco Marengo (AL)
+Lega Italiana per la Difesa del Gatto,"""Via Cumiana 27/A",,,,39 011 332000,,OTH0025,Torino (TO)
+Maramiao - Associazione di Volontariato a Salvaguardia e Tutela dei Felini,,,,,,,OTH0026,Nizza Monferrato (AT)
+Micio Villaggio,"""Strada Comunale della Berlia 106",,,,39 333 469 1199,,OTH0027,Collegno (TO)
+Mondo Gatto Torino,"""Corso Quintino Sella 53",,,,39 348 861 9968,,OTH0028,Torino (TO)
+Nati Liberi,"""Via Gramsci 6",,,,39 0323 60564,,OTH0029,Casale Corte Cerro (VB)
+Nonsolocuccioli,"""Via Borgonuovo 48",,,,39 011 9947545,,OTH0030,Givoletto (TO)
+Nonsologatti,"""Via Giulio Monteverde 20",,,,39 335 8232508,,OTH0031,Casale Monferrato (AL)
+Oasi degli Animali,"""Via Barbavara 25",,,"28070 Tornaco (NO)""",oasideglianimali2012@gmail.com,,OTH0032,Tornaco (NO)
+Parco Animalista,"""Piazza d'Armi",,,"10134 Torino (TO)""",info@parcoanimalistapiazzadarmi.it,,OTH0033,Torino (TO)
+Progetto A-mici Animali,"""Corso Unione Sovietica 355",,,,39 349 468 1819,,OTH0034,Torino (TO)
+Progetto Miao-Fido ONLUS,"""Via dei Fiori",,,"Trecate""",info@miaofido.it,,OTH0035,Trecate (NO)
+Protezione Micio ODV,"""Corso Peschiera 325",,,,39 334 323 1030,,OTH0036,Torino (TO)
+Quattro Zampe nel Cuore,"""Via Ottavio Rivetti 25",,,,39 347 531 3855,,OTH0037,Rovasenda (VC)
+Rifugio Argo,"""Via Gibbione 24",,,,333.6870056,,OTH0038,Val della Torre (TO)
+Rifugio Martini,,,,,,,OTH0039,Arquata Scrivia (AL)
+Un Gatto per Amico,,,,,,,OTH0042,Castelletto Sopra Ticino (NO)
+Una Casa per Tutti,,,,,,,OTH0043,Torino (TO)
+Una Cuccia per la Vita,,,,,,,OTH0044,Tarantasca (CN)
+Una Zampa per la Vita,,,,,,,OTH0045,Vicoforte (CN)
+"""ARF",AUSTRALIA +61,,,,,,OTH0047,"ACT Rescue and Foster (Canberra)"""
+"""AWDRI",AUSTRALIA +61,,,,,,OTH0062,"Australian Working Dog Rescue Int. (Pitt Town)"""
+"""ACS",AUSTRALIA +61,,,,,,OTH0079,"Australian Cavy Sanctuary (Brisbane)"""
+"""AWLQ",AUSTRALIA +61,,,,,,OTH0085,"Animal Welfare League Queensland (Helensvale Town Centre)"""
+"""PAA",AUSTRALIA +61,,,,,,OTH0087,"Peninsula Animal Aid (Margate)"""
+"""AWL",AUSTRALIA +61,,,,,,OTH0094,"Animal Welfare League of South Australia (Wingfield)"""
+"""BAWCS",AUSTRALIA +61,,,,,,OTH0105,"Bendigo Animal Welfare & Community Services"""
+"""VicDRG",AUSTRALIA +61,,,,,,OTH0110,"Victorian Dog Rescue and Resource Group Inc (Elsternwick)"""
+"""SAFE Perth",AUSTRALIA +61,,,,,,OTH0125,"Saving Perth Animals from Euthanasia Inc (Joondalup)"""
+"""West Suburban Humane Society",US +1,,,,,,OTH0382,"Inc."""
+"""SCAT",CANADA +1,,,,,,OTH0383,"Saskatoon Street Cat Rescue"""
+"""FRFA",CANADA +1,,,,,,OTH0306,"Feline Rescue Foundation of Alberta (Calgary)"""
+"""MEOW",CANADA +1,,,,,,OTH0308,"Make Each One Wanted Foundation (Calgary)"""
+"""KAAP",CANADA +1,,,,,,OTH0322,"Kootenay Animal Assistance Program Socierty (Nelson)"""
+"""RescueCats",US +1,,,,,,OTH0417,"Inc."""
+"""RAPS",CANADA +1,,,,,,OTH0323,"Richmond Animal Protection Society (Richmond)"""
+"""S.A.R.A.",CANADA +1,,,,,,OTH0324,"Save Animals Through Rescue and Adoption Society (Surrey)"""
+"""VOKRA",CANADA +1,,,,,,OTH0326,"Vancouver Orphan Kitten Rescue Association"""
+"""PVHS",CANADA +1,,,,,,OTH0328,"Pembina Valley Humane Society (Morden)"""
+"""S.H.A.I.D.",CANADA +1,,,,,,OTH0339,"Sheltering Helpless Animals In Distress (Bridgewater)"""
+"""SOAR",CANADA +1,,,,,,OTH0347,"Southern Ontario Animal Rescue (Brampton)"""
+"""CDR",CANADA +1,,,,,,OTH0354,"Canadian Dachshund Rescue (Haliburton)"""
+"""N.A.R.C",CANADA +1,,,,,,OTH0360,"Navan Animal Rescue Corporation"""
+"""B.A.R.K.",CANADA +1,,,,,,OTH0363,"Bytown Association for Rescued Kanines (Ottawa)"""
+"""EHS",CANADA +1,,,,,,OTH0372,"Etobicoke Humane Society (Toronto)"""
+"""AVA",CANADA +1,,,,,,OTH0375,"Action Volunteers for Animals (Unionville)"""
+"""A.R.N.",CANADA +1,,,,,,OTH0379,"Animal Rescue Network (Montreal)"""
+"""Laskeys Lucky Ones and Volunteers",US +1,,,,,,OTH0391,"LLOV"""
+"""Petzone Dog Rescue",US +1,,,,,,OTH0398,"Inc."""
+"""Cedartown Animal Rescue",US +1,,,,,,OTH0402,"Education and Sterilization"""
+"""Georgia Canine Rescue and Rehabilitation",US +1,,,,,,OTH0404,"Inc"""
+"""Doberman Rescue of Rockdale",US +1,,,,,,OTH0406,"Inc"""
+"""Southern Comfort Animal Rescue",US +1,,,,,,OTH0419,"Inc."""
+"""Mostly Mutts Animal Rescue and Adoption",US +1,,,,,,OTH0425,"Inc."""
+"""Bliss Animal Haven",US +1,,,,,,OTH0426,"Inc"""
+"""Safe Hollow Animal Sanctuary",US +1,,,,,,OTH0427,"Inc."""
+"""Habitat 4 Hounds",US +1,,,,,,OTH0429,"Inc."""
+"""Mutt Madd-ness",US +1,,,,,,OTH0431,"Inc."""
+"""Georgia Animal Rescue & Defence",US +1,,,,,,OTH0441,"Inc"""
+"""No Kill Glynn County",US +1,,,,,,OTH0448,"Inc."""
+"""The Humane Society of Statesboro & Bulloch County",US +1,,,,,,OTH0450,"Inc."""
+"""North Georgia Animal Alliance",US +1,,,,,,OTH0464,"Inc."""
+"""Second Chance Animal Adoption",US +1,,,,,,OTH0483,"Inc"""
+"""Helping Hands Rescue",US +1,,,,,,OTH0490,"Inc."""
+"""Happy Jack Cats",US +1,,,,,,OTH0492,"Inc"""
+"""POUND PETS",US +1,,,,,,OTH0551,"INC."""
+"""Chicagoland Animal Rescue",US +1,,,,,,OTH0596,"NFP"""
+"""Barb's Precious Rescue & Adoption Center",US +1,,,,,,OTH0599,"NFP"""
+"""Noah's Ark Animal Sanctuary",US +1,,,,,,OTH0609,"Inc."""
+"""Animal Rescue Associates",US +1,,,,,,OTH0628,"Inc"""
+"""Helping Paws Woodstock",US +1,,,,,,OTH0629,"IL"""
+"""Canine Castaways Rescue",US +1,,,,,,OTH0648,"INC"""
+"""PurrHaven",US +1,,,,,,OTH0947,"Inc."""
+"""P.A.W.S.- Partners for Animal Welfare Society",US +1,,,,,,OTH0651,"Inc."""
+"""House Rabbit Society",US +1,,,,,,OTH0659,"Indiana Chapter"""
+"""Cause for Paws",US +1,,,,,,OTH0665,"Inc."""
+"""Scratching Post Cat Rescue",US +1,,,,,,OTH0688,"Inc"""
+"""Indiana GSD & Siberian Husky Rescue",US +1,,,,,,OTH0692,"Inc"""
+"""2nd Chance Animal Rescue of Richmond",US +1,,,,,,OTH0693,"Inc"""
+"""HELP the Animals",US +1,,,,,,OTH0694,"Inc"""
+"""Last Chance Rescue",US +1,,,,,,OTH0695,"Inc"""
+"""One Dog at a Time Rescue",US +1,,,,,,OTH0700,"Inc."""
+"""Canine Haven Rescue",US +1,,,,,,OTH0701,"Inc"""
+"""ALL Creatures Matter Rescue",US +1,,,,,,OTH0703,"Inc."""
+"""Animal Rescue of Carroll",US +1,,,,,,OTH0709,"Inc"""
+"""PAWS Humane Society (Floyd County",US +1,,,,,,OTH0713,"IA)"""
+"""Muddy Paws Second Chance Rescue",US +1,,,,,,OTH0716,"Inc"""
+"""Hooves and Paws Rescue of the Heartland",US +1,,,,,,OTH0727,"Inc."""
+"""Wichita Pug Rescue",US +1,,,,,,OTH0748,"Inc."""
+"""Clay County Animal Rescue & Education Center",US +1,,,,,,OTH0749,"Inc."""
+"""Silent Angels Advocate",US +1,,,,,,OTH0757,"Rescue & Shelter"""
+"""Prairie Paws Animal Shelter",US +1,,,,,,OTH0763,"Inc."""
+"""Wigglebutts Aussie Rescue",US +1,,,,,,OTH0766,"Inc."""
+"""Beak N Wings",US +1,,,,,,OTH0768,"Inc."""
+"""Beauties and Beasts",US +1,,,,,,OTH0772,"Inc."""
+"""Ashland Animal Rescue Fund",US +1,,,,,,OTH0774,"Inc."""
+"""Kentucky Kitty Cats",US +1,,,,,,OTH0779,"Inc."""
+"""The Arrow Fund",US +1,,,,,,OTH0805,"Inc"""
+"""Woodstock Animal Foundation",US +1,,,,,,OTH0806,"Inc"""
+"""Hope for All Pets",US +1,,,,,,OTH0816,"Inc. (HAPI)"""
+"""SOS",US +1,,,,,,OTH0827,"Save Our Strays"""
+"""Avoyelles Animal Welfare Society",US +1,,,,,,OTH0833,"Inc. (AAWS)"""
+"""Villalobos Rescue Center - Life 4 Paws",US +1,,,,,,OTH0859,"Inc"""
+"""New England Lab Rescue",US +1,,,,,,OTH0888,"Inc."""
+"""Animal Orphanage (Old Town",US +1,,,,,,OTH0890,"Maine)"""
+"""HART for Animals",US +1,,,,,,OTH0900,"Inc."""
+"""Animal Rescue Foundation",US +1,,,,,,OTH0903,"Inc (ARF)"""
+"""Wings of Love",US +1,,,,,,OTH0905,"Kuwait"""
+"""Randolph Regional Animal Shelter",US +1,,,,,,OTH1296,"NJ"""
+"""HOTE - Heart of the Earth Sanctuary and Rescue",US +1,,,,,,OTH0914,"Inc"""
+"""Pardoned Paws Rescue",US +1,,,,,,OTH0918,"Inc."""
+"""Fallston Animal Rescue Movement",US +1,,,,,,OTH0920,"Inc."""
+"""Animal Welfare League of Montgomery County",US +1,,,,,,OTH0921,"MD (AWLMC)"""
+"""Friends of Montgomery County Animals",US +1,,,,,,OTH0922,"Inc"""
+"""Feral Cat Rescue",US +1,,,,,,OTH0923,"Inc"""
+"""So Many Whiskers",US +1,,,,,,OTH0931,"Inc."""
+"""Small Angels Rescue",US +1,,,,,,OTH0933,"Inc."""
+"""Pets-4-Pets Cat Rescue",US +1,,,,,,OTH0934,"Inc."""
+"""The Ark of Hope Rescue",US +1,,,,,,OTH0936,"Inc."""
+"""Potomac Stray Cat Rescue",US +1,,,,,,OTH0946,"Inc."""
+"""Cat Canton Rescue",US +1,,,,,,OTH0970,"Inc."""
+"""Animal Advocates",US +1,,,,,,OTH0972,"Inc. Nonprofit Spay/Neuter Assistance Program."""
+"""PittieLove Rescue",US +1,,,,,,OTH0979,"Inc."""
+"""Willy's Kitty Angels Rescue",US +1,,,,,,OTH1004,"Inc."""
+"""Second Chance Animal Rescue",US +1,,,,,,OTH1006,"Inc. of Martha's Vineyard"""
+"""Kitty Angels",US +1,,,,,,OTH1020,"Inc."""
+"""Forgotten Angels Shelter",US +1,,,,,,OTH1025,"Inc."""
+"""Special Animal Friends and Rescue",US +1,,,,,,OTH1029,"Inc."""
+"""Just Cats",US +1,,,,,,OTH1052,"Inc."""
+"""HELP US",US +1,,,,,,OTH1057,"HELP THEM Animal Rescue"""
+"""TAILS",US +1,,,,,,OTH1066,"Inc."""
+"""Malinois and Dutch Shepherd Rescue",US +1,,,,,,OTH1072,"Inc."""
+"""Last Day Dog Rescue",US +1,,,,,,OTH1082,"Inc."""
+"""Gemini Rottweiler and Pitbull Rescue",US +1,,,,,,OTH1136,"Inc."""
+"""Pet Project Rescue - Minneapolis",US +1,,,,,,OTH1139,"MN"""
+"""B.A.R.K",US +1,,,,,,OTH1151,"Being Advocates for Rescued K9's"""
+"""Shaw Pit Bull Rescue",US +1,,,,,,OTH1155,"Inc"""
+"""Adopt-A-Dog Animal Rescue",US +1,,,,,,OTH1232,"Inc."""
+"""ONe Love Animal rescue Group",US +1,,,,,,OTH1264,"Inc."""
+"""New Jersey Schnauzer Rescue Network",US +1,,,,,,OTH1276,"Inc"""
+"""Animals in Distress",US +1,,,,,,OTH1279,"Inc."""
+"""Cattitude",US +1,,,,,,OTH1280,"Inc"""
+"""Because You Care",US +1,,,,,,OTH1577,"Inc"""
+"""Furrever Friends Rescue & Volunteers",US +1,,,,,,OTH1306,"Inc."""
+"""Finger Lakes SPCA",US +1,,,,,,OTH1330,"Inc."""
+"""SPCA Westchester",US +1,,,,,,OTH1334,"Inc."""
+"""Hope For Cats",US +1,,,,,,OTH1338,"Inc."""
+"""HEART Animal Rescue and Adoption Team",US +1,,,,,,OTH1356,"Inc."""
+"""Golden Paw Society",US +1,,,,,,OTH1360,"Inc"""
+"""Small Companion Advocacy Team",US +1,,,,,,OTH1364,"Inc"""
+"""WAYWARD PAWS",US +1,,,,,,OTH1374,"Inc."""
+"""Heart and Hand Society",US +1,,,,,,OTH1376,"Inc."""
+"""The SPCA Serving Erie County",US +1,,,,,,OTH1401,"NY"""
+"""Precious Paws",US +1,,,,,,OTH1402,"Inc."""
+"""Warwick Valley Humane Society",US +1,,,,,,OTH1403,"Inc."""
+"""A Purr-fect Fit Animal Rescue & Adoption Center",US +1,,,,,,OTH1407,"Inc."""
+"""Triad Golden Retriever Rescue",US +1,,,,,,OTH1428,"Inc. (TGRR)"""
+"""Godbey Creek Canine Rescue",US +1,,,,,,OTH1434,"Inc."""
+"""FUR of WNC """"Guardians of displaced felines"""" (Haywood County",US +1,,,,,,OTH1452,"NC)"""
+"""Sarge's Animal Rescue Foundation",US +1,,,,,,OTH1453,"Inc."""
+"""Furry Friends Rockin' Rescue",US +1,,,,,,OTH1458,"Inc. - Bismarck Mandan"""
+"""Cat House Feline Sanctuary",US +1,,,,,,OTH1466,"Inc"""
+"""Teddy's Rescue",US +1,,,,,,OTH1484,"Inc."""
+"""Stop The Overpopulation of Pets",US +1,,,,,,OTH1488,"Inc."""
+"""Champaign County Animal Welfare League",US +1,,,,,,OTH1490,"CCAWL"""
+"""Kitten Krazy",US +1,,,,,,OTH1491,"Inc."""
+"""Stay-A-While Cat Shelter",US +1,,,,,,OTH1493,"Inc."""
+"""A-Parrot to A-Flamingo",US +1,,,,,,OTH1495,"Inc. Parrot Rescue"""
+Thecatsite.com,,,,support@thecatsite.com,https://www.facebook.com/TheCatSite/,,OTH1519,
+"""Oklahoma Alliance for Animals",US +1,,,,,,OTH1528,"Inc."""
+"""Partnering for Pets",US +1,,,,,,OTH1530,"Inc."""
+"""Kiski Valley Cat & Kitten Rescue",US +1,,,,,,OTH1535,"Inc"""
+"""C.A.T.S. Bridge To Rescue",US +1,,,,,,OTH1536,"Inc"""
+"""Forgotten Felines & Fidos",US +1,,,,,,OTH1561,"Inc."""
+"""Humane Society of Harrisburg Area",US +1,,,,,,OTH1566,"Inc."""
+"""One By One",US +1,,,,,,OTH1570,"Inc."""
+"""Heavenly Paws Animal Rescue",US +1,,,,,,OTH1593,"Inc."""
+"""Best Friends of Baker",US +1,,,,,,OTH1615,"Inc"""
+"""PAWS Animal Shelter",US +1,,,,,,OTH1647,"a division of NW Oregon Animal Alliance"""
+"""Rescue the Animals",US +1,,,,,,OTH1648,"SPCA"""
+"""House Rabbit Resource Network",US +1,,,,,,OTH1653,"Inc."""
+"""P.A.L.S",US +1,,,,,,OTH1666,"Pets and Animals Life Shelter"""
+"""Humane Society of Dallas",US +1,,,,,,OTH1669,"aka Dog n Kitty City"""
+"""S.T.A.A.R.",US +1,,,,,,OTH1700,"South Texas Animal Adoption Resource"""
+"""Kaufman County Cats",US +1,,,,,,OTH1701,"Inc."""
+"""Humane Society of the New Braunfels Area",US +1,,,,,,OTH1716,"Inc"""
+"""Hardeman Adoptable Animals",US +1,,,,,,OTH1742,"Inc"""
+"""Ark of Cleveland",US +1,,,,,,OTH1751,"Inc."""
+"""Woonsocket Cat Sanctuary",US +1,,,,,,OTH1794,"Inc."""
+"""Save Our Strays (Birmingham",US +1,,,,,,OTH1835,"Alabama)"""
+"""Pets Are Worth Saving",US +1,,,,,,OTH1846,"Inc."""
+"""Wags and Whiskers Mobile",US +1,,,,,,OTH1847,"Al."""
+"""Rockin P Rescue",US +1,,,,,,OTH1857,"Inc."""
+"""Brindlee Mountain Animal Rescue",US +1,,,,,,OTH1858,"Inc."""
+"""New Hope Rescue",US +1,,,,,,OTH1868,"Inc"""
+"""ASHR - Alabama Siberian Husky Rescue",US +1,,,,,,OTH1873,"Inc."""
+"""The Shire Rescue & Sanctuary",US +1,,,,,,OTH1874,"Inc."""
+"""Challenger's House",US +1,,,,,,OTH1876,"Inc."""
+"""Underdog Animal Rescue and Rehab-Moab",US +1,,,,,,OTH1881,"Utah"""
+"""The Animal Rescue and Protection Society",US +1,,,,,,OTH1887,"Inc. (TARPS)"""
+"""Homeward Bound",US +1,,,,,,OTH1888,"Addison County’s Humane Society"""
+"""Til the End of Time Sanctuary",US +1,,,,,,OTH1898,"Inc."""
+"""Metro Ferals",US +1,,,,,,OTH1901,"Inc."""
+"""Cat Adoption and Rescue Efforts",US +1,,,,,,OTH1920,"Inc. (C.A.R.E.)"""
+"""Feline Foundation of Greater Washington",US +1,,,,,,OTH1927,"Inc."""
+"""Hope For Life Rescue",US +1,,,,,,OTH1947,"Inc"""
+"""Adopt-A-Pet of Shelton",US +1,,,,,,OTH1993,"Washington"""
+"""Wags to Riches Animal Rescue and Sanctuary",US +1,,,,,,OTH2000,"Inc"""
+"""Purr-Fect Match Animal Rescue",US +1,,,,,,OTH2019,"Inc."""
+"""Lakeshore Humane Society",US +1,,,,,,OTH2025,"Inc."""
+"""Little Orphan's Animal Rescue",US +1,,,,,,OTH2035,"Inc."""
+"""Columbia County Humane Society Portage",US +1,,,,,,OTH2042,"Wisconsin"""
+"""Feline/Canine Friends",US +1,,,,,,OTH2054,"Inc."""
+"""Community Cat",US +1,,,,,,OTH2055,"Inc."""
+"""Almost Heaven Golden Retriever Rescue and Sanctuary",US +1,,,,,,OTH2063,"Inc. (AHGRRS)"""
+"""P.U.R.R. West Virginia",US +1,,,,,,OTH2065,"People United for Rescue & Rehabilitation"""
+"""Olive Branch Animal Rescue & Refuge",US +1,,,,,,OTH2072,"Inc."""
+"""Pet Pals",US +1,,,,,,OTH2077,"Inc"""
+"""Santuario de Animales San Francisco de Asís",US +1,,,,,,OTH2082,"Inc."""
+"""Brooke - London",UK +44,,,,,,OTH2084,"UK"""
+"""Brooke - Amsterdam",UK +44,,,,,,OTH2085,"Holland"""
+"""Brooke - Lahore",UK +44,,,,,,OTH2086,"Pakistan"""
+"""Brooke - Dakar",UK +44,,,,,,OTH2087,"Senegal"""
+"""Brooke - Kentucky",UK +44,,,,,,OTH2090,"USA"""
+"""World Animal Protection - Chislehurst",UK +44,,,,,,OTH2093,"Regno Unito"""
+"""World Animal Protection - Nairobi",UK +44,,,,,,OTH2094,"Kenya"""
+"""World Animal Protection - NSW",UK +44,,,,,,OTH2095,"Australia"""
+"""World Animal Protection - Toronto",UK +44,,,,,,OTH2096,"Canada"""
+"""World Animal Protection - Beijing",UK +44,,,,,,OTH2097,"China"""
+"""World Animal Protection - Copenaghen",UK +44,,,,,,OTH2098,"Denmark"""
+"""World Animal Protection - New Delhi",UK +44,,,,,,OTH2099,"India"""
+"""World Animal Protection - Den Haag",UK +44,,,,,,OTH2100,"Holland"""
+RCVS Knowledge,,,,,,,OTH2169,
+"""Cats Protection - Crawley",UK +44,,,,,,OTH2200,"Reigate & District"""
+"""TVAW",UK +44,,,,,,OTH2246,"Thames Valley Animal Welfare (Wycombe)"""
+"""Wood Green",UK +44,,,,,,OTH2247,"The Animals Charity (Godmanchester)"""
+"""NASSL",UK +44,,,,,,OTH2269,"National Animal Sanctuaries Support League (Newton Aycliffe)"""
+"""C.H.A.T",UK +44,,,,,,OTH2271,"Celia Hammond Animal Trust (Hastings)"""
+"""GAR",UK +44,,,,,,OTH2282,"Greek Animal Rescue (Hendon)"""
+"""GSDR",UK +44,,,,,,OTH2292,"German Shepherd Dog Rescue (Marden)"""
+"""SEDR",UK +44,,,,,,OTH2302,"South East Dog Rescue (Swanley)"""
+"""B.A.R.K.",UK +44,,,,,,OTH2327,"Berwick Animal Rescue Kennels"""
+"""Whitby & Scarborough",UK +44,,,,,,OTH2331,"Dog Rescue"""
+"""B.A.R.K.S",UK +44,,,,,,OTH2337,"Banbury Animal Rescue and Kindness Service"""
+"""Lurcher SOS",UK +44,,,,,,OTH2348,"Lurcher and Greyhound Rescue (Esher)"""
+"""STAR",UK +44,,,,,,OTH2355,"Starlight Trust Animal Rescue (Wallington)"""
+"""AVAR",UK +44,,,,,,OTH2368,"Aldridge Voluntary Animal Rescue"""
+"""BADAW",UK +44,,,,,,OTH2378,"Barnsley and District Animal Welfare"""
+"""BARC",UK +44,,,,,,OTH2379,"Barnsley Animal Rescue Charity"""
+"""SPCA  Kaitaia",NEW ZELAND +64,,,,,,OTH2401,"New Zeland"""
+"""SPCA Whangarei",NEW ZELAND +64,,,,,,OTH2402,"New Zeland"""
+"""SPCA Auckland",NEW ZELAND +64,,,,,,OTH2403,"New Zeland"""
+"""SPCA Hamilton",NEW ZELAND +64,,,,,,OTH2404,"New Zealand"""
+"""SPCA Rotorua",NEW ZELAND +64,,,,,,OTH2405,"New Zealand"""
+"""SPCA New Plymouth",NEW ZELAND +64,,,,,,OTH2406,"New Zealand"""
+"""SPCA Taumarunui",NEW ZELAND +64,,,,,,OTH2407,"New Zealand"""
+"""SPCA Waipukurau",NEW ZELAND +64,,,,,,OTH2408,"New Zealand"""
+"""SPCA Dannevirke",NEW ZELAND +64,,,,,,OTH2409,"New Zealand"""
+"""SPCA Palmerston North",NEW ZELAND +64,,,,,,OTH2410,"New Zealand"""
+"""SPCA Christchurch",NEW ZELAND +64,,,,,,OTH2411,"New Zealand"""
+"""SPCA Queenstown",NEW ZELAND +64,,,,,,OTH2412,"New Zealand"""
+"""SPCA Invercargill",NEW ZELAND +64,,,,,,OTH2413,"New Zealand"""
+SIDDI MARIA CRISTINA,Private Foster Network Registry,,,,,,OTH2414,Alba (CN)
+MONTERSINO CRISTIAN (Azienda Agricola Allevamento),Via Mulino Vecchio 31,,,moncric1@tiscalinet.it,cani.com,,OTH2415,Guarene (CN)
+IL RIFUGIO DI FIDO (LIDA Alba-Bra ODV),Via Langhe 23,,,lidacirie@gmail.com (Shared LIDA Registry),empethy.it/lida-alba-bra,,OTH2416,Pollenzo / Bra (CN)
+RIFUGIO MILETTA ETS,Via Visconti 31 ter,,,info@rifugiomiletta.org,rifugiomiletta.org,,OTH2417,Agrate Conturbia (NO)
+CANILE COMUNALE DI PRIMA ACCOGLIENZA,Via Resega 20,,,urp@comune.borgomanero.no.it,comune.borgomanero.no.it,,OTH2418,Borgomanero (NO)
+CANILE COMUNALE DI PRIMA ACCOGLIENZA,Via Varallino - Reg. Vulcate Vecchia 1,,,info@comune.galliate.no.it,comune.galliate.no.it,,OTH2419,Galliate (NO)
+CANILE RIFUGIO ENPA NOVARA,Via del Gazurlo 57,,,novara@enpa.org,enpanovara.com,,OTH2420,Novara (NO)
+MEIN STAFFI (Allevamento e Pensione),Strada Galavardiera 2,,,info@meinstaffi.it,pensionepercanitorino.com,,OTH2421,Cumiana (TO)
+RIFUGIO DEL CANE (Amici degli Animali VB),Via ai Casoni 19,,,rifugiodelcane.vb@gmail.com,rifugiodelcane.com,,OTH2422,Verbania (VB)
+PARCO CANILE (Amici del Cane ODV),Via Caduti del Lavoro 14,,,canileomegna@gmail.com,canilediomegna.it,,OTH2423,Omegna (VB)
+Nome Organizzazione: Canile e Gattile Regionale della Valle d'Aosta,"""Indirizzo Fisico: Località La Croix Noire",,,"11020 Saint-Christophe (AO)""",Email: cgr.aosta@coopmelograno.org,,OTH2424,
+Nome Organizzazione: AVAPA ODV,"""Indirizzo Fisico: Località Grand Chemin 187",,,,,,OTH2425,
+Nome Organizzazione: Centro Recupero Animali Selvatici della Valle d'Aosta,"""Indirizzo Fisico: Località Busseyaz 56",,,,,,OTH2426,
+La Zampa VdA ODV,"""Via Roma 19 aosta",,,Italy,,,OTH2427,
+L' Albero di Mais,"""C.so Savona",,,"10024 Moncalieri TO""",amici.canilemoncalieri@gmail.com,,OTH2428,
+LA GATTERIA!,,,,,,,OTH2429,
+Bastardini ODV ETS,"""Rifugio Il Bau",,,"Alpignano (TO)""",info@bastardini.it,,OTH2430,Rivoli / Alpignano (TO)
+L.I.D.A. Sezione Chieri ODV - Parco delle Fusa,"""Strada del Tario 6",,,,11.9433028,,OTH2431,Chieri (TO)
+L.I.D.A. - Sezione Moncalieri (L'Albero di Mais),"""Corso Savona 140",,,,11.6409398,,OTH2432,Moncalieri (TO)
+Le Sfigatte ONLUS,"""Via Moncalieri 114/E",,,,39 338 537 8900,,OTH2433,Torino (TO)
+"""Location: 31 Fox's Island Road",,,,"Renwick 7243""",https://www.spca.nz/contact,,OTH2462,"Renwick 7243"""
+Maramiao - Ass. a Salvaguardia e Tutela dei Felini,"""Via Giuseppe Verdi 4",,,,39 347 430 5214,,OTH2434,Nizza Monferrato (AT)
+Rifugio Argo (ENPA),"""Via Gibbione 24",,,,333 6870056,,OTH2435,Val della Torre (TO)
+"""Location: 3/137 North Road",,,,"Kaitaia 0482""",https://www.spca.nz/contact,,OTH2437,"Kaitaia 0482"""
+"""Location: 321 Ngati Maru Highway",,,,"Thames 3578""",https://www.spca.nz/contact,,OTH2442,"Thames 3578"""
+"""Location: 15 Gateway Crescent",,,,"Whakatane 3194""",https://www.spca.nz/contact,,OTH2445,"Whakatane 3194"""
+"""Location: 168 Hakiaha Street",,,,"Taumarunui 3920""",https://www.spca.nz/contact,,OTH2448,"Taumarunui 3920"""
+"""Location: 134 London Street",,,,"Whanganui 4500""",https://www.spca.nz/contact,,OTH2453,"Whanganui 4500"""
+"""Location: 43 Takapau Road",,,,"Waipukurau 4200""",https://www.spca.nz/contact,,OTH2454,"Waipukurau 4200"""
+"""Location: 5 Easton Street",,,,"Dannevirke 4930""",https://www.spca.nz/contact,,OTH2455,"Dannevirke 4930"""
+"""Location: 169 Mako Mako Road",,,,"Levin 5510""",https://www.spca.nz/contact,,OTH2457,"Levin 5510"""
+"""Location: 400D High Street",,,,"Motueka 7120""",https://www.spca.nz/contact,,OTH2460,"Motueka 7120"""
+"""Location: 68 Mill Street",,,,"Westport 7825""",https://www.spca.nz/contact,,OTH2463,"Westport 7825"""
+"""Location: 2 Balneaves Lane",,,,"Wanaka 9382""",https://www.spca.nz/contact,,OTH2468,"Wanaka 9382"""
+"""Location: 281 Thames Street",,,,"Oamaru 9400""",https://www.spca.nz/contact,,OTH2470,"Oamaru 9400"""
+Contact: info,,,,info@gsdrescue.org.nz,https://www.gsdrescue.org.nz/,,OTH2474,
+Website: https://www.cpl-wellington.org.nz/,,,,,https://www.cpl-wellington.org.nz/,,OTH2475,
+Website: https://animalliberationfrontline.com,,,,https://animalliberationfrontline.com/contact-animal-liberation-front-line/,https://animalliberationfrontline.com,,OTH2476,
+Contact: info,,,,info@battersea.org.uk,http://www.battersea.org.uk/,,OTH2477,
+Contact: info,,,,info@thebrooke.org,http://www.thebrooke.org/,,OTH2478,
+Contact: info,,,,info@mayhewanimalhome.org,https://themayhew.org/,,OTH2479,
+Contact: ralph.baber,,,,ralph.baber@drinkingfountains.org,http://drinkingfountains.org/,,OTH2480,
+Contact: info,,,,info@worldanimalprotection.us,https://www.worldanimalprotection.org/,,OTH2481,
+Contact: membership,,,,membership@rspb.org.uk,https://rspb.org.uk/,,OTH2482,
+Website: https://africanconservation.org/,,,,,https://africanconservation.org/,,OTH2483,
+Contact: enquiries,,,,enquiries@arc-trust.org,https://www.arc-trust.org/,,OTH2484,
+Contact: hello,,,,hello@animalfreeresearchuk.org,https://www.animalfreeresearchuk.org/,,OTH2485,
+Website: https://www.aspinallfoundation.org/,,,,https://share.hsforms.com/1TyTesSqdQOKePCsODiTOSA1n2zx,https://www.aspinallfoundation.org/,,OTH2486,
+Website: https://www.bluecross.org.uk/,,,,https://bluecrosseu.freshdesk.com/support/tickets/new,https://www.bluecross.org.uk/,,OTH2487,
+Contact: info,,,,info@bornfree.org.uk,https://www.bornfree.org.uk/,,OTH2488,
+Contact: info,,,,info@bdmlr.org.uk,https://bdmlr.org.uk/,,OTH2489,
+Contact: info,,,,info@bhwt.co.uk,https://www.bhwt.org.uk/,,OTH2490,
+Contact: info,,,,info@thebhs.org,https://www.thebhs.org/,,OTH2491,
+Contact: info,,,,info@bto.org,https://www.bto.org/,,OTH2492,
+Website: https://www.buttercups.org.uk/,,,,,https://www.buttercups.org.uk/,,OTH2493,
+Website: https://www.cats.org.uk/,,,,https://www.cats.org.uk/find-us/contact-us,https://www.cats.org.uk/,,OTH2494,
+Website: http://www.uncaged.co.uk/,,,,https://www.casj.org.uk/contact,http://www.uncaged.co.uk/,,OTH2495,
+Contact: enquiries,,,,enquiries@happa.org.uk,https://www.happa.org.uk/,,OTH2565,
+Website: https://cinnamon.org.uk/cinnamon-trust/,,,,https://cinnamon.org.uk/contact-us/,https://cinnamon.org.uk/cinnamon-trust/,,OTH2496,
+Website: https://www.ciwf.org.uk/,,,,https://www.ciwf.org.uk/contact-us/,https://www.ciwf.org.uk/,,OTH2497,
+Contact: info,,,,info@dogstrust.org.uk,https://www.dogstrust.org.uk/#main-content,,OTH2498,
+Website: https://www.thedonkeysanctuary.org.uk/,,,,https://www.thedonkeysanctuary.org.uk/contact,https://www.thedonkeysanctuary.org.uk/,,OTH2499,
+Website: https://elephant-family.org/,,,,https://elephant-family.org/contact-us/,https://elephant-family.org/,,OTH2500,
+Contact: info,,,,info@ferneanimalsanctuary.org,https://www.ferneanimalsanctuary.org/,,OTH2501,
+Contact: office,,,,office@freedomforanimals.org.uk,https://www.freedomforanimals.org.uk/,,OTH2502,
+Contact: info,,,,info@froglife.org,https://www.froglife.org/,,OTH2503,
+Contact: hello,,,,hello@frame.org.uk,https://frame.org.uk/,,OTH2504,
+Website: https://hedgehogcare.org.uk/,,,,https://hedgehogcare.org.uk/contact/,https://hedgehogcare.org.uk/,,OTH2505,
+Contact: contact,,,,contact@hillside.org.uk,https://www.hillside.org.uk/,,OTH2506,
+Contact: info,,,,info@horsetrust.org.uk,https://horsetrust.org.uk/,,OTH2507,
+Contact: gulp,,,,gulp@howmanyelephants.org,https://howmanyelephants.org/,,OTH2508,
+Contact: info,,,,info@humanimaltrust.org.uk,https://www.humanimaltrust.org.uk/,,OTH2509,
+Contact: info,,,,info@internationalanimalrescue.org,https://www.internationalanimalrescue.org/,,OTH2510,
+Contact: info,,,,info@league.org.uk,https://www.league.org.uk/,,OTH2511,
+Website: https://dogshome.net/,,,,https://dogshome.net/contact/,https://dogshome.net/,,OTH2512,
+Contact: info,,,,info@wildfutures.org,https://www.monkeysanctuary.org/,,OTH2513,
+Website: https://www.nawt.org.uk/,,,,https://www.nawt.org.uk/about/contact-us/,https://www.nawt.org.uk/,,OTH2514,
+Contact: info,,,,info@notodogmeat.com,https://notodogmeat.com/,,OTH2515,
+Website: https://www.pdsa.org.uk/,,,,https://www.pdsa.org.uk/contact-us/contact-us,https://www.pdsa.org.uk/,,OTH2516,
+Contact: enquiries,,,,enquiries@ptes.org,https://ptes.org/,,OTH2517,
+Contact: info,,,,info@raystede.org,https://www.raystede.org/,,OTH2518,
+Website: https://www.redwings.org.uk/,,,,https://www.redwings.org.uk/contact-us,https://www.redwings.org.uk/,,OTH2519,
+Contact: tvaughan,,,,tvaughan@ror.org.uk,https://ror.org.uk/,,OTH2520,
+Website: https://www.rspca.org.uk/,,,,https://www.rspca.org.uk/utilities/contactus/askus/online,https://www.rspca.org.uk/,,OTH2521,
+Contact: info,,,,info@safehaven4donkeys.org,https://www.safehaven4donkeys.org/,,OTH2522,
+Contact: info,,,,info@savetheelephants.org,https://www.savetheelephants.org/,,OTH2523,
+Contact: info,,,,info@savetherhino.org,https://www.savetherhino.org/,,OTH2524,
+Website: https://www.scottishspca.org/,,,,https://www.scottishspca.org/contact-us,https://www.scottishspca.org/,,OTH2525,
+Website: https://www.secretworld.org/,,,,https://www.secretworld.org/contact-us,https://www.secretworld.org/,,OTH2526,
+Website: https://www.sharktrust.org/,,,,https://www.sharktrust.org/forms/general-enquiries,https://www.sharktrust.org/,,OTH2527,
+Contact: office,,,,office@saarescue.co.uk,https://www.saarescue.co.uk/,,OTH2528,
+Contact: hello,,,,hello@spana.org,https://spana.org/,,OTH2529,
+Contact: secretary,,,,secretary@sos.org.uk,https://www.sos.org.uk/,,OTH2530,
+Contact: info,,,,info@cwwrescue.org,https://www.cwwrescue.org/,,OTH2637,
+Website: https://www.theswansanctuary.org.uk/,,,,https://www.theswansanctuary.org.uk/contact-us/,https://www.theswansanctuary.org.uk/,,OTH2531,
+Website: https://www.lastchanceanimalrescue.co.uk,,,,https://www.lastchanceanimalrescue.co.uk/contact/index.php,https://www.lastchanceanimalrescue.co.uk/kennel/dog.php,,OTH2532,
+Contact: info,,,,info@thornberryanimalsanctuary.org,https://www.thornberryanimalsanctuary.org/,,OTH2533,
+Contact: mail,,,,mail@tiggywinkles.org,https://www.sttiggywinkles.org.uk/,,OTH2534,
+Contact: enquiries,,,,enquiries@uspca.co.uk,https://www.uspca.co.uk/,,OTH2535,
+Contact: info,,,,info@whales.org,https://uk.whales.org/,,OTH2536,
+Website: https://www.wildlifeaid.org.uk/,,,,https://www.wildlifeaid.org.uk/contact-us,https://www.wildlifeaid.org.uk/,,OTH2537,
+Contact: kate,,,,kate@willowsanimals.com,https://www.willowsanimals.com/,,OTH2538,
+Contact: info,,,,info@woodgreen.org.uk,https://woodgreen.org.uk/,,OTH2539,
+Contact: info,,,,info@savemetrust.org,https://savemetrust.co.uk/,,OTH2540,
+Contact: info,,,,info@animalaid.org.uk,https://www.animalaid.org.uk/,,OTH2541,
+Contact: info,,,,info@adavsociety.org,https://adavsociety.org/,,OTH2542,
+Contact: animalrightscambridge54,,,,animalrightscambridge54@gmail.com,https://animalrightscambridge.wordpress.com/,,OTH2543,
+Contact: info,,,,info@stopvivisection.org.uk,https://web.archive.org/web/20140225231857/http://www.stopvivisection.org.uk/,,OTH2544,
+Website: https://www.badgertrust.org.uk/,,,,https://www.badgertrust.org.uk/you,https://www.badgertrust.org.uk/,,OTH2545,
+Contact: enquiries,,,,enquiries@bats.org.uk,https://www.bats.org.uk/,,OTH2546,
+Website: https://www.casj.org.uk/,,,,https://www.casj.org.uk/contact,https://www.casj.org.uk/,,OTH2547,
+Contact: info,,,,info@conservativeanimalwelfarefoundation.org,https://www.conservativeanimalwelfarefoundation.org/,,OTH2548,
+Contact: info,,,,info@CrueltyFreeInternational.org,https://crueltyfreeinternational.org/,,OTH2549,
+Website: https://www.dogsblog.com/,,,,https://www.dogsblog.com/contact/,https://www.dogsblog.com/,,OTH2550,
+Website: https://www.huntsabs.org.uk/,,,,https://www.huntsabs.org.uk/contact/,https://www.huntsabs.org.uk/,,OTH2551,
+Website: https://www.ldf.org.uk/research/,,,,https://www.ldf.org.uk/contact_us/?s=ldf,https://www.ldf.org.uk/research/,,OTH2552,
+Contact: apes,,,,apes@monkeyworld.org,https://monkeyworld.org/,,OTH2553,
+Website: https://www.navs.org.uk/home/,,,,https://www.navs.org.uk/contact_us/,https://www.navs.org.uk/home/,,OTH2554,
+Website: https://www.onekind.org/,,,,https://www.onekind.org/contact,https://www.onekind.org/,,OTH2555,
+Website: https://viva.org.uk/,,,,https://viva.org.uk/about-us/contact-us/,https://viva.org.uk/,,OTH2556,
+Contact: info,,,,info@catactiontrust.org.uk,http://www.catactiontrust.org.uk/,,OTH2557,
+Contact: info,,,,info@rcvsknowledge.org,https://www.rcvsknowledge.org/,,OTH2558,
+Website: https://www.birminghamdogshome.org.uk/,,,,https://birminghamdogshome.org.uk/contact/,https://www.birminghamdogshome.org.uk/,,OTH2559,
+Contact: info,,,,info@wythallanimalsanctuary.org,https://wythallanimalsanctuary.org/,,OTH2560,
+Contact: management,,,,management@woodsidesanctuary.org.uk,http://www.woodsidesanctuary.org.uk/,,OTH2561,
+Contact: info,,,,info@celiahammond.org,https://www.celiahammond.org/,,OTH2562,
+Contact: giftsinwills,,,,giftsinwills@cats.org.uk,http://www.cats.org.uk/,,OTH2563,
+Contact: sara.foxrushfarm,,,,sara.foxrushfarm@gmail.com,http://www.s-a-r-a.org.uk/,,OTH2564,
+Contact: info,,,,info@oaktreeanimals.org.uk,https://www.oaktreeanimals.org.uk/,,OTH2566,
+Contact: info,,,,info@canineconcernscotland.org.uk,https://www.canineconcernscotland.org.uk/,,OTH2567,
+Contact: fundraising,,,,fundraising@kennelclubcharitabletrust.org,http://www.kennelclubcharitabletrust.org/,,OTH2568,
+Contact: dominic.sullivan,,,,dominic.sullivan@cats.org.uk,https://www.cats.org.uk/bridgwater,,OTH2569,
+Contact: scottishgreyhoundsanctuary,,,,scottishgreyhoundsanctuary@gmail.com,https://www.scottishgreyhoundsanctuary.org/,,OTH2570,
+Website: https://rosinaanimalcentre.weebly.com/,,,,https://rosinaanimalcentre.weebly.com/contact-us-07950023286.html,https://rosinaanimalcentre.weebly.com/,,OTH2571,
+Contact: admin,,,,admin@firstfordogs.org,http://www.firstfordogs.org/,,OTH2572,
+Contact: ShetlandRescue1984,,,,ShetlandRescue1984@yahoo.com,https://shetlandrescue.org.uk/,,OTH2573,
+Website: https://www.theedwardfoundation.co.uk/,,,,https://www.theedwardfoundation.co.uk/contact-us,https://www.theedwardfoundation.co.uk/,,OTH2574,
+Contact: info,,,,info@harveysarmy.com,http://www.harveysarmy.com/,,OTH2575,
+Contact: info,,,,info@bulldogtrust.org,https://www.bulldogtrust.org/,,OTH2576,
+Contact: cathospice,,,,cathospice@sky.com,https://www.sfhfc.org.uk/,,OTH2577,
+Contact: rminniscats,,,,rminniscats@gmail.com,https://www.rhodesminniscatsanctuary.com/,,OTH2578,
+Contact: info,,,,info@crrc.co.uk,https://crrc.co.uk/,,OTH2579,
+Contact: info,,,,info@shropshirecatrescue.org.uk,https://www.shropshirecatrescue.org.uk/,,OTH2580,
+Contact: alison,,,,alison@preventunwantedpets.co.uk,https://www.preventunwantedpets.co.uk/,,OTH2581,
+Contact: info,,,,info@pitponies.co.uk,https://www.pitponies.co.uk/,,OTH2582,
+Contact: bbhrescue,,,,bbhrescue@gmail.com,https://brownbreadhorserescue.org/,,OTH2583,
+Contact: easterleighanimalcharity,,,,easterleighanimalcharity@gmail.com,https://www.easterleigh.org.uk/,,OTH2584,
+Contact: info,,,,info@burystraycatfund.co.uk,https://www.burystraycatfund.co.uk/,,OTH2585,
+Contact: kev,,,,kev@lincolnshiregreyhoundtrust.com,https://www.lincolnshiregreyhoundtrust.co.uk/,,OTH2586,
+Contact: tamcats,,,,tamcats@talktalk.net,https://www.tamcats.co.uk/,,OTH2587,
+Contact: cpr,,,,cpr@longfram.net,,,OTH2588,
+Contact: fosterenquiry,,,,fosterenquiry@pfss.org.uk,https://www.pfss.org.uk/,,OTH2589,
+Contact: animalrescuetrust,,,,animalrescuetrust@hotmail.com,http://www.7thheaven.org.uk/,,OTH2590,
+Contact: greyhoundwelfarewales,,,,greyhoundwelfarewales@gmail.com,https://www.greyhoundsinwales.moonfruit.co.uk/,,OTH2591,
+Contact: enquiries,,,,enquiries@catsprotection.co.uk,,,OTH2592,
+Contact: knee.simon,,,,knee.simon@pdsa.org.uk,https://www.pdsa.org.uk/,,OTH2593,
+Contact: enquiries,,,,enquiries@animalwelfarefoundation.org.uk,https://www.animalwelfarefoundation.org.uk/,,OTH2594,
+Contact: info,,,,info@c-l-a-w-s.org.uk,https://www.c-l-a-w-s.org.uk/,,OTH2595,
+Contact: alan,,,,alan@internationalanimalrescue.org,https://www.catastrophescat.org/,,OTH2596,
+Contact: act,,,,act@rvc.ac.uk,https://www.rvc.ac.uk/act,,OTH2597,
+Contact: info,,,,info@bluecross.org.uk,https://www.bluecross.org.uk/,,OTH2598,
+Website: https://www.edch.org.uk/,,,,https://edch.org.uk/contact-us/,https://www.edch.org.uk/,,OTH2599,
+Contact: info,,,,info@shire-horse.org.uk,https://www.shire-horse.org.uk/,,OTH2600,
+Contact: enquiries,,,,enquiries@thetrc.co.uk,https://www.thetrc.co.uk/,,OTH2601,
+Contact: shelter,,,,shelter@millhouseanimalsanctuary.co.uk,https://www.millhouseanimalsanctuary.co.uk/,,OTH2602,
+Contact: info,,,,info@rspca-essexhavering.org,http://www.rspca.org.uk/local/essex-havering-and-harold-hill-branch/,,OTH2603,
+Contact: info,,,,info@rabbitwelfare.co.uk,https://www.rabbitwelfare.co.uk/,,OTH2604,
+Contact: leona,,,,leona@leonabrown.co.uk,http://www.straycatrescue.org.uk/,,OTH2605,
+Contact: canim682,,,,canim682@hotmail.co.uk,https://www.facebook.com/profile.php?id=100069203284039,,OTH2606,
+Contact: info,,,,info@fenbankgreyhounds.co.uk,https://www.fenbankgreyhounds.co.uk/,,OTH2607,
+Contact: enquiries,,,,enquiries@happycatsrescue.co.uk,https://www.happycatsrescue.co.uk/,,OTH2608,
+Contact: info,,,,info@centralbedfordshirecaninetrust.com,https://www.centralbedfordshirecaninetrust.com/,,OTH2609,
+Contact: catsinneed1999,,,,catsinneed1999@aol.com,https://catsinneedmenorca.org/,,OTH2610,
+Contact: eightlives,,,,eightlives@outlook.com,http://www.8livescatrescue.org/,,OTH2611,
+Website: https://www.kenthorserescue.org/,,,,https://www.kenthorserescue.org/contact-khr/,https://www.kenthorserescue.org/,,OTH2612,
+Contact: hello,,,,hello@staradopt.org,https://www.staradopt.org/,,OTH2613,
+Contact: INFO,,,,INFO@THESHEFFIELDCATSSHELTER.ORG.UK,https://www.thesheffieldcatsshelter.org/,,OTH2614,
+Contact: galgosdelsoluk,,,,galgosdelsoluk@gmail.com,https://www.galgosdelsol.org/,,OTH2615,
+Contact: bmpr,,,,bmpr@outlook.com,https://www.bodminmoorlandpony.org/,,OTH2616,
+Contact: durhamhollinhall,,,,durhamhollinhall@gmail.com,https://www.durhamretiredgreyhounds.co.uk/,,OTH2617,
+Contact: Contact,,,,Contact@TheCatWelfareGroup.org,https://thecatwelfaregroup.org/what-we-do,,OTH2618,
+Contact: billy,,,,billy@wisteriacatrescue.org,https://wisteriacatrescue.org/,,OTH2619,
+Contact: info.hastingscatlovers,,,,info.hastingscatlovers@gmail.com,https://www.hastingscatlovers.co.uk/,,OTH2620,
+Contact: colette,,,,colette@chorltoncats.org,https://www.chorltoncats.org/,,OTH2621,
+Contact: lancasterandmorecambecatrescue,,,,lancasterandmorecambecatrescue@hotmail.com,https://www.lancasterandmorecambecatrescue.com/,,OTH2622,
+Contact: felinefriendscharity,,,,felinefriendscharity@gmail.com,https://www.felinefriendscharity.co.uk/,,OTH2623,
+Contact: CATSQUADESSEX,,,,CATSQUADESSEX@ICLOUD.COM,https://catsquad.org/,,OTH2624,
+Contact: portsmouthcats,,,,portsmouthcats@hotmail.com,http://www.portsmouthcatslostfoundandrehomed.co.uk/,,OTH2625,
+Contact: apurrfectfriend,,,,apurrfectfriend@gmail.com,https://purrfectfriendcatrescue.org/,,OTH2626,
+Contact: hampshirespirithorserescue,,,,hampshirespirithorserescue@outlook.com,https://www.hampshirespirithorserescue.co.uk/,,OTH2627,
+Contact: ceredigioncatrescue,,,,ceredigioncatrescue@gmail.com,,,OTH2628,
+Contact: mail,,,,mail@colchestercatrescue.org.uk,https://www.colchestercatrescue.org.uk/,,OTH2629,
+Contact: enquiries,,,,enquiries@straycatrescue.org.uk,https://www.straycatrescue.org.uk/,,OTH2630,
+Contact: felinewelfareiow,,,,felinewelfareiow@hotmail.co.uk,https://www.felinewelfareiow.co.uk/,,OTH2631,
+Contact: info,,,,info@marjorienashcatrescue.org.uk,https://www.marjorienashcatrescue.org.uk/,,OTH2632,
+Contact: sccwt,,,,sccwt@siameserescue.org.uk,https://www.siameserescue.org.uk/,,OTH2633,
+Contact: ray.digby,,,,ray.digby@talktalk.net,https://www.moultonchaplecatshelter.org/,,OTH2634,
+Contact: emma.reid21,,,,emma.reid21@btinternet.com,https://www.paulinefirks.co.uk/,,OTH2635,
+Contact: crescentcatrescue,,,,crescentcatrescue@gmail.com,https://crescentcatrescue.org/,,OTH2636,
+Contact: bowlodge,,,,bowlodge@gmail.com,https://www.bowlodgecatrescue.com/,,OTH2638,
+Contact: admin,,,,admin@mansfieldcatrescue.co.uk,https://mansfieldcatrescue.co.uk/,,OTH2639,
+Contact: cat-ching,,,,cat-ching@hotmail.com,https://cat-ching.com/,,OTH2640,
+Contact: info,,,,info@italiangreyhoundrescuecharity.org.uk,https://www.italiangreyhoundrescuecharity.org.uk/,,OTH2641,
+Contact: catwelfarewisbech,,,,catwelfarewisbech@gmail.com,https://www.catwelfarewisbech.co.uk/,,OTH2642,
+Contact: info,,,,info@lymicat.org,https://www.lymicat.org/,,OTH2643,
+Contact: catwelcardiff,,,,catwelcardiff@hotmail.co.uk,https://www.catwel-blogspot.com/,,OTH2644,
+Contact: TINKERBELL300,,,,TINKERBELL300@ICLOUD.COM,https://catrescue.dore/,,OTH2645,
+Contact: liverpoolcatwelfare,,,,liverpoolcatwelfare@hotmail.co.uk,https://liverpoolcatwelfare.com/,,OTH2646,
+Website: https://www.cats.org.uk/bedford,,,,https://www.cats.org.uk/bedford/contact-us,https://www.cats.org.uk/bedford,,OTH2647,
+Contact: fundraising,,,,fundraising@straycatrescue.org.uk,http://www.straycatrescue.org.uk/,,OTH2648,
+Contact: homelesscatrescue,,,,homelesscatrescue@hotmail.com,https://www.homelesscatrescue.co.uk/,,OTH2649,
+Contact: tvaw,,,,tvaw@btconnect.com,https://www.tvaw.org.uk/,,OTH2650,
+Contact: info,,,,info@woodgreen.org.uk,https://woodgreen.org.uk/,,OTH2651,
+Contact: Homes4Dogs,,,,Homes4Dogs@outlook.com,http://homes4dogs.co.uk/,,OTH2652,
+Contact: info,,,,info@chestercatcare.com,https://www.rescuereview.co.uk/rescue/chester-cat-care-417/,,OTH2653,
+Contact: info,,,,info@warringtonanimalwelfare.org.uk,https://www.facebook.com/warringtonanimalwelfare/info/,,OTH2654,
+Contact: pawsinn,,,,pawsinn@aol.com,http://www.pawsinncatrescue.co.uk/,,OTH2655,
+Website: http://www.lefontidogrescuecarlislecumbr,,,,http://www.lefontidogrescuecarlislecumbria.org/contact-us.html,http://www.lefontidogrescuecarlislecumbria.org/,,OTH2656,
+Website: https://www.animalrescuecumbria.co.uk/,,,,https://www.animalrescuecumbria.co.uk/contact-us/,https://www.animalrescuecumbria.co.uk/,,OTH2657,
+Website: https://www.chesterfieldanimalrescue.org,,,,https://www.chesterfieldanimalrescue.org.uk/#pageFooter,https://www.chesterfieldanimalrescue.org.uk/#pageFooter,,OTH2658,
+Contact: adoption,,,,adoption@justfordogsrescue.co.uk,https://www.facebook.com/DogRescueDerbyshire/,,OTH2659,
+Contact: secondchancedogs,,,,secondchancedogs@btinternet.com,http://www.secondchancerescuekennels.co.uk/,,OTH2660,
+Website: https://www.petsamaritans.co.uk/,,,,https://www.petsamaritans.co.uk/contact-us/,https://www.petsamaritans.co.uk/,,OTH2661,
+Contact: info,,,,info@animalsindistress.uk.com,https://animalsindistress.uk.com/,,OTH2662,
+Contact: felinenetwork2009,,,,felinenetwork2009@gmail.com,http://felinenetwork.org.uk/,,OTH2663,
+Contact: info,,,,info@gablesfarm.org.uk,https://www.gablesfarm.org.uk/,,OTH2664,
+Contact: oldies,,,,oldies@oldies.org.uk,https://www.oldies.org.uk/,,OTH2665,
+Website: https://hollyhedge.org.uk/,,,,https://hollyhedge.org.uk/contact-us/email-form/,https://hollyhedge.org.uk/,,OTH2666,
+Website: https://blfc.weebly.com/,,,,Senior Co-ordinator (Karen) on 0117 9600304,https://blfc.weebly.com/,,OTH2667,
+Contact: team,,,,team@justwhippetsrescue.co.uk,https://www.justwhippetsrescue.co.uk/,,OTH2668,
+Website: https://waggytails.org.uk/,,,,https://waggytails.org.uk/contact/,https://waggytails.org.uk/,,OTH2669,
+Contact: info,,,,info@wetheriggsanimalrescue.co.uk,https://www.wetheriggsanimalrescue.co.uk/,,OTH2670,
+Contact: reception,,,,reception@strayaid.org.uk,https://strayaid.org.uk/,,OTH2671,
+Contact: info,,,,info@strayaction.com,https://www.strayaction.com/,,OTH2672,
+Contact: nassl,,,,nassl@nassl.org.uk,https://nassl.co.uk/,,OTH2673,
+Contact: info,,,,info@lostcatsbrighton.org.uk,https://lostcatsbrighton.org.uk/,,OTH2674,
+Contact: headoffice,,,,headoffice@celiahammond.org,https://www.celiahammond.org/,,OTH2675,
+Website: https://www.catastrophescats.org/,,,,https://www.catastrophescats.org/contact-us,https://www.catastrophescats.org/,,OTH2676,
+Contact: julie,,,,julie@catwelfaresussex.com,https://catwelfaresussex.com/cws/,,OTH2677,
+Contact: info,,,,info@raystede.org,https://www.raystede.org/,,OTH2678,
+Contact: reception,,,,reception@gawa.org.uk,https://gawa.org.uk/,,OTH2679,
+Contact: info,,,,info@rspcaoandf.org.uk,https://www.rspcaoandf.org.uk/,,OTH2680,
+Contact: enquiries,,,,enquiries@teckelsanimalsanctuaries.co.uk,https://teckelsanimalsanctuaries.co.uk/,,OTH2681,
+Contact: Enquiries,,,,Enquiries@5valleycatrescue.org,https://www.5valleycatrescue.org/,,OTH2682,
+Contact: Info,,,,Info@leavalleydogrescue.co.uk,https://leavalleydogrescue.co.uk/,,OTH2683,
+Contact: info,,,,info@dogstrust.org.uk,https://www.dogstrust.org.uk/,,OTH2684,
+Website: https://prodogsdirect.org.uk/,,,,https://prodogsdirect.org.uk/contact/,https://prodogsdirect.org.uk/,,OTH2685,
+Contact: info,,,,info@greekanimalrescue.com,https://greekanimalrescue.com/,,OTH2686,
+Contact: vetclinic,,,,vetclinic@mayhewanimalhome.org,https://themayhew.org/,,OTH2687,
+Contact: info,,,,info@animalaidandadvice.org,https://www.facebook.com/AnimalAidAndAdvice/,,OTH2688,
+Website: https://cat77.org.uk/,,,,https://cat77.org.uk/contact,https://cat77.org.uk/,,OTH2689,
+Contact: cats,,,,cats@haws-animals.org.uk,https://www.haws-animals.org.uk/,,OTH2690,
+Contact: admin,,,,admin@littleangelsrabbitrescue.com,https://www.rescuereview.co.uk/rescue/little-angels-rabbit-rescue-967/,,OTH2691,
+Contact: enquiries,,,,enquiries@greyhoundlifeline.co.uk,https://www.greyhoundlifeline.co.uk/,,OTH2692,
+Contact: alison,,,,alison@southerncountiesgsdrescue.co.uk,https://southerncountiesgsdrescue.co.uk/,,OTH2693,
+Contact: info,,,,info@lymicat.org,https://www.lymicat.org/,,OTH2694,
+Contact: info,,,,info@labrador-lifeline.com,https://labrador-lifeline.com/,,OTH2695,
+Contact: info,,,,info@germanshepherdrescue.co.uk,https://www.germanshepherdrescue.co.uk/,,OTH2696,
+Contact: office,,,,office@rspca-tameside-glossop.org.uk,https://rspca-tameside-glossop.org.uk/,,OTH2697,
+Website: https://dogshome.net/,,,,https://dogshome.net/contact/,https://dogshome.net/,,OTH2698,
+Website: http://www.rochdale-dog-rescue.com/,,,,http://www.rochdale-dog-rescue.com/contact.html,http://www.rochdale-dog-rescue.com/,,OTH2699,
+Contact: futuresfordogs,,,,futuresfordogs@aol.com,https://www.facebook.com/futuresfordogs/,,OTH2700,
+Contact: info,,,,info@foalfarm.org.uk,https://www.foalfarm.org.uk/,,OTH2701,
+Website: https://www.lastchanceanimalrescue.co.uk,,,,https://www.lastchanceanimalrescue.co.uk/contact/index.php,https://www.lastchanceanimalrescue.co.uk/,,OTH2702,
+Website: https://www.kentgreyhoundrescue.com/,,,,https://www.kentgreyhoundrescue.com/contact-us/,https://www.kentgreyhoundrescue.com/,,OTH2703,
+Contact: alldogsrescue,,,,alldogsrescue@rocketmail.com,https://www.alldogsrescue.com/,,OTH2704,
+Contact: streetkatzinfo,,,,streetkatzinfo@gmail.com,https://www.streetkatzrescue.com/,,OTH2705,
+Contact: lbdr.adoption,,,,lbdr.adoption@gmail.com,https://www.facebook.com/LargeBreedDogRescue/,,OTH2706,
+Contact: info,,,,info@anim-mates.org.uk,https://www.anim-mates.org.uk/,,OTH2707,
+Website: https://www.sedogrescue.co.uk/,,,,https://www.sedogrescue.co.uk/contact/,https://www.sedogrescue.co.uk/,,OTH2708,
+Contact: theretreatanimalrescue,,,,theretreatanimalrescue@btinternet.com,https://www.retreatanimalrescue.org.uk/,,OTH2709,
+Website: https://boltonanimalshelter.org.uk/,,,,https://boltonanimalshelter.org.uk/contact-us/,https://boltonanimalshelter.org.uk/,,OTH2710,
+Contact: info,,,,info@bleakholt.org,https://www.bleakholt.org/,,OTH2711,
+Contact: rehoming,,,,rehoming@animalcare-lancaster.co.uk,https://www.animalcare-lancaster.co.uk/,,OTH2712,
+Contact: dogs,,,,dogs@wolfwood.co.uk,https://www.wolfwood.co.uk/,,OTH2713,
+Contact: easterleighanimals,,,,easterleighanimals@yahoo.com,https://www.easterleigh.org.uk/,,OTH2714,
+Contact: info,,,,info@rspca-preston.org.uk,https://www.rspca-preston.org.uk/,,OTH2715,
+Contact: lincsarkcharity,,,,lincsarkcharity@gmail.com,https://www.lincsark.co.uk/,,OTH2716,
+Contact: info,,,,info@rspca-lincseast.org.uk,https://www.rspca-lincseast.org.uk/,,OTH2717,
+Contact: info,,,,info@secondchancecatrescue.org.uk,https://northlincsweb.net/SCCR/,,OTH2718,
+Contact: lincolnratrescue,,,,lincolnratrescue@googlemail.com,https://lincolnratrescue.webs.com/,,OTH2719,
+Contact: information,,,,information@danes.org.uk,http://www.danes.org.uk/,,OTH2720,
+Contact: enquiries,,,,enquiries@catsincrisis.org.uk,https://www.catsincrisis.org.uk/,,OTH2721,
+Website: https://arkanimalrescue.co.uk/,,,,https://arkanimalrescue.co.uk/contact-us/,https://arkanimalrescue.co.uk/,,OTH2722,
+Contact: info,,,,info@keithsrescuedogs.org.uk,https://www.facebook.com/KeithsRescueDogs,,OTH2723,
+Contact: enquiries,,,,enquiries@hoperescue.org.uk,https://www.hoperescue.org.uk/,,OTH2724,
+Contact: kennels,,,,kennels@freshfields.org.uk,https://www.freshfields.org.uk/,,OTH2725,
+Website: https://www.boxerdogrescue.co.uk/,,,,https://www.boxerdogrescue.co.uk/contact,https://www.boxerdogrescue.co.uk/,,OTH2726,
+Contact: cats,,,,cats@haws-animals.org.uk,https://www.haws-animals.org.uk/,,OTH2727,
+Contact: info,,,,info@felinecare.org.uk,http://www.felinecare.org.uk/,,OTH2728,
+Contact: jgarner1,,,,jgarner1@toucansurf.com,http://www.foxylodge.yolasite.com/,,OTH2729,
+Website: https://www.nasatrust.co.uk/,,,,https://www.nasatrust.co.uk/contact_us,https://www.nasatrust.co.uk/,,OTH2730,
+Website: https://www.pactsanctuary.org/,,,,https://www.pactsanctuary.org/contact.html,https://www.pactsanctuary.org/,,OTH2731,
+Website: https://www.redwings.org.uk/,,,,https://www.redwings.org.uk/contact-us,https://www.redwings.org.uk/,,OTH2732,
+Contact: nanna04,,,,nanna04@btinternet.com,https://www.facebook.com/NANNAANIMALRESCUE1/,,OTH2733,
+Contact: admin,,,,admin@bfas.org.uk,https://www.bfas.org.uk/,,OTH2734,
+Contact: admin,,,,admin@animals-in-need.org,https://animals-in-need.org/,,OTH2735,
+Contact: info,,,,info@b-a-r-k.co.uk,https://b-a-r-k.co.uk/,,OTH2736,
+Contact: office,,,,office@b-w-r.org.uk,https://www.blythwildliferescue.co.uk/,,OTH2737,
+Contact: hq,,,,hq@bordercollierescue.org,http://www.bordercollierescue.org/,,OTH2738,
+Contact: allforhorses,,,,allforhorses@outlook.com,https://www.allforhorses.org.uk/,,OTH2739,
+Contact: enquiries,,,,enquiries@whitbydogrescue.com,https://www.whitbydogrescue.com/,,OTH2740,
+Contact: reception,,,,reception@rspca-yorkhome.org.uk,https://www.rspca-yorkhome.org.uk/,,OTH2741,
+Contact: Info,,,,Info@nayboxerrescue.co.uk,https://www.nayboxerrescue.co.uk/,,OTH2742,
+Contact: elaine,,,,elaine@barkonline.co.uk,http://www.barkonline.co.uk/,,OTH2743,
+Contact: info,,,,info@brinsleyanimalrescue.org,https://brinsleyanimalrescue.org/,,OTH2744,
+Contact: Info,,,,Info@petwelfare.co.uk,http://www.petwelfare.co.uk/,,OTH2745,
+Contact: onepawatatimedogrescue,,,,onepawatatimedogrescue@gmail.com,https://onepawatatimedogrescue.co.uk/,,OTH2746,
+Contact: babbington21,,,,babbington21@btopenworld.com,https://www.babbington-rescue.org.uk/,,OTH2747,
+Contact: barks2010,,,,barks2010@hotmail.co.uk,https://www.barks.org.uk/,,OTH2748,
+Contact: info,,,,info@severnvalleyrescue.org,https://www.severnvalleyrescue.org/,,OTH2749,
+Contact: jennyandkateatgar,,,,jennyandkateatgar@tiscali.co.uk,https://www.grinshillanimalrescue.co.uk/,,OTH2750,
+Contact: reception,,,,reception@bcdh.org.uk,https://www.bathcatsanddogshome.org.uk/,,OTH2751,
+Contact: carol.smith,,,,carol.smith@labrador-rescue.com,https://labrador-rescue.org/,,OTH2752,
+Contact: reception,,,,reception@secretworld.org,https://www.secretworld.org/,,OTH2753,
+Website: https://www.somersetanddorsetanimalrescu,,,,https://www.somersetanddorsetanimalrescue.co.uk/contact/,https://www.somersetanddorsetanimalrescue.co.uk/,,OTH2754,
+Contact: cheadleanimalwelfare,,,,cheadleanimalwelfare@hotmail.co.uk,https://www.cheadleanimalwelfare.org.uk/,,OTH2755,
+Website: https://www.animallifeline.org.uk/wp/,,,,https://www.animallifeline.org.uk/wp/contact-us/,https://www.animallifeline.org.uk/wp/,,OTH2756,
+Contact: info,,,,info@burystraycatfund.co.uk,http://www.burystraycatfund.co.uk/,,OTH2757,
+Website: https://www.dorisbanhamdogrescue.org/wp/,,,,https://www.dorisbanhamdogrescue.org/wp/contact/,https://www.dorisbanhamdogrescue.org/wp/,,OTH2759,
+Website: http://www.catactiontrust.org.uk/,,,,http://www.catactiontrust.org.uk/index.php/contact-us,http://www.catactiontrust.org.uk/,,OTH2760,
+Website: https://www.lurchersos.org.uk/,,,,https://www.lurchersos.org.uk/contact-us,https://www.lurchersos.org.uk/,,OTH2761,
+Contact: info,,,,info@celiacross.org.uk,https://celiacross.org.uk/,,OTH2762,
+Contact: homing,,,,homing@greyhounds4u.co.uk,https://www.greyhounds4u.co.uk/,,OTH2763,
+Contact: admin,,,,admin@epsomcaninerescue.org.uk,http://www.epsomcaninerescue.co.uk/,,OTH2764,
+Contact: dogswalkthiswayrescue,,,,dogswalkthiswayrescue@mail.com,https://dogswalkthiswayrescue.com/index.html,,OTH2765,
+Website: https://www.rescueremedies.co.uk/,,,,https://rescueremedies.wufoo.com/forms/rescue-remedies-contact-form/,https://www.rescueremedies.co.uk/,,OTH2766,
+Website: http://www.animalmission.org.uk/,,,,#ERROR!,http://www.animalmission.org.uk/,,OTH2767,
+Contact: contact,,,,contact@starlighttrust.org.uk,https://starlighttrust.org.uk/,,OTH2768,
+Website: http://clympingdogsanctuary.co.uk/,,,,http://clympingdogsanctuary.co.uk/,http://clympingdogsanctuary.co.uk/,,OTH2769,
+Contact: carole,,,,carole@happybreed.co.uk,http://www.happybreed.co.uk/,,OTH2770,
+Contact: info,,,,info@crrc.co.uk,https://crrc.co.uk/,,OTH2771,
+Contact: info,,,,info@pawsandclaws-ars.org.uk,https://www.pawsandclaws-ars.org.uk/,,OTH2772,
+Contact: info,,,,info@sussexpetrescue.org,https://sussexpetrescue.org/,,OTH2773,
+Contact: nuneatonwildlife,,,,nuneatonwildlife@gmail.com,https://nuneatonwildlife.co.uk/,,OTH2774,
+Contact: avoncatrescuewelford,,,,avoncatrescuewelford@gmail.com,https://www.avoncatrescue.org/,,OTH2775,
+Contact: info,,,,info@birminghamdogshome.org.uk,https://birminghamdogshome.org.uk/,,OTH2776,
+Contact: thedogtrustees,,,,thedogtrustees@gmail.com,https://www.ruffluckrescue.org/,,OTH2777,
+Contact: FBenquiries,,,,FBenquiries@coventrycatgroup.org.uk,https://coventrycatgroup.org.uk/,,OTH2778,
+Contact: wildacrerescue,,,,wildacrerescue@aol.com,http://wildacrerescue.co.uk/,,OTH2779,
+Contact: ian,,,,ian@caessr.org.uk,https://www.caessr.org.uk/,,OTH2780,
+Website: http://www.dogwatchuk.com/,,,,https://dogwatchuk.wufoo.com/forms/dogwatch-uk-enquiries/,http://www.dogwatchuk.com/,,OTH2781,
+Contact: info,,,,info@aldridgerescue.co.uk,http://www.aldridgerescue.co.uk/,,OTH2782,
+Contact: marteileenw,,,,marteileenw@gmail.com,https://www.midlandsanimalrescue.com/,,OTH2783,
+Contact: catsactiontrust,,,,catsactiontrust@gmail.com,https://www.catsactiontrust.org.uk/,,OTH2784,
+Contact: admin,,,,admin@rspcaoandf.org.uk,https://www.rspca.org.uk/local/north-wiltshire-and-newbury-district-branch,,OTH2785,
+Contact: wagtailsrescue,,,,wagtailsrescue@mail.com,https://www.facebook.com/WagtailsRescueEssex/,,OTH2786,
+Contact: info,,,,info@remussanctuary.org,https://www.remussanctuary.org/,,OTH2787,
+Contact: mail,,,,mail@lurcher.org.uk,https://lurcher.org.uk/,,OTH2788,
+Contact: info,,,,info@wars.org.uk,https://www.wars.org.uk/,,OTH2789,
+Contact: info,,,,info@forest-dog-rescue.org.uk,https://www.forest-dog-rescue.org.uk/,,OTH2790,
+Contact: info,,,,info@happystaffie.co.uk,https://www.happystaffie.co.uk/,,OTH2791,
+Website: https://www.badaw.org/,,,,https://www.badaw.org/contact-us/,https://www.badaw.org/,,OTH2792,
+Website: https://barnsleyanimalrescue.org.uk/,,,,https://barnsleyanimalrescue.org.uk/contact/,https://barnsleyanimalrescue.org.uk/,,OTH2793,
+Contact: kcccats,,,,kcccats@gmail.com,http://www.keighleycatcare.co.uk/,,OTH2795,
+Website: https://yrdr.co.uk/,,,,https://yrdr.co.uk/contact/,https://yrdr.co.uk/,,OTH2796,
+Contact: info,,,,info@tia-rescue.org,https://www.tiagreyhoundandlurcherrescue.co.uk/,,OTH2797,
+Website: https://yorkshirecatrescue.org/,,,,https://yorkshirecatrescue.org/Pages/Contact.aspx,https://yorkshirecatrescue.org/,,OTH2798,
+Contact: info,,,,info@rspcaleedsandwakefield.org.uk,https://www.rspcaleedsandwakefield.org.uk/,,OTH2799,
+Contact: info,,,,info@mayflowersanctuary.co.uk,https://mayflowersanctuary.co.uk/,,OTH2800,
+Contact: dogs,,,,dogs@rainrescue.co.uk and,https://rainrescue.co.uk/,,OTH2801,
+Contact: info,,,,info@thesheffieldcatsshelter.org.uk,https://thesheffieldcatsshelter.org/,,OTH2802,
+Website: https://www.sheffield-dog-rescue.org.uk/,,,,https://www.sheffield-dog-rescue.org.uk/contact/,https://www.sheffield-dog-rescue.org.uk/,,OTH2803,
+Contact: whitehalldogrescue,,,,whitehalldogrescue@yahoo.co.uk,https://whitehalldogrescue.com/,,OTH2804,
+Contact: info,,,,info@hsar.org,https://www.hsar.org/,,OTH2805,
+Contact: info,,,,info@pawsandwhiskers.org,https://www.pawsandwhiskers.org/,,OTH2806,
+Contact: sanctuaryanimalrescue08,,,,sanctuaryanimalrescue08@gmail.com,https://sanctuaryanimalrescue.com/,,OTH2807,
+L.I.D.A. - Sezione Alessandria,,31.1999661,29.8937371,,,,OTH0008,Alessandria (AL)
+Salva una Vita,,31.1999661,29.8937371,,,,OTH0041,Alessandria (AL)
+"""Holly's Place Animal Rescue",US +1,25.4613552,-80.4753651,,,,OTH0792,""""
+"""GREAT DOG RESCUE NEW ENGLAND",US +1,25.4613552,-80.4753651,,,,OTH0960,""""

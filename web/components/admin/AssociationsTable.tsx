@@ -18,6 +18,7 @@ interface AssociationRow {
   website: string | null;
   facebook_url: string | null;
   contact_person: string | null;
+  password: string | null;
 }
 
 interface EditFormData {
@@ -37,6 +38,7 @@ interface EditFormData {
   postal_code: string | null;
   contact_person: string | null;
   extra_details: string | null;
+  password: string | null;
 }
 
 interface AssociationsTableProps {
@@ -65,6 +67,7 @@ export default function AssociationsTable({ associations }: AssociationsTablePro
       postal_code: null,
       contact_person: association.contact_person,
       extra_details: null,
+      password: association.password,
     });
     setIsModalOpen(true);
   };
@@ -94,6 +97,7 @@ export default function AssociationsTable({ associations }: AssociationsTablePro
               <th className="px-3 py-2">Website</th>
               <th className="px-3 py-2">Facebook</th>
               <th className="px-3 py-2">Reference person</th>
+              <th className="px-3 py-2">Password</th>
               <th className="px-3 py-2 text-center sticky right-0 bg-gray-50 border-l border-gray-200 z-10">Action</th>
             </tr>
           </thead>
@@ -126,6 +130,7 @@ export default function AssociationsTable({ associations }: AssociationsTablePro
                   <td className="px-3 py-2">{a.website ?? "—"}</td>
                   <td className="px-3 py-2">{a.facebook_url ?? "—"}</td>
                   <td className="px-3 py-2">{a.contact_person ?? "—"}</td>
+                  <td className="px-3 py-2 font-mono text-xs">{a.password ?? "—"}</td>
                   <td className="px-3 py-2 text-center sticky right-0 bg-white border-l border-gray-100">
                     <button
                       onClick={() => handleEditClick(a)}

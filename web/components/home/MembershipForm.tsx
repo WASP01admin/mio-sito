@@ -155,7 +155,12 @@ export default function MembershipForm({ isMobile }: MembershipFormProps) {
   return (
     <section
       id="membership-form"
-      className="bg-white/90 px-4 py-10 text-black sm:px-8 sm:py-16"
+      className="relative bg-white px-4 py-10 text-black sm:px-8 sm:py-16"
+      style={{
+        backgroundImage: "url('/images/honeycomb-bg.png')",
+        backgroundRepeat: "repeat",
+        width: "100%",
+      }}
     >
       <div className="mx-auto max-w-xl">
         <h2 className="text-center text-xl font-bold sm:text-2xl">

@@ -43,7 +43,7 @@ export default function DashboardPage() {
           <Link href="/private-area/news">
             <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-yellow-300">
               <div className="text-5xl mb-4">📰</div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">News & Updates</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">News</h2>
               <p className="text-gray-600">Share news with the community (auto-deletes after 180 days)</p>
             </div>
           </Link>
@@ -61,8 +61,17 @@ export default function DashboardPage() {
           <Link href="/private-area/projects">
             <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-yellow-300">
               <div className="text-5xl mb-4">💰</div>
-              <h2 className="text-2xl font-bold text-gray-900 mb-2">Projects & Funding</h2>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Projects</h2>
               <p className="text-gray-600">Post fundraising initiatives and ongoing projects</p>
+            </div>
+          </Link>
+
+          {/* Donors */}
+          <Link href="/private-area/donors">
+            <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-yellow-300">
+              <div className="text-5xl mb-4">❤️</div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Donor Network</h2>
+              <p className="text-gray-600">Add and manage donor businesses in your territory</p>
             </div>
           </Link>
         </div>

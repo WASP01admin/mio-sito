@@ -55,20 +55,16 @@ export async function POST(request: NextRequest) {
     lat,
     lng,
     email,
-    email_secondary: emailSecondary,
     phone,
     website,
-    facebook_url: facebookUrl,
-    contact_person: contactPerson,
-    notes_1: notes1,
-    notes_2: notes2,
   });
 
   if (error) {
-    console.error("Create donor failed:", error);
+    console.error("Create donor failed:", error.message, error.code, error.details);
+    console.error("Attempted insert:", { code, name, city, country, lat, lng });
     const isDuplicate = error.code === "23505";
     return NextResponse.json(
-      { ok: false, error: isDuplicate ? "duplicate_code" : "server_error" },
+      { ok: false, error: isDuplicate ? "duplicate_code" : "server_error", details: error.message },
       { status: isDuplicate ? 409 : 500 }
     );
   }

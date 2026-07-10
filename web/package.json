@@ -10,7 +10,9 @@
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.110.0",
+    "@types/jsonwebtoken": "^9.0.10",
     "@types/leaflet.markercluster": "^1.5.6",
+    "jsonwebtoken": "^9.0.3",
     "leaflet": "^1.9.4",
     "leaflet.markercluster": "^1.5.3",
     "lucide-react": "^1.23.0",

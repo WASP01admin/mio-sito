@@ -19,6 +19,7 @@ export async function updateAssociation(
     postal_code?: string | null;
     contact_person?: string | null;
     extra_details?: string | null;
+    password?: string | null;
   }
 ) {
   const updateData: Record<string, any> = {};
@@ -38,6 +39,7 @@ export async function updateAssociation(
   if (data.postal_code !== undefined) updateData.postal_code = data.postal_code;
   if (data.contact_person !== undefined) updateData.contact_person = data.contact_person;
   if (data.extra_details !== undefined) updateData.extra_details = data.extra_details;
+  if (data.password !== undefined) updateData.password = data.password;
 
   const { error } = await supabaseAdmin
     .from('associations')

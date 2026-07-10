@@ -1,7 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
-import { verifyChatSessionToken } from "";
-import { chatAuthSecret } from "@/lib/chat";
+import { verifyChatSessionToken, chatAuthSecret } from "@/lib/chat";
 
 export async function GET(request: NextRequest) {
   const searchParams = request.nextUrl.searchParams;

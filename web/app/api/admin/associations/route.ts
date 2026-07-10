@@ -2,6 +2,16 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { isAdminAuthenticated } from "@/lib/admin-auth";
 
+function generatePassword(): string {
+  const animals = [
+    "bear", "wolf", "eagle", "tiger", "lion", "fox", "deer", "rabbit",
+    "panda", "otter", "moose", "zebra", "dolphin", "whale", "shark", "penguin"
+  ];
+  const animal = animals[Math.floor(Math.random() * animals.length)];
+  const number = Math.floor(Math.random() * 100);
+  return `${animal}${String(number).padStart(2, "0")}`;
+}
+
 function str(value: unknown): string {
   return typeof value === "string" ? value.trim() : "";
 }
@@ -45,6 +55,9 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: false, error: "invalid_input" }, { status: 400 });
   }
 
+  // Generate automatic password
+  const generatedPassword = generatePassword();
+
   const { error } = await supabaseAdmin.from("associations").insert({
     code,
     name,
@@ -62,6 +75,7 @@ export async function POST(request: NextRequest) {
     contact_person: contactPerson,
     notes_1: notes1,
     notes_2: notes2,
+    password: generatedPassword,
   });
 
   if (error) {
@@ -73,5 +87,5 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  return NextResponse.json({ ok: true });
+  return NextResponse.json({ ok: true, password: generatedPassword });
 }
