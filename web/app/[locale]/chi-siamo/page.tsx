@@ -84,27 +84,6 @@ export default function ChiSiamoPage() {
             </p>
           </div>
 
-          {/* Documents Section */}
-          <div className="mb-10 rounded-lg bg-black/5 p-6 text-center">
-            <h2 className="mb-4 text-lg font-bold sm:text-xl">
-              {t("documents.heading")}
-            </h2>
-            <div className="flex flex-col gap-2 sm:flex-row sm:justify-center sm:gap-4">
-              <a
-                href="#atto-costitutivo"
-                className="rounded-md bg-black px-4 py-2 text-sm font-bold text-wasp-yellow transition-colors hover:bg-black/80"
-              >
-                {t("documents.attoCostitutivo")} ↓
-              </a>
-              <a
-                href="#statuto"
-                className="rounded-md bg-black px-4 py-2 text-sm font-bold text-wasp-yellow transition-colors hover:bg-black/80"
-              >
-                {t("documents.statuto")} ↓
-              </a>
-            </div>
-          </div>
-
           {/* FAQ Section */}
           <div className="space-y-3">
             <h2 className="mb-6 text-center text-lg font-bold sm:text-xl">
