@@ -66,7 +66,11 @@ E questo con una donazione minima, senza chiedere sacrifici alle associazioni n�
 
 N.B. - I numeri non impressionano tanto, ma si tratta di un modello estremamente prudente e conservativo perché non considera: attività che donano più di 2 euro, attività che coinvolgono altre attività, individui che convincono più di una attività all'anno, la reputazione crescente che accelera ulteriormente la partecipazione.
 
-Se tutti i 125.000 WASPs anziche' convincere una sola attivita' commerciale a donare annualmente 2 Euro ne convincessero una al mese, in tre anni TUTTE le aziende, negozi, imprese e professionisti di Italia sarebbero donatori! E porterebbero alle casse delle Associazioni Animaliste oltre 8.000.000 di euro (circa 6.400 Euro annui in media cadauna) ogni anno.`,
+Proviamo ad ipotizzare l'impatto che avrebbe se tutti i 125.000 WASPs anziche' convincere una sola attivita' commerciale a donare annualmente 2 Euro ne convincessero una al mese.
+
+In tre anni TUTTE le aziende, negozi, imprese e professionisti di Italia sarebbero donatori! E porterebbero alle casse delle Associazioni Animaliste oltre 8.000.000 di euro (circa 6.400 Euro annui in media cadauna) ogni anno.
+
+Certamente non e' un ipotesi realistica, pero' rende l'idea del potenziale di questa iniziativa.`,
     },
     {
       number: 5,
