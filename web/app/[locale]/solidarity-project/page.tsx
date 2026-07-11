@@ -34,7 +34,9 @@ Due euro. Una cifra simbolica, sostenibile, che nessuna attività percepisce com
     {
       number: 3,
       title: "Perché le attività accettano? Il vantaggio reputazionale",
-      content: `Quando i 125.000 individui coinvolti nel modello WASP si attivano per convincere un'attività commerciale a donare 2 euro all'anno, non stanno chiedendo un favore. Stanno proponendo un vantaggio concreto.
+      content: `Risposta: per avere visibilita' ed essere presenti su una mappa che potenzialmente ha una base stimata ben oltre 1.000.000 di utenti.
+
+Quando i 125.000 individui coinvolti nel modello WASP si attivano per convincere un'attività commerciale a donare 2 euro all'anno, non stanno chiedendo un favore. Stanno proponendo un vantaggio concreto.
 
 Ogni attività che aderisce al modello WASP comunica ai propri clienti un messaggio chiaro:
 "Qui gli animali ci stanno a cuore" e questo ha un valore economico reale.
