@@ -11,6 +11,7 @@ export default function MobileMenu() {
   const navLinks: Array<{ key: string; href: string }> = [
     { key: "home", href: "/" },
     { key: "about", href: "/chi-siamo" },
+    { key: "solidarityProject", href: "/solidarity-project" },
     { key: "studies", href: "/studi-e-sondaggi" },
     { key: "organizations", href: "/maps" },
     { key: "calendar", href: "/private-area/calendar" },
