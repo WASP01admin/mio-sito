@@ -1,5 +1,6 @@
 import { createClient } from "@supabase/supabase-js";
 import { generateWaspCardPass } from "@/lib/wallet-pass-generator";
+import { generateGoogleWalletPass, isAndroidUserAgent, isIOSUserAgent } from "@/lib/google-wallet-pass-generator";
 
 const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_URL!,
@@ -52,23 +53,51 @@ export async function GET(request: Request) {
       return Response.json({ error: "No active card found" }, { status: 404 });
     }
 
-    // Generate wallet pass
-    const passBuffer = await generateWaspCardPass({
-      cardNumber: user.card_number,
-      userName: user.nickname || "WASP Member",
-      issuedAt: new Date(user.card_issued_at),
-      expiresAt: new Date(user.card_expires_at),
-      type: user.card_request_type as "associated" | "direct",
-      associationName: user.associations?.name,
-      userImageUrl: user.photo_url || undefined,
-    });
+    // Detect platform from user-agent
+    const userAgent = request.headers.get("user-agent") || "";
+    const isAndroid = isAndroidUserAgent(userAgent);
+    const isIOS = isIOSUserAgent(userAgent);
+
+    // Generate appropriate pass format
+    let passBuffer: Buffer;
+    let contentType: string;
+    let filename: string;
+
+    if (isAndroid) {
+      // Generate Google Wallet Pass for Android
+      passBuffer = await generateGoogleWalletPass({
+        cardNumber: user.card_number,
+        userName: user.nickname || "WASP Member",
+        issuedAt: new Date(user.card_issued_at),
+        expiresAt: new Date(user.card_expires_at),
+        type: user.card_request_type as "associated" | "direct",
+        associationName: user.associations?.name,
+        userImageUrl: user.photo_url || undefined,
+      });
+      contentType = "application/json";
+      filename = `WASP-${user.card_number}.json`;
+    } else {
+      // Generate Apple Wallet Pass for iOS (default)
+      passBuffer = await generateWaspCardPass({
+        cardNumber: user.card_number,
+        userName: user.nickname || "WASP Member",
+        issuedAt: new Date(user.card_issued_at),
+        expiresAt: new Date(user.card_expires_at),
+        type: user.card_request_type as "associated" | "direct",
+        associationName: user.associations?.name,
+        userImageUrl: user.photo_url || undefined,
+      });
+      contentType = "application/vnd.apple.pkpass";
+      filename = `WASP-${user.card_number}.pkpass`;
+    }
 
     // Return pass file
     return new Response(passBuffer, {
       headers: {
-        "Content-Type": "application/vnd.apple.pkpass",
-        "Content-Disposition": `attachment; filename="WASP-${user.card_number}.pkpass"`,
+        "Content-Type": contentType,
+        "Content-Disposition": `attachment; filename="${filename}"`,
         "Cache-Control": "no-store, no-cache, must-revalidate",
+        "X-Platform": isAndroid ? "android" : isIOS ? "ios" : "web",
       },
     });
   } catch (error) {
