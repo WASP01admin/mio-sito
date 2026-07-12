@@ -10,6 +10,12 @@ interface NewsItem {
   created_at: string;
   published_date?: string | null;
   original_source?: string | null;
+  author_type?: "hq" | "association" | "blogger";
+  blogger_id?: string;
+  blogger?: {
+    name: string;
+    blog_url?: string;
+  };
   associations?: {
     code: string;
     name: string;
@@ -189,7 +195,23 @@ export default function PublicNewsPage() {
                   <div className="flex flex-col gap-2 text-sm text-gray-600">
                     <div className="flex gap-4">
                       <span>
-                        <strong>By:</strong> {selectedNews.associations?.name || "WASP"}
+                        <strong>By:</strong>{" "}
+                        {selectedNews.author_type === "blogger" && selectedNews.blogger ? (
+                          selectedNews.blogger.blog_url ? (
+                            <a
+                              href={selectedNews.blogger.blog_url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="text-blue-600 hover:underline"
+                            >
+                              {selectedNews.blogger.name} 🔗
+                            </a>
+                          ) : (
+                            <span>{selectedNews.blogger.name}</span>
+                          )
+                        ) : (
+                          selectedNews.associations?.name || "WASP"
+                        )}
                       </span>
                       <span>
                         <strong>Country:</strong> {selectedNews.associations?.code?.substring(0, 3) || "---"}
