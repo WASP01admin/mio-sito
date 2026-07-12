@@ -16,7 +16,7 @@ export default function PrivateAreaLoginPage() {
     setLoading(true);
 
     try {
-      const response = await fetch("/api/association/login", {
+      const response = await fetch("/api/login", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ username, password }),
@@ -29,8 +29,9 @@ export default function PrivateAreaLoginPage() {
         return;
       }
 
-      // Redirect to dashboard
-      router.push("/private-area/dashboard");
+      // Redirect based on user type
+      const redirectTo = data.redirectTo || "/private-area/dashboard";
+      router.push(redirectTo);
     } catch (err) {
       setError("An error occurred during login");
       console.error(err);
@@ -45,7 +46,7 @@ export default function PrivateAreaLoginPage() {
         {/* Header */}
         <div className="text-center mb-8">
           <h1 className="text-3xl font-bold text-gray-900 mb-2">WASP</h1>
-          <p className="text-gray-600">Association Private Area</p>
+          <p className="text-gray-600">Private Area</p>
         </div>
 
         {/* Form */}
@@ -53,13 +54,13 @@ export default function PrivateAreaLoginPage() {
           {/* Username */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Association ID (e.g., ITA0125)
+              Association ID or Email
             </label>
             <input
               type="text"
               value={username}
               onChange={(e) => setUsername(e.target.value.toUpperCase())}
-              placeholder="ITA0125"
+              placeholder="ITA0125 or blogger@example.com"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
               disabled={loading}
               required
@@ -69,7 +70,7 @@ export default function PrivateAreaLoginPage() {
           {/* Password */}
           <div>
             <label className="block text-sm font-medium text-gray-700 mb-2">
-              Password (e.g., bear53)
+              Password
             </label>
             <input
               type="password"
@@ -102,7 +103,7 @@ export default function PrivateAreaLoginPage() {
         {/* Info */}
         <div className="mt-6 p-4 bg-yellow-50 border border-yellow-200 rounded-lg text-sm text-gray-700">
           <p className="font-semibold mb-2">Need credentials?</p>
-          <p>Contact WASP to request your Association ID and password.</p>
+          <p>Contact WASP to request your Association ID or blogger email.</p>
         </div>
       </div>
     </div>

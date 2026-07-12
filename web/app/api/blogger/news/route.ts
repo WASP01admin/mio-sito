@@ -1,43 +1,17 @@
-import { createClient } from "@supabase/supabase-js";
-import { jwtVerify } from "jose";
-
-const supabase = createClient(
-  process.env.NEXT_PUBLIC_SUPABASE_URL!,
-  process.env.SUPABASE_SERVICE_ROLE_KEY!
-);
-
-const JWT_SECRET = new TextEncoder().encode(
-  process.env.JWT_SECRET || "your-secret-key-change-in-production"
-);
-
-async function verifyBloggerToken(token: string) {
-  try {
-    const verified = await jwtVerify(token, JWT_SECRET);
-    return verified.payload;
-  } catch {
-    return null;
-  }
-}
+import { NextRequest, NextResponse } from "next/server";
+import { supabaseAdmin } from "@/lib/supabase-admin";
 
 // GET: Fetch blogger's articles
-export async function GET(request: Request) {
+export async function GET(request: NextRequest) {
   try {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    const bloggerId = request.cookies.get("blogger_id")?.value;
+
+    if (!bloggerId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
-
-    const token = authHeader.substring(7);
-    const payload = await verifyBloggerToken(token);
-
-    if (!payload || payload.type !== "blogger") {
-      return Response.json({ error: "Invalid blogger token" }, { status: 401 });
-    }
-
-    const bloggerId = payload.sub as string;
 
     // Get blogger's articles
-    const { data: articles, error } = await supabase
+    const { data: articles, error } = await supabaseAdmin
       .from("association_news")
       .select("id, title, content, created_at, image_url, published_date")
       .eq("blogger_id", bloggerId)
@@ -45,10 +19,10 @@ export async function GET(request: Request) {
       .order("created_at", { ascending: false });
 
     if (error) {
-      return Response.json({ error: error.message }, { status: 500 });
+      return NextResponse.json({ error: error.message }, { status: 500 });
     }
 
-    return Response.json({ articles });
+    return NextResponse.json({ articles });
   } catch (error) {
     console.error("Error fetching blogger news:", error);
     return Response.json(
@@ -59,32 +33,25 @@ export async function GET(request: Request) {
 }
 
 // POST: Create new article (no original_source)
-export async function POST(request: Request) {
+export async function POST(request: NextRequest) {
   try {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    const bloggerId = request.cookies.get("blogger_id")?.value;
+
+    if (!bloggerId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const token = authHeader.substring(7);
-    const payload = await verifyBloggerToken(token);
-
-    if (!payload || payload.type !== "blogger") {
-      return Response.json({ error: "Invalid blogger token" }, { status: 401 });
-    }
-
-    const bloggerId = payload.sub as string;
     const { title, content, image_url, published_date } = await request.json();
 
     if (!title || !content) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Title and content required" },
         { status: 400 }
       );
     }
 
     // Create article
-    const { data: article, error } = await supabase
+    const { data: article, error } = await supabaseAdmin
       .from("association_news")
       .insert({
         title,
@@ -99,10 +66,10 @@ export async function POST(request: Request) {
       .single();
 
     if (error) {
-      return Response.json({ error: error.message }, { status: 400 });
+      return NextResponse.json({ error: error.message }, { status: 400 });
     }
 
-    return Response.json(
+    return NextResponse.json(
       { success: true, article },
       { status: 201 }
     );
@@ -116,43 +83,36 @@ export async function POST(request: Request) {
 }
 
 // PUT: Update article
-export async function PUT(request: Request) {
+export async function PUT(request: NextRequest) {
   try {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    const bloggerId = request.cookies.get("blogger_id")?.value;
+
+    if (!bloggerId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const token = authHeader.substring(7);
-    const payload = await verifyBloggerToken(token);
-
-    if (!payload || payload.type !== "blogger") {
-      return Response.json({ error: "Invalid blogger token" }, { status: 401 });
-    }
-
-    const bloggerId = payload.sub as string;
     const { id, title, content, image_url, published_date } = await request.json();
 
     if (!id) {
-      return Response.json({ error: "Article ID required" }, { status: 400 });
+      return NextResponse.json({ error: "Article ID required" }, { status: 400 });
     }
 
     // Verify ownership
-    const { data: article, error: fetchError } = await supabase
+    const { data: article, error: fetchError } = await supabaseAdmin
       .from("association_news")
       .select("blogger_id")
       .eq("id", id)
       .single();
 
     if (fetchError || !article || article.blogger_id !== bloggerId) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Not authorized to edit this article" },
         { status: 403 }
       );
     }
 
     // Update article
-    const { data: updated, error: updateError } = await supabase
+    const { data: updated, error: updateError } = await supabaseAdmin
       .from("association_news")
       .update({
         title,
@@ -165,10 +125,10 @@ export async function PUT(request: Request) {
       .single();
 
     if (updateError) {
-      return Response.json({ error: updateError.message }, { status: 400 });
+      return NextResponse.json({ error: updateError.message }, { status: 400 });
     }
 
-    return Response.json({ success: true, article: updated });
+    return NextResponse.json({ success: true, article: updated });
   } catch (error) {
     console.error("Error updating article:", error);
     return Response.json(
@@ -179,56 +139,49 @@ export async function PUT(request: Request) {
 }
 
 // DELETE: Delete article
-export async function DELETE(request: Request) {
+export async function DELETE(request: NextRequest) {
   try {
-    const authHeader = request.headers.get("authorization");
-    if (!authHeader?.startsWith("Bearer ")) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+    const bloggerId = request.cookies.get("blogger_id")?.value;
+
+    if (!bloggerId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const token = authHeader.substring(7);
-    const payload = await verifyBloggerToken(token);
-
-    if (!payload || payload.type !== "blogger") {
-      return Response.json({ error: "Invalid blogger token" }, { status: 401 });
-    }
-
-    const bloggerId = payload.sub as string;
     const { searchParams } = new URL(request.url);
     const id = searchParams.get("id");
 
     if (!id) {
-      return Response.json({ error: "Article ID required" }, { status: 400 });
+      return NextResponse.json({ error: "Article ID required" }, { status: 400 });
     }
 
     // Verify ownership
-    const { data: article, error: fetchError } = await supabase
+    const { data: article, error: fetchError } = await supabaseAdmin
       .from("association_news")
       .select("blogger_id")
       .eq("id", id)
       .single();
 
     if (fetchError || !article || article.blogger_id !== bloggerId) {
-      return Response.json(
+      return NextResponse.json(
         { error: "Not authorized to delete this article" },
         { status: 403 }
       );
     }
 
     // Delete article
-    const { error: deleteError } = await supabase
+    const { error: deleteError } = await supabaseAdmin
       .from("association_news")
       .delete()
       .eq("id", id);
 
     if (deleteError) {
-      return Response.json({ error: deleteError.message }, { status: 400 });
+      return NextResponse.json({ error: deleteError.message }, { status: 400 });
     }
 
-    return Response.json({ success: true });
+    return NextResponse.json({ success: true });
   } catch (error) {
     console.error("Error deleting article:", error);
-    return Response.json(
+    return NextResponse.json(
       { error: "Failed to delete article" },
       { status: 500 }
     );

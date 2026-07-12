@@ -35,15 +35,27 @@ export default function BloggerDashboard() {
   });
   const [submitting, setSubmitting] = useState(false);
 
-  // Get token from localStorage on mount
+  // Get token from cookie on mount
   useEffect(() => {
-    const token = localStorage.getItem("blogger_token");
-    if (!token) {
-      router.push("/blogger/login");
-      return;
-    }
+    // Check if we have blogger_id cookie (set by login endpoint)
+    const checkAuth = async () => {
+      try {
+        const response = await fetch("/api/blogger/me", {
+          credentials: "include",
+        });
+        if (!response.ok) {
+          router.push("/private-area");
+          return;
+        }
+        const data = await response.json();
+        setBlogger(data.blogger);
+        setLoading(false);
+      } catch {
+        router.push("/private-area");
+      }
+    };
+    checkAuth();
 
-    fetchBloggerInfo();
     fetchArticles();
   }, []);
 
@@ -63,14 +75,9 @@ export default function BloggerDashboard() {
   }
 
   async function fetchArticles() {
-    const token = localStorage.getItem("blogger_token");
-    if (!token) return;
-
     try {
       const response = await fetch("/api/blogger/news", {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        credentials: "include",
       });
 
       if (!response.ok) throw new Error("Failed to fetch articles");
@@ -89,15 +96,14 @@ export default function BloggerDashboard() {
     }
 
     setSubmitting(true);
-    const token = localStorage.getItem("blogger_token");
 
     try {
       const response = await fetch("/api/blogger/news", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
         },
+        credentials: "include",
         body: JSON.stringify(formData),
       });
 
@@ -124,14 +130,10 @@ export default function BloggerDashboard() {
   async function handleDeleteArticle(id: string) {
     if (!confirm("Delete this article?")) return;
 
-    const token = localStorage.getItem("blogger_token");
-
     try {
       const response = await fetch(`/api/blogger/news?id=${id}`, {
         method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
+        credentials: "include",
       });
 
       if (!response.ok) throw new Error("Failed to delete article");
@@ -144,9 +146,9 @@ export default function BloggerDashboard() {
   }
 
   function handleLogout() {
-    localStorage.removeItem("blogger_token");
-    localStorage.removeItem("blogger_info");
-    router.push("/blogger/login");
+    // Clear cookies by redirecting to logout endpoint
+    // For now, just redirect to private area (cookies will be cleared on next login)
+    router.push("/private-area");
   }
 
   if (loading) {
