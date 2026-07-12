@@ -1,10 +1,10 @@
-{
+﻿{
   "version": "0.0.1",
   "configurations": [
     {
-      "name": "web-dev",
+      "name": "web-dev-server",
       "runtimeExecutable": "npm",
-      "runtimeArgs": ["run", "dev", "-w", "@wasp/web"],
+      "runtimeArgs": ["run", "dev"],
       "port": 3000
     }
   ]

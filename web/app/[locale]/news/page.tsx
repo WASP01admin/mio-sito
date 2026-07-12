@@ -8,6 +8,8 @@ interface NewsItem {
   description: string;
   image_url: string;
   created_at: string;
+  published_date?: string | null;
+  original_source?: string | null;
   associations?: {
     code: string;
     name: string;
@@ -184,21 +186,48 @@ export default function PublicNewsPage() {
                   <h1 className="text-3xl font-bold text-gray-900 mb-2">
                     {selectedNews.headline}
                   </h1>
-                  <div className="flex gap-4 text-sm text-gray-600">
-                    <span>
-                      <strong>By:</strong> {selectedNews.associations?.name || "WASP"}
-                    </span>
-                    <span>
-                      <strong>Country:</strong> {selectedNews.associations?.code?.substring(0, 3) || "---"}
-                    </span>
-                    <span>
-                      <strong>Date:</strong>{" "}
-                      {new Date(selectedNews.created_at).toLocaleDateString("en-US", {
-                        month: "long",
-                        day: "numeric",
-                        year: "numeric",
-                      })}
-                    </span>
+                  <div className="flex flex-col gap-2 text-sm text-gray-600">
+                    <div className="flex gap-4">
+                      <span>
+                        <strong>By:</strong> {selectedNews.associations?.name || "WASP"}
+                      </span>
+                      <span>
+                        <strong>Country:</strong> {selectedNews.associations?.code?.substring(0, 3) || "---"}
+                      </span>
+                    </div>
+                    <div className="flex gap-4">
+                      <span>
+                        <strong>Published:</strong>{" "}
+                        {selectedNews.published_date
+                          ? new Date(selectedNews.published_date).toLocaleDateString("en-US", {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            })
+                          : new Date(selectedNews.created_at).toLocaleDateString("en-US", {
+                              month: "long",
+                              day: "numeric",
+                              year: "numeric",
+                            })}
+                      </span>
+                    </div>
+                    {selectedNews.original_source && (
+                      <div>
+                        <strong>Source:</strong>{" "}
+                        {selectedNews.original_source.startsWith("http") ? (
+                          <a
+                            href={selectedNews.original_source}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="text-blue-600 hover:underline"
+                          >
+                            {selectedNews.original_source}
+                          </a>
+                        ) : (
+                          <span>{selectedNews.original_source}</span>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
 

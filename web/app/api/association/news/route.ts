@@ -24,7 +24,7 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { headline, description, image_url } = body;
+    const { headline, description, image_url, published_date, original_source } = body;
 
     if (!headline || !description) {
       return NextResponse.json(
@@ -79,6 +79,8 @@ export async function POST(request: NextRequest) {
         headline,
         description,
         image_url: image_url || null,
+        published_date: published_date || null,
+        original_source: original_source || null,
       })
       .select()
       .single();

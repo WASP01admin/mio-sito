@@ -26,6 +26,8 @@ export default function AdminNewsPage() {
   const [formData, setFormData] = useState({
     headline: "",
     description: "",
+    published_date: new Date().toISOString().split('T')[0],
+    original_source: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -63,6 +65,8 @@ export default function AdminNewsPage() {
 
     const headline = (e.currentTarget.querySelector('[placeholder="Headline"]') as HTMLInputElement)?.value || "";
     const description = (e.currentTarget.querySelector('[placeholder="Description"]') as HTMLTextAreaElement)?.value || "";
+    const published_date = (e.currentTarget.querySelector('input[type="date"]') as HTMLInputElement)?.value || "";
+    const original_source = (e.currentTarget.querySelector('[placeholder="Source or link"]') as HTMLInputElement)?.value || "";
 
     if (!headline.trim() || !description.trim()) {
       alert("Please fill in all required fields");
@@ -98,6 +102,8 @@ export default function AdminNewsPage() {
           headline,
           description,
           image_url: imageUrl,
+          published_date,
+          original_source,
         }),
       });
 
@@ -106,7 +112,7 @@ export default function AdminNewsPage() {
         throw new Error(errorData.error || "Failed to create news");
       }
 
-      setFormData({ headline: "", description: "" });
+      setFormData({ headline: "", description: "", published_date: new Date().toISOString().split('T')[0], original_source: "" });
       setImageFile(null);
       setShowForm(false);
       await fetchNews();
@@ -230,6 +236,12 @@ export default function AdminNewsPage() {
         {/* Post Form */}
         {showForm && (
           <div className="mt-6 max-w-2xl bg-white rounded-lg shadow-lg p-6">
+            <div className="mb-6 p-4 bg-blue-50 border-l-4 border-blue-400 rounded">
+              <p className="text-sm text-gray-700">
+                ⓘ <strong>Nota:</strong> Se stai rilanciando una notizia non tua, riporta la fonte originale dell'articolo nell'apposito spazio.
+              </p>
+            </div>
+
             <form onSubmit={handleCreateNews} className="space-y-4">
               <input
                 type="text"
@@ -250,6 +262,27 @@ export default function AdminNewsPage() {
                 disabled={submitting}
               />
               <div>
+                <label className="block text-xs text-gray-600 mb-2">📅 Publication Date</label>
+                <input
+                  type="date"
+                  value={formData.published_date}
+                  onChange={(e) => setFormData({ ...formData, published_date: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded text-sm"
+                  disabled={submitting}
+                />
+              </div>
+              <div>
+                <label className="block text-xs text-gray-600 mb-2">🔗 Original Source or Link (optional)</label>
+                <input
+                  type="text"
+                  placeholder="Source or link"
+                  value={formData.original_source}
+                  onChange={(e) => setFormData({ ...formData, original_source: e.target.value })}
+                  className="w-full px-4 py-2 border border-gray-300 rounded text-sm"
+                  disabled={submitting}
+                />
+              </div>
+              <div>
                 <label className="block text-xs text-gray-600 mb-2">📸 Image (optional)</label>
                 <input
                   type="file"
@@ -265,6 +298,14 @@ export default function AdminNewsPage() {
                 className="w-full bg-yellow-400 text-gray-900 font-bold py-2 px-4 rounded hover:bg-yellow-500 disabled:opacity-50"
               >
                 {submitting ? "Posting..." : "Post News"}
+              </button>
+              <button
+                type="button"
+                onClick={() => setShowForm(false)}
+                disabled={submitting}
+                className="w-full bg-gray-300 text-gray-700 font-semibold py-2 px-4 rounded hover:bg-gray-400 disabled:opacity-50"
+              >
+                Cancel
               </button>
             </form>
           </div>

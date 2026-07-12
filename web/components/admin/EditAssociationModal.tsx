@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { updateAssociation } from '@/app/admin/(dashboard)/associations/actions';
+import MapPicker from '@/components/admin/MapPicker';
 
 interface EditFormData {
   id: string;
@@ -39,6 +40,7 @@ export default function EditAssociationModal({
   const [formData, setFormData] = useState<EditFormData | null>(association);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [showMapPicker, setShowMapPicker] = useState(false);
 
   // Update form data when association changes
   if (association && formData?.id !== association.id) {
@@ -49,6 +51,12 @@ export default function EditAssociationModal({
   const handleChange = (field: keyof EditFormData, value: any) => {
     if (!formData) return;
     setFormData({ ...formData, [field]: value });
+  };
+
+  const handleMapPlace = (lat: number, lng: number) => {
+    if (!formData) return;
+    setFormData({ ...formData, lat, lng });
+    setShowMapPicker(false);
   };
 
   const handleSave = async () => {
@@ -86,6 +94,30 @@ export default function EditAssociationModal({
       setTimeout(() => window.location.reload(), 100);
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Unknown error');
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleDelete = async () => {
+    if (!formData || !confirm(`Delete association "${formData.name}" (${formData.code})? This cannot be undone.`)) return;
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const res = await fetch(`/api/admin/associations/${formData.id}`, { method: 'DELETE' });
+      const data = await res.json();
+
+      if (!res.ok || !data.success) {
+        setError(data.error || 'Failed to delete');
+        return;
+      }
+
+      onClose();
+      setTimeout(() => window.location.reload(), 100);
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to delete');
     } finally {
       setLoading(false);
     }
@@ -165,6 +197,15 @@ export default function EditAssociationModal({
             <input type="number" step="0.0001" placeholder="12.5674" value={formData.lng ?? ''} onChange={(e) => handleChange('lng', e.target.value === '' ? null : parseFloat(e.target.value))} className="w-full rounded border border-gray-300 px-2 py-1.5 text-xs focus:border-blue-500 focus:outline-none" />
           </div>
 
+          {/* Place on Map Button */}
+          <button
+            type="button"
+            onClick={() => setShowMapPicker(true)}
+            className="w-full rounded bg-purple-600 px-3 py-1.5 text-sm font-bold text-white hover:bg-purple-700"
+          >
+            📍 Place on Map
+          </button>
+
           {/* Instagram */}
           <div>
             <label className="block text-xs font-semibold text-gray-700 mb-1">Instagram</label>
@@ -196,6 +237,16 @@ export default function EditAssociationModal({
           </div>
         </div>
 
+        {/* Map Picker Modal */}
+        {showMapPicker && (
+          <MapPicker
+            lat={formData?.lat ?? 41.9028}
+            lng={formData?.lng ?? 12.4964}
+            onPlace={handleMapPlace}
+            onClose={() => setShowMapPicker(false)}
+          />
+        )}
+
         {/* Error message */}
         {error && (
           <div className="mt-4 rounded bg-red-50 p-3 text-sm text-red-700">
@@ -204,21 +255,30 @@ export default function EditAssociationModal({
         )}
 
         {/* Buttons */}
-        <div className="mt-6 flex gap-2 justify-end">
+        <div className="mt-6 flex gap-2 justify-between">
           <button
-            onClick={onClose}
+            onClick={handleDelete}
             disabled={loading}
-            className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold hover:bg-gray-300 disabled:opacity-50"
+            className="rounded bg-red-600 px-4 py-2 text-sm font-semibold text-white hover:bg-red-700 disabled:opacity-50"
           >
-            Cancel
+            Delete
           </button>
-          <button
-            onClick={handleSave}
-            disabled={loading}
-            className="rounded bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
-          >
-            {loading ? 'Saving...' : 'Save'}
-          </button>
+          <div className="flex gap-2">
+            <button
+              onClick={onClose}
+              disabled={loading}
+              className="rounded bg-gray-200 px-4 py-2 text-sm font-semibold hover:bg-gray-300 disabled:opacity-50"
+            >
+              Cancel
+            </button>
+            <button
+              onClick={handleSave}
+              disabled={loading}
+              className="rounded bg-blue-600 px-4 py-2 text-sm font-semibold text-white hover:bg-blue-700 disabled:opacity-50"
+            >
+              {loading ? 'Saving...' : 'Save'}
+            </button>
+          </div>
         </div>
       </div>
     </div>
