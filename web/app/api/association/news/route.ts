@@ -72,16 +72,25 @@ export async function POST(request: NextRequest) {
 
     console.log("Creating news with associationId:", associationId);
 
+    // Build insert payload - only include published_date and original_source if provided
+    const insertPayload: any = {
+      association_id: associationId,
+      headline,
+      description,
+      image_url: image_url || null,
+    };
+
+    // These fields may not exist in DB yet, so only add if values provided
+    if (published_date) {
+      insertPayload.published_date = published_date;
+    }
+    if (original_source) {
+      insertPayload.original_source = original_source;
+    }
+
     const { data, error } = await supabaseAdmin
       .from("association_news")
-      .insert({
-        association_id: associationId,
-        headline,
-        description,
-        image_url: image_url || null,
-        published_date: published_date || null,
-        original_source: original_source || null,
-      })
+      .insert(insertPayload)
       .select()
       .single();
 
