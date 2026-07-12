@@ -389,5 +389,19 @@
       "website": "Website"
     },
     "noSponsorsYet": "We currently have no registered sponsors. If you'd like to support WASP as a sponsor, please use the bank details above."
+  },
+  "Card": {
+    "noCardYet": "You don't have a WASP Card yet",
+    "requestCardDescription": "Request your virtual WASP card in your wallet",
+    "requestCard": "Request WASP Card",
+    "cardNumber": "Card Number",
+    "issued": "Issued",
+    "expires": "Expires",
+    "status": "Status",
+    "type": "Type",
+    "typeAssociated": "Associated (Free)",
+    "typeDirect": "Direct (€2.00)",
+    "cardExpired": "This card has expired. Renew it to continue using it.",
+    "renewCard": "Renew Card"
   }
 }

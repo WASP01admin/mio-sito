@@ -389,5 +389,19 @@
       "website": "Sito Web"
     },
     "noSponsorsYet": "Al momento non abbiamo ancora sponsors registrati. Se desideri supportare WASP come sponsor, utilizza i dati bancari sopra."
+  },
+  "Card": {
+    "noCardYet": "Non hai ancora una WASP Card",
+    "requestCardDescription": "Richiedi la tua tessera virtuale WASP nel tuo wallet",
+    "requestCard": "Richiedi la WASP Card",
+    "cardNumber": "Numero Tessera",
+    "issued": "Emessa",
+    "expires": "Scade",
+    "status": "Stato",
+    "type": "Tipo",
+    "typeAssociated": "Associato (Gratis)",
+    "typeDirect": "Diretto (€2.00)",
+    "cardExpired": "Questa tessera è scaduta. Rinnovala per continuare a usarla.",
+    "renewCard": "Rinnova la Tessera"
   }
 }
