@@ -50,6 +50,12 @@ export default function MapView({ type, isAuthenticated }: MapViewProps) {
       await import("leaflet.markercluster/dist/MarkerCluster.Default.css");
       await import("leaflet.markercluster");
 
+      L.Icon.Default.mergeOptions({
+        iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+        iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
+        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+      });
+
       map.current = L.map(mapContainer.current).setView([41.8719, 12.5674], 4);
       L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
@@ -71,14 +77,36 @@ export default function MapView({ type, isAuthenticated }: MapViewProps) {
     };
   }, []);
 
-  // Create marker icon with lazy loading
-  const createMarkerIcon = async (color: string) => {
-    const L = (await import("leaflet")).default;
-    return L.icon({
-      iconUrl: `data:image/svg+xml;base64,${btoa(`<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40"><path d="M16,0C10,7 6,8 6,13c0,5 9,25 14,25s14,-20 14,-25c0,-5 -4,-6 -10,-13z" fill="${color}"/></svg>`)}`,
+  // Create marker icon with custom colors - realistic pin style
+  const createMarkerIcon = (color: string) => {
+    return L.divIcon({
+      html: `
+        <div style="
+          position: absolute;
+          width: 32px;
+          height: 40px;
+          background: ${color};
+          border-radius: 50% 50% 50% 0;
+          transform: rotate(-45deg);
+          box-shadow: 0 2px 6px rgba(0,0,0,0.35);
+          border: 2px solid white;
+        ">
+          <div style="
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: white;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%) rotate(45deg);
+          "></div>
+        </div>
+      `,
       iconSize: [32, 40],
       iconAnchor: [16, 40],
       popupAnchor: [0, -40],
+      className: 'custom-marker-icon',
     });
   };
 
@@ -106,8 +134,8 @@ export default function MapView({ type, isAuthenticated }: MapViewProps) {
 
     const addMarkers = async () => {
       const L = (await import("leaflet")).default;
-      const markerIcon = await createMarkerIcon("#FFCE00");
-      const superFriendIcon = await createMarkerIcon("#DC143C");
+      const markerIcon = createMarkerIcon("#FFCE00");
+      const superFriendIcon = createMarkerIcon("#DC143C");
 
       clusterGroup.current.clearLayers();
 

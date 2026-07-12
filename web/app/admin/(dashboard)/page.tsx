@@ -159,6 +159,15 @@ export default async function AdminDashboardPage() {
               <p className="text-gray-600">Create fundraising initiatives</p>
             </div>
           </Link>
+
+          {/* Images */}
+          <Link href="/admin/images">
+            <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-yellow-300">
+              <div className="text-5xl mb-4">🖼️</div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Images</h2>
+              <p className="text-gray-600">Moderate gallery images</p>
+            </div>
+          </Link>
         </div>
 
         {/* Map Coverage Stats */}

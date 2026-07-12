@@ -16,7 +16,7 @@ export default function MobileMenu() {
     { key: "organizations", href: "/maps" },
     { key: "calendar", href: "/private-area/calendar" },
     { key: "news", href: "/news" },
-    { key: "images", href: "#" },
+    { key: "images", href: "/images" },
     { key: "projects", href: "/projects" },
     { key: "animalFriends", href: "/maps/donors" },
     { key: "walletCard", href: "/registrati" },

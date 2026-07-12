@@ -189,7 +189,7 @@
     "copyright": "© 2026 WASP — World Animal Solidarity Project"
   },
   "RegisterPage": {
-    "title": "Sign up for WASP"
+    "title": "Request Your WASP Card"
   },
   "DirectMembershipForm": {
     "mobileWarning": "⚠️ Mobile Only: Please complete this registration and open the verification email directly on your smartphone (iPhone or Android) to successfully add the card to your digital wallet.",
@@ -210,6 +210,20 @@
         "label": "Fiscal code",
         "hint": "Codice Fiscale, or your country's equivalent ID/SSN",
         "placeholder": "e.g. RSSMRA85M01H501Z"
+      },
+      "birthDate": {
+        "label": "Date of birth",
+        "placeholder": "MM/DD/YYYY"
+      },
+      "gender": {
+        "label": "Gender",
+        "placeholder": "Select",
+        "male": "Male",
+        "female": "Female"
+      },
+      "birthPlace": {
+        "label": "Place of birth (City/Country)",
+        "placeholder": "e.g. Rome / Italy"
       },
       "email": {
         "label": "Verification email",

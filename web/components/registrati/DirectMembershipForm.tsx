@@ -10,6 +10,9 @@ interface FormData {
   firstName: string;
   lastName: string;
   fiscalCode: string;
+  birthDate: string;
+  gender: string;
+  birthPlace: string;
   photo: File | null;
 }
 
@@ -19,6 +22,9 @@ const initialFormData: FormData = {
   firstName: "",
   lastName: "",
   fiscalCode: "",
+  birthDate: "",
+  gender: "",
+  birthPlace: "",
   photo: null,
 };
 
@@ -61,6 +67,9 @@ export default function DirectMembershipForm({ isMobile }: DirectMembershipFormP
     body.set("firstName", formData.firstName);
     body.set("lastName", formData.lastName);
     body.set("fiscalCode", formData.fiscalCode);
+    body.set("birthDate", formData.birthDate);
+    body.set("gender", formData.gender);
+    body.set("birthPlace", formData.birthPlace);
     body.set("locale", locale);
     if (formData.photo) body.set("photo", formData.photo);
 
@@ -163,6 +172,54 @@ export default function DirectMembershipForm({ isMobile }: DirectMembershipFormP
         </div>
 
         <div className="flex flex-col gap-1">
+          <label htmlFor={`${formId}-birthDate`} className="text-sm font-semibold">
+            {t("fields.birthDate.label")}
+          </label>
+          <input
+            id={`${formId}-birthDate`}
+            type="date"
+            required
+            placeholder={t("fields.birthDate.placeholder")}
+            value={formData.birthDate}
+            onChange={(e) => set("birthDate", e.target.value)}
+            className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+          />
+        </div>
+
+        <div className="grid grid-cols-2 gap-4">
+          <div className="flex flex-col gap-1">
+            <label htmlFor={`${formId}-gender`} className="text-sm font-semibold">
+              {t("fields.gender.label")}
+            </label>
+            <select
+              id={`${formId}-gender`}
+              required
+              value={formData.gender}
+              onChange={(e) => set("gender", e.target.value)}
+              className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+            >
+              <option value="">{t("fields.gender.placeholder")}</option>
+              <option value="M">{t("fields.gender.male")}</option>
+              <option value="F">{t("fields.gender.female")}</option>
+            </select>
+          </div>
+          <div className="flex flex-col gap-1">
+            <label htmlFor={`${formId}-birthPlace`} className="text-sm font-semibold">
+              {t("fields.birthPlace.label")}
+            </label>
+            <input
+              id={`${formId}-birthPlace`}
+              type="text"
+              required
+              placeholder={t("fields.birthPlace.placeholder")}
+              value={formData.birthPlace}
+              onChange={(e) => set("birthPlace", e.target.value)}
+              className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+            />
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-1">
           <label htmlFor={`${formId}-email`} className="text-sm font-semibold">
             {t("fields.email.label")}{" "}
             <span className="font-normal text-gray-500">({t("fields.email.hint")})</span>
@@ -182,13 +239,16 @@ export default function DirectMembershipForm({ isMobile }: DirectMembershipFormP
           <label htmlFor={`${formId}-image`} className="text-sm font-semibold">
             {t("fields.image.label")}
           </label>
-          <input
-            id={`${formId}-image`}
-            type="file"
-            accept="image/*"
-            onChange={(e) => set("photo", e.target.files?.[0] ?? null)}
-            className="text-sm"
-          />
+          <label htmlFor={`${formId}-image`} className="block w-full px-4 py-2 border border-gray-300 rounded text-sm bg-gray-100 cursor-pointer hover:bg-gray-200 transition-colors text-center font-semibold">
+            <input
+              id={`${formId}-image`}
+              type="file"
+              accept="image/*"
+              onChange={(e) => set("photo", e.target.files?.[0] ?? null)}
+              className="hidden"
+            />
+            <span>{formData.photo ? `📎 ${formData.photo.name}` : "Browse... No file selected."}</span>
+          </label>
         </div>
 
         {submitState === "error" && errorKey && (

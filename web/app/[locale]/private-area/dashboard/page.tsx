@@ -75,6 +75,15 @@ export default function DashboardPage() {
               <p className="text-gray-600">Add and manage donor businesses in your territory</p>
             </div>
           </Link>
+
+          {/* Images */}
+          <Link href={`/${locale}/private-area/images`}>
+            <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-yellow-300">
+              <div className="text-5xl mb-4">🖼️</div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Images</h2>
+              <p className="text-gray-600">Upload and manage your association image gallery</p>
+            </div>
+          </Link>
         </div>
       </div>
     </div>
