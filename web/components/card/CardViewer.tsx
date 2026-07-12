@@ -121,24 +121,30 @@ export default function CardViewer() {
         </div>
 
         {/* Card Number */}
-        <div className="mb-8 space-y-2">
+        <div className="mb-6 space-y-2">
           <p className="text-xs text-gray-400 uppercase tracking-wider">{t("cardNumber")}</p>
-          <p className="text-3xl font-mono font-bold tracking-wider">
+          <p className="text-2xl font-mono font-bold tracking-wider">
             {card.number}
           </p>
         </div>
 
-        <div className="grid grid-cols-2 gap-8 mb-8 border-t border-gray-700 pt-8">
+        {/* Expiration Date - Prominent Display */}
+        <div className="mb-8 flex justify-between items-end border-t border-gray-700 pt-6">
           <div>
             <p className="text-xs text-gray-400">{t("issued")}</p>
             <p className="text-sm font-semibold">
               {new Date(card.issuedAt).toLocaleDateString()}
             </p>
           </div>
-          <div>
-            <p className="text-xs text-gray-400">{t("expires")}</p>
-            <p className={`text-sm font-semibold ${card.isExpired ? "text-red-400" : "text-green-400"}`}>
-              {new Date(card.expiresAt).toLocaleDateString()}
+          <div className="text-right">
+            <p className="text-xs text-gray-400">EXPIRES</p>
+            <p className={`text-2xl font-bold font-mono ${
+              card.isExpired ? "text-red-400" : "text-wasp-yellow"
+            }`}>
+              exp. {new Date(card.expiresAt).toLocaleDateString("en-US", {
+                month: "2-digit",
+                year: "2-digit"
+              }).replace(/\//g, "/")}
             </p>
           </div>
         </div>
