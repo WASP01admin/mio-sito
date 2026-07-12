@@ -25,10 +25,21 @@ export async function GET(request: Request) {
       return Response.json({ error: "Invalid token" }, { status: 401 });
     }
 
-    // Get user card info
+    // Get user card info with association and profile details
     const { data: user, error } = await supabase
       .from("user_profiles")
-      .select("card_number, card_issued_at, card_expires_at, card_status, card_request_type")
+      .select(
+        `
+        card_number,
+        card_issued_at,
+        card_expires_at,
+        card_status,
+        card_request_type,
+        nickname,
+        photo_url,
+        associations (name)
+      `
+      )
       .eq("id", userId)
       .single();
 
@@ -53,6 +64,9 @@ export async function GET(request: Request) {
         status: expired ? "expired" : user.card_status,
         type: user.card_request_type,
         isExpired: expired,
+        userName: user.nickname,
+        associationName: user.associations?.name || "WASP",
+        userImage: user.photo_url,
       },
     });
   } catch (error) {

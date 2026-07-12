@@ -10,6 +10,9 @@ interface CardData {
   status: string;
   type: "associated" | "direct";
   isExpired: boolean;
+  userName: string;
+  associationName: string;
+  userImage?: string | null;
 }
 
 export default function CardViewer() {
@@ -82,18 +85,44 @@ export default function CardViewer() {
     <div className="space-y-6">
       {/* Card Visual */}
       <div className="rounded-xl border-2 border-gray-900 bg-gradient-to-br from-gray-900 to-black p-8 text-white shadow-xl">
-        <div className="mb-8 flex justify-between items-start">
+        {/* Top Section - Association & Type */}
+        <div className="mb-6 flex justify-between items-start">
           <div>
-            <p className="text-sm text-gray-400">WASP Card</p>
-            <p className="text-2xl font-bold text-wasp-yellow">
+            <p className="text-xs text-gray-400 uppercase tracking-wider">Association</p>
+            <p className="text-lg font-bold text-wasp-yellow">
+              {card.associationName}
+            </p>
+          </div>
+          <div className="text-right">
+            <p className="text-xs text-gray-400 uppercase tracking-wider">Type</p>
+            <p className="text-sm font-bold text-gray-300">
               {card.type === "associated" ? "ASSOCIATED" : "DIRECT"}
             </p>
           </div>
-          <div className="text-3xl">🎫</div>
         </div>
 
+        {/* User Info Section */}
+        <div className="mb-8 flex gap-4 pb-8 border-b border-gray-700">
+          {/* User Image */}
+          {card.userImage && (
+            <div className="flex-shrink-0">
+              <img
+                src={card.userImage}
+                alt={card.userName}
+                className="w-16 h-16 rounded-full border-2 border-wasp-yellow object-cover"
+              />
+            </div>
+          )}
+          {/* User Name */}
+          <div className="flex-1">
+            <p className="text-xs text-gray-400">Member</p>
+            <p className="text-xl font-bold text-white">{card.userName}</p>
+          </div>
+        </div>
+
+        {/* Card Number */}
         <div className="mb-8 space-y-2">
-          <p className="text-sm text-gray-400">{t("cardNumber")}</p>
+          <p className="text-xs text-gray-400 uppercase tracking-wider">{t("cardNumber")}</p>
           <p className="text-3xl font-mono font-bold tracking-wider">
             {card.number}
           </p>

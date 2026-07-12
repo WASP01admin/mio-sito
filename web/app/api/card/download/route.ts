@@ -60,6 +60,7 @@ export async function GET(request: Request) {
       expiresAt: new Date(user.card_expires_at),
       type: user.card_request_type as "associated" | "direct",
       associationName: user.associations?.name,
+      userImageUrl: user.photo_url || undefined,
     });
 
     // Return pass file

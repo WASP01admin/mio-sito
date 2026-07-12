@@ -9,10 +9,25 @@ export interface WaspCardData {
   expiresAt: Date;
   type: "associated" | "direct";
   associationName?: string;
+  userImageUrl?: string;
 }
 
 export async function generateWaspCardPass(cardData: WaspCardData): Promise<Buffer> {
   try {
+    // Fetch user image if provided
+    let userImageBuffer: Buffer | undefined;
+    if (cardData.userImageUrl) {
+      try {
+        const imageResponse = await fetch(cardData.userImageUrl);
+        if (imageResponse.ok) {
+          const arrayBuffer = await imageResponse.arrayBuffer();
+          userImageBuffer = Buffer.from(arrayBuffer);
+        }
+      } catch (err) {
+        console.warn("Failed to fetch user image for pass:", err);
+      }
+    }
+
     // Create pass structure
     const pass = new PKPass({
       // Pass type identifier (would need Apple-issued identifier when company cert is ready)
@@ -91,6 +106,11 @@ export async function generateWaspCardPass(cardData: WaspCardData): Promise<Buff
       expirationDate: cardData.expiresAt,
       voided: false,
     });
+
+    // Add user image as thumbnail if available
+    if (userImageBuffer) {
+      pass.addBuffer("thumbnail", userImageBuffer);
+    }
 
     // TODO: Sign with certificate when Apple provides company cert
     // For now, this is stubbed - we'll update when cert arrives
