@@ -189,14 +189,6 @@ export default function PressAdminPage() {
               )}
 
               <button
-                onClick={() => handleAction(selectedPublisher.id, "reset-password")}
-                disabled={actionLoading}
-                className="w-full py-2 px-3 bg-blue-600 text-white rounded hover:bg-blue-700 disabled:opacity-50 text-sm font-medium"
-              >
-                {actionLoading ? "Processing..." : "🔑 Reset Password"}
-              </button>
-
-              <button
                 onClick={() => {
                   if (
                     confirm(

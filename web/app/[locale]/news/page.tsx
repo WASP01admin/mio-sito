@@ -71,9 +71,15 @@ export default function PublicNewsPage() {
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [imagePreview, setImagePreview] = useState<string>("");
 
+  // Like states
+  const [sessionId, setSessionId] = useState<string>("");
+  const [articleLikes, setArticleLikes] = useState<{ [key: string]: { count: number; userLiked: boolean } }>({});
+  const [likeLoading, setLikeLoading] = useState<string | null>(null);
+
   useEffect(() => {
     fetchNews();
     checkPressLogin();
+    initSessionId();
   }, []);
 
   useEffect(() => {
@@ -87,6 +93,74 @@ export default function PublicNewsPage() {
     }
     setSortedNews(sorted);
   }, [newsList, sortBy]);
+
+  // Fetch likes for all articles
+  useEffect(() => {
+    if (sessionId && sortedNews.length > 0) {
+      sortedNews.forEach((news) => {
+        if (!articleLikes[news.id]) {
+          fetchArticleLikes(news.id);
+        }
+      });
+    }
+  }, [sessionId, sortedNews]);
+
+  function initSessionId() {
+    let sid = localStorage.getItem("session_id");
+    if (!sid) {
+      sid = `anon-${Date.now()}-${Math.random().toString(36).substr(2, 9)}`;
+      localStorage.setItem("session_id", sid);
+    }
+    setSessionId(sid);
+  }
+
+  async function fetchArticleLikes(articleId: string) {
+    try {
+      const response = await fetch(`/api/press/articles/like?article_id=${articleId}`, {
+        headers: {
+          "X-Session-ID": sessionId,
+        },
+      });
+      if (response.ok) {
+        const data = await response.json();
+        setArticleLikes((prev) => ({
+          ...prev,
+          [articleId]: { count: data.likeCount, userLiked: data.userLiked },
+        }));
+      }
+    } catch (error) {
+      console.error("Error fetching likes:", error);
+    }
+  }
+
+  async function handleLikeToggle(articleId: string, currentLiked: boolean) {
+    setLikeLoading(articleId);
+    try {
+      const response = await fetch("/api/press/articles/like", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Session-ID": sessionId,
+        },
+        body: JSON.stringify({
+          article_id: articleId,
+          action: currentLiked ? "unlike" : "like",
+        }),
+      });
+
+      if (response.ok) {
+        const data = await response.json();
+        setArticleLikes((prev) => ({
+          ...prev,
+          [articleId]: { count: data.likeCount, userLiked: data.liked },
+        }));
+      }
+    } catch (error) {
+      console.error("Error toggling like:", error);
+    } finally {
+      setLikeLoading(null);
+    }
+  }
 
   function checkPressLogin() {
     const stored_press_id = localStorage.getItem("press_id");
@@ -599,42 +673,63 @@ export default function PublicNewsPage() {
                 year: "2-digit",
               });
 
+              const likes = articleLikes[news.id] || { count: 0, userLiked: false };
+
               return (
-                <button
+                <div
                   key={news.id}
-                  onClick={() => setSelectedNews(news)}
                   className="w-full flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow text-left hover:bg-gray-50"
                 >
-                  {/* Left Panel - Metadata */}
-                  <div className="w-32 bg-gray-100 p-4 flex flex-col justify-center items-center border-r border-gray-300">
-                    <div className="text-sm font-bold text-gray-900">{date}</div>
-                    <div className="text-lg font-bold text-gray-700 mt-2">{countryCode}</div>
-                    <div className="text-xs text-gray-600 text-center mt-2 line-clamp-3">
-                      {news.associations?.name || "WASP"}
-                    </div>
-                  </div>
-
-                  {/* Middle Panel - Content */}
-                  <div className="flex-1 p-4">
-                    <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1">
-                      {news.headline}
-                    </h3>
-                    <p className="text-sm text-gray-700 line-clamp-3">
-                      {news.description}
-                    </p>
-                  </div>
-
-                  {/* Right Panel - Image Thumbnail */}
-                  {news.image_url && (
-                    <div className="w-24 p-2">
+                  {/* Left Panel - Thumbnail */}
+                  <div className="w-20 flex-shrink-0 p-2 flex items-center justify-center bg-gray-100 border-r border-gray-300">
+                    {news.image_url ? (
                       <img
                         src={news.image_url}
                         alt={news.headline}
-                        className="w-full h-20 object-cover rounded"
+                        className="w-full h-full object-cover rounded"
                       />
+                    ) : (
+                      <span className="text-3xl">📄</span>
+                    )}
+                  </div>
+
+                  {/* Middle Panel - Metadata + Content */}
+                  <div className="flex-1 p-4 flex flex-col justify-center">
+                    <div className="flex gap-4 text-xs text-gray-600 mb-2">
+                      <span className="font-semibold">{date}</span>
+                      <span className="font-semibold">{countryCode}</span>
+                      <span className="line-clamp-1">{news.associations?.name || "WASP"}</span>
                     </div>
-                  )}
-                </button>
+                    <button
+                      onClick={() => setSelectedNews(news)}
+                      className="text-left"
+                    >
+                      <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1">
+                        {news.headline}
+                      </h3>
+                      <p className="text-sm text-gray-700 line-clamp-2">
+                        {news.description}
+                      </p>
+                    </button>
+                  </div>
+
+                  {/* Right Panel - Like Counter */}
+                  <div className="flex flex-col items-center justify-center gap-1 px-3 py-4 border-l border-gray-300 min-w-[60px]">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleLikeToggle(news.id, likes.userLiked);
+                      }}
+                      disabled={likeLoading === news.id}
+                      className="text-2xl hover:scale-110 transition-transform disabled:opacity-50"
+                    >
+                      {likes.userLiked ? "❤️" : "🤍"}
+                    </button>
+                    <span className="text-xs font-semibold text-gray-700">
+                      {likes.count}
+                    </span>
+                  </div>
+                </div>
               );
             })}
           </div>
