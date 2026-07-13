@@ -32,6 +32,8 @@ export default function AdminNewsPage() {
   const [submitting, setSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
   const [deletingId, setDeletingId] = useState<string | null>(null);
+  const [addingLikeId, setAddingLikeId] = useState<string | null>(null);
+  const [articleLikeCounts, setArticleLikeCounts] = useState<{ [key: string]: number }>({});
 
   useEffect(() => {
     fetchNews();
@@ -150,6 +152,37 @@ export default function AdminNewsPage() {
     }
   }
 
+  async function handleAddLike(newsId: string) {
+    setAddingLikeId(newsId);
+    try {
+      const response = await fetch("/api/admin/articles/like", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-Admin-Token": process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY || "",
+        },
+        body: JSON.stringify({
+          article_id: newsId,
+          quantity: 1,
+        }),
+      });
+
+      if (!response.ok) throw new Error("Failed to add like");
+
+      const data = await response.json();
+      setArticleLikeCounts((prev) => ({
+        ...prev,
+        [newsId]: data.likeCount,
+      }));
+      alert(`❤️ Like added! Total: ${data.likeCount}`);
+    } catch (error) {
+      console.error("Error adding like:", error);
+      alert("Failed to add like");
+    } finally {
+      setAddingLikeId(null);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
@@ -243,6 +276,13 @@ export default function AdminNewsPage() {
                         className="w-24 h-20 object-cover rounded"
                       />
                     )}
+                    <button
+                      onClick={() => handleAddLike(news.id)}
+                      disabled={addingLikeId === news.id}
+                      className="px-2 py-1 bg-red-100 text-red-600 rounded text-xs font-medium hover:bg-red-200 disabled:opacity-50"
+                    >
+                      {addingLikeId === news.id ? "Adding..." : "❤️ Like"}
+                    </button>
                     <button
                       onClick={() => handleDeleteNews(news.id)}
                       disabled={deletingId === news.id}
