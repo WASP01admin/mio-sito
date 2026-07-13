@@ -678,10 +678,10 @@ export default function PublicNewsPage() {
               return (
                 <div
                   key={news.id}
-                  className="w-full flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow text-left hover:bg-gray-50"
+                  className="w-full flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow text-left hover:bg-gray-50 overflow-hidden"
                 >
                   {/* Left Panel - Thumbnail */}
-                  <div className="w-20 flex-shrink-0 p-2 flex items-center justify-center bg-gray-100 border-r border-gray-300">
+                  <div className="w-16 h-16 flex-shrink-0 p-1 flex items-center justify-center bg-gray-100 border-r border-gray-300">
                     {news.image_url ? (
                       <img
                         src={news.image_url}
@@ -689,25 +689,25 @@ export default function PublicNewsPage() {
                         className="w-full h-full object-cover rounded"
                       />
                     ) : (
-                      <span className="text-3xl">📄</span>
+                      <span className="text-2xl">📄</span>
                     )}
                   </div>
 
                   {/* Middle Panel - Metadata + Content */}
-                  <div className="flex-1 p-4 flex flex-col justify-center">
-                    <div className="flex gap-4 text-xs text-gray-600 mb-2">
-                      <span className="font-semibold">{date}</span>
-                      <span className="font-semibold">{countryCode}</span>
-                      <span className="line-clamp-1">{news.associations?.name || "WASP"}</span>
+                  <div className="flex-1 p-4 flex flex-col justify-center min-w-0">
+                    <div className="flex gap-3 text-xs text-gray-600 mb-2 truncate">
+                      <span className="font-semibold flex-shrink-0">{date}</span>
+                      <span className="font-semibold flex-shrink-0">{countryCode}</span>
+                      <span className="line-clamp-1 truncate">{news.associations?.name || "WASP"}</span>
                     </div>
                     <button
                       onClick={() => setSelectedNews(news)}
                       className="text-left"
                     >
-                      <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1">
+                      <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1 break-words">
                         {news.headline}
                       </h3>
-                      <p className="text-sm text-gray-700 line-clamp-2">
+                      <p className="text-sm text-gray-700 line-clamp-2 break-words">
                         {news.description}
                       </p>
                     </button>

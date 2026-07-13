@@ -214,9 +214,9 @@ export default function AdminNewsPage() {
               });
 
               return (
-                <div key={news.id} className="flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow">
+                <div key={news.id} className="flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow overflow-hidden">
                   {/* Left Panel - Metadata */}
-                  <div className="w-32 bg-gray-100 p-4 flex flex-col justify-center items-center border-r border-gray-300">
+                  <div className="w-32 bg-gray-100 p-4 flex flex-col justify-center items-center border-r border-gray-300 flex-shrink-0">
                     <div className="text-sm font-bold text-gray-900">{date}</div>
                     <div className="text-lg font-bold text-gray-700 mt-2">{countryCode}</div>
                     <div className="text-xs text-gray-600 text-center mt-2 line-clamp-3">
@@ -225,11 +225,11 @@ export default function AdminNewsPage() {
                   </div>
 
                   {/* Middle Panel - Content */}
-                  <div className="flex-1 p-4">
-                    <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1">
+                  <div className="flex-1 p-4 min-w-0">
+                    <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1 break-words">
                       {news.headline}
                     </h3>
-                    <p className="text-sm text-gray-700 line-clamp-3">
+                    <p className="text-sm text-gray-700 line-clamp-3 break-words">
                       {news.description}
                     </p>
                   </div>
