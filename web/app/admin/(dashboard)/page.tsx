@@ -151,6 +151,15 @@ export default async function AdminDashboardPage() {
             </div>
           </Link>
 
+          {/* Publishers */}
+          <Link href="/admin/press">
+            <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-yellow-300">
+              <div className="text-5xl mb-4">📝</div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Publishers</h2>
+              <p className="text-gray-600">Supervise bloggers (TOTAL CONTROL!)</p>
+            </div>
+          </Link>
+
           {/* Projects */}
           <Link href="/admin/projects">
             <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-yellow-300">

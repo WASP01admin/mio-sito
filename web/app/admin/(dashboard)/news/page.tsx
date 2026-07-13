@@ -31,6 +31,7 @@ export default function AdminNewsPage() {
   });
   const [submitting, setSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
+  const [deletingId, setDeletingId] = useState<string | null>(null);
 
   useEffect(() => {
     fetchNews();
@@ -50,7 +51,7 @@ export default function AdminNewsPage() {
 
   async function fetchNews() {
     try {
-      const response = await fetch("/api/association/news");
+      const response = await fetch("/api/all-news");
       const data = await response.json();
       setNewsList(data || []);
     } catch (error) {
@@ -125,6 +126,30 @@ export default function AdminNewsPage() {
     }
   }
 
+  async function handleDeleteNews(newsId: string) {
+    if (!confirm("Delete this news item? This cannot be undone.")) return;
+
+    setDeletingId(newsId);
+    try {
+      const response = await fetch(`/api/admin/news/${newsId}`, {
+        method: "DELETE",
+        headers: {
+          "X-Admin-Token": process.env.NEXT_PUBLIC_ADMIN_SECRET_KEY || "",
+        },
+      });
+
+      if (!response.ok) throw new Error("Delete failed");
+
+      await fetchNews();
+      alert("News deleted successfully");
+    } catch (error) {
+      console.error("Error deleting news:", error);
+      alert("Failed to delete news");
+    } finally {
+      setDeletingId(null);
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-100">
       {/* Header */}
@@ -169,7 +194,7 @@ export default function AdminNewsPage() {
                 : "bg-gray-200 text-gray-700 hover:bg-gray-300"
             }`}
           >
-            🏢 Association
+            📰 Publisher
           </button>
         </div>
 
@@ -209,16 +234,23 @@ export default function AdminNewsPage() {
                     </p>
                   </div>
 
-                  {/* Right Panel - Image Thumbnail */}
-                  {news.image_url && (
-                    <div className="w-24 p-2">
+                  {/* Right Panel - Image + Delete Button */}
+                  <div className="flex flex-col items-center gap-2 p-2">
+                    {news.image_url && (
                       <img
                         src={news.image_url}
                         alt={news.headline}
-                        className="w-full h-20 object-cover rounded"
+                        className="w-24 h-20 object-cover rounded"
                       />
-                    </div>
-                  )}
+                    )}
+                    <button
+                      onClick={() => handleDeleteNews(news.id)}
+                      disabled={deletingId === news.id}
+                      className="px-2 py-1 bg-red-100 text-red-700 rounded text-xs font-medium hover:bg-red-200 disabled:opacity-50"
+                    >
+                      {deletingId === news.id ? "Deleting..." : "🗑 Delete"}
+                    </button>
+                  </div>
                 </div>
               );
             })}

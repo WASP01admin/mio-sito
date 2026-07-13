@@ -8,6 +8,7 @@ const LINKS = [
   { href: "/admin/members", label: "Members" },
   { href: "/admin/pending", label: "Pending Submissions" },
   { href: "/admin/associations", label: "Associations" },
+  { href: "/admin/press", label: "📰 Publishers" },
   { href: "/admin/donors", label: "Donors" },
   { href: "/admin/chat", label: "Chat" },
 ];

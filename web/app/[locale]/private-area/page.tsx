@@ -62,7 +62,7 @@ export default function PrivateAreaLoginPage() {
             <input
               type="text"
               value={username}
-              onChange={(e) => setUsername(e.target.value.toUpperCase())}
+              onChange={(e) => setUsername(e.target.value)}
               placeholder="ITA0125"
               className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-yellow-400 focus:border-transparent"
               disabled={loading}
