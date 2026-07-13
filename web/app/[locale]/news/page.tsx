@@ -134,6 +134,13 @@ export default function PublicNewsPage() {
   }
 
   async function handleLikeToggle(articleId: string, currentLiked: boolean) {
+    console.log("🤍 Like toggle clicked:", { articleId, currentLiked, sessionId });
+
+    if (!sessionId) {
+      alert("Session not initialized yet, please refresh");
+      return;
+    }
+
     setLikeLoading(articleId);
     try {
       const response = await fetch("/api/press/articles/like", {
@@ -148,12 +155,18 @@ export default function PublicNewsPage() {
         }),
       });
 
+      console.log("📡 Response status:", response.status);
+
       if (response.ok) {
         const data = await response.json();
+        console.log("✅ Like success:", data);
         setArticleLikes((prev) => ({
           ...prev,
           [articleId]: { count: data.likeCount, userLiked: data.liked },
         }));
+      } else {
+        const errorData = await response.json();
+        console.error("❌ API Error:", errorData);
       }
     } catch (error) {
       console.error("Error toggling like:", error);
@@ -675,6 +688,11 @@ export default function PublicNewsPage() {
 
               const likes = articleLikes[news.id] || { count: 0, userLiked: false };
 
+              // Debug log
+              if (news.id === sortedNews[0]?.id) {
+                console.log("📊 First article render:", { articleId: news.id, likes, sessionId });
+              }
+
               return (
                 <div
                   key={news.id}
@@ -717,11 +735,12 @@ export default function PublicNewsPage() {
                   <div className="flex flex-col items-center justify-center gap-1 px-3 py-4 border-l border-gray-300 min-w-[60px]">
                     <button
                       onClick={(e) => {
+                        console.log("🖱️ Button clicked!");
                         e.stopPropagation();
                         handleLikeToggle(news.id, likes.userLiked);
                       }}
                       disabled={likeLoading === news.id}
-                      className="text-2xl hover:scale-110 transition-transform disabled:opacity-50"
+                      className="text-2xl hover:scale-110 transition-transform disabled:opacity-50 cursor-pointer"
                     >
                       {likes.userLiked ? "❤️" : "🤍"}
                     </button>
