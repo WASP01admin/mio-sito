@@ -24,14 +24,14 @@ export default function BloggerLoginPage() {
         body: JSON.stringify({ email, password }),
       });
 
-      const data = await response.json();
-
       if (!response.ok) {
+        const data = await response.json();
         setError(data.error || "Login failed");
         return;
       }
 
-      // Redirect to blogger dashboard
+      const data = await response.json();
+      // Tokens stored in cookies by server; redirect to dashboard
       router.push("/blogger/dashboard");
     } catch (err) {
       setError("An error occurred during login");
@@ -97,7 +97,7 @@ export default function BloggerLoginPage() {
 
         <div className="mt-6 pt-6 border-t border-gray-200">
           <p className="text-center text-sm text-gray-600">
-            Need credentials?{" "}
+            Don't have credentials yet?{" "}
             <a href="mailto:wasp@example.com" className="text-blue-600 hover:underline font-semibold">
               Contact WASP HQ
             </a>

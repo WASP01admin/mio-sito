@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 interface BloggerArticle {
   id: string;
@@ -12,8 +13,24 @@ interface BloggerArticle {
   published_date?: string;
 }
 
+interface BloggerArticle {
+  id: string;
+  title: string;
+  content: string;
+  published_date?: string;
+}
+
+interface BloggerInfo {
+  id: string;
+  name: string;
+  email: string;
+  bio?: string;
+  blog_url?: string;
+}
+
 export default function BloggerDashboard() {
   const router = useRouter();
+  const [blogger, setBlogger] = useState<BloggerInfo | null>(null);
   const [articles, setArticles] = useState<BloggerArticle[]>([]);
   const [loading, setLoading] = useState(true);
   const [showNewArticleForm, setShowNewArticleForm] = useState(false);
@@ -25,10 +42,29 @@ export default function BloggerDashboard() {
   });
   const [submitting, setSubmitting] = useState(false);
 
+  // Check if we have valid session and fetch blogger info
   useEffect(() => {
+    const checkAuth = async () => {
+      try {
+        const response = await fetch("/api/blogger/me", {
+          credentials: "include",
+        });
+        if (!response.ok) {
+          router.push("/blogger/login");
+          return;
+        }
+        const data = await response.json();
+        setBlogger(data.blogger);
+      } catch {
+        router.push("/blogger/login");
+      } finally {
+        setLoading(false);
+      }
+    };
+    checkAuth();
+
     fetchArticles();
   }, []);
-
   async function fetchArticles() {
     try {
       const response = await fetch("/api/blogger/news", {
@@ -39,8 +75,10 @@ export default function BloggerDashboard() {
         router.push("/blogger/login");
         return;
       }
-
       const data = await response.json();
+      setArticles(data.articles || []);
+    } catch (error) {
+      console.error("Error fetching articles:", error);
       setArticles(data.articles || []);
     } catch (error) {
       console.error("Error fetching articles:", error);
@@ -119,7 +157,14 @@ export default function BloggerDashboard() {
       {/* Header */}
       <div className="bg-white border-b border-gray-200">
         <div className="max-w-6xl mx-auto px-4 py-6 flex justify-between items-center">
-          <h1 className="text-2xl font-bold">WASP News Dashboard</h1>
+          <div>
+            <h1 className="text-2xl font-bold">WASP News Dashboard</h1>
+            {blogger && (
+              <p className="text-gray-600 mt-1">
+                Welcome, <span className="font-semibold">{blogger.name}</span>
+              </p>
+            )}
+          </div>
           <button
             onClick={handleLogout}
             className="px-4 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700"
@@ -242,12 +287,20 @@ export default function BloggerDashboard() {
                       </span>
                     </div>
                   </div>
-                  <button
-                    onClick={() => handleDeleteArticle(article.id)}
-                    className="px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 text-sm"
-                  >
-                    Delete
-                  </button>
+                  <div className="flex gap-2">
+                    <button
+                      onClick={() => alert("Edit coming soon")}
+                      className="px-3 py-1 bg-blue-100 text-blue-700 rounded hover:bg-blue-200 text-sm"
+                    >
+                      Edit
+                    </button>
+                    <button
+                      onClick={() => handleDeleteArticle(article.id)}
+                      className="px-3 py-1 bg-red-100 text-red-700 rounded hover:bg-red-200 text-sm"
+                    >
+                      Delete
+                    </button>
+                  </div>
                 </div>
               </div>
             ))}

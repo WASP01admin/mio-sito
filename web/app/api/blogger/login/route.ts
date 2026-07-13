@@ -2,7 +2,6 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import * as bcrypt from "bcryptjs";
 import { SignJWT } from "jose";
-
 const JWT_SECRET = new TextEncoder().encode(
   process.env.JWT_SECRET || "your-secret-key-change-in-production"
 );
@@ -21,7 +20,7 @@ export async function POST(request: NextRequest) {
     // Look up blogger by email (case-insensitive)
     const { data: blogger, error } = await supabaseAdmin
       .from("news_bloggers")
-      .select("id, name, email, blog_url, status, password_hash")
+      .select("id, name, email, bio, blog_url, status, password_hash")
       .ilike("email", email)
       .eq("status", "active")
       .single();
@@ -62,6 +61,7 @@ export async function POST(request: NextRequest) {
         id: blogger.id,
         name: blogger.name,
         email: blogger.email,
+        bio: blogger.bio,
         blog_url: blogger.blog_url,
       },
     });
@@ -88,7 +88,11 @@ export async function POST(request: NextRequest) {
     });
 
     return response;
-  } catch (error) {
+      token,
+      blogger: {
+        id: blogger.id,
+        name: blogger.name,
+        email: blogger.email,
     console.error("Blogger login error:", error);
     return NextResponse.json(
       { error: "Login failed" },

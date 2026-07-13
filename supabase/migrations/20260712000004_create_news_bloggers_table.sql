@@ -19,7 +19,17 @@ CREATE INDEX idx_news_bloggers_status ON news_bloggers(status);
 -- Enable RLS
 ALTER TABLE news_bloggers ENABLE ROW LEVEL SECURITY;
 
--- RLS Policy: Anyone can check if their email exists (for login)
-CREATE POLICY news_bloggers_login ON news_bloggers
+-- RLS Policy: Bloggers can only read their own profile
+CREATE POLICY bloggers_read_own ON news_bloggers
   FOR SELECT
-  USING (true);
+  USING (
+    auth.uid() = id OR
+    (SELECT role FROM user_profiles WHERE id = auth.uid()) = 'admin'
+  );
+
+-- RLS Policy: Admins can manage all bloggers
+CREATE POLICY admins_manage_bloggers ON news_bloggers
+  FOR ALL
+  USING (
+    (SELECT role FROM user_profiles WHERE id = auth.uid()) = 'admin'
+  );

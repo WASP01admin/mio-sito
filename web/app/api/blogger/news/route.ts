@@ -82,6 +82,61 @@ export async function POST(request: NextRequest) {
   }
 }
 
+// PUT: Update article
+export async function PUT(request: NextRequest) {
+  try {
+    const bloggerId = request.cookies.get("blogger_id")?.value;
+
+    if (!bloggerId) {
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+    }
+
+    const { id, title, content, image_url, published_date } = await request.json();
+
+    if (!id) {
+      return NextResponse.json({ error: "Article ID required" }, { status: 400 });
+    }
+
+    // Verify ownership
+    const { data: article, error: fetchError } = await supabaseAdmin
+      .from("association_news")
+      .select("blogger_id")
+      .eq("id", id)
+      .single();
+
+    if (fetchError || !article || article.blogger_id !== bloggerId) {
+      return NextResponse.json(
+        { error: "Not authorized to edit this article" },
+        { status: 403 }
+      );
+    }
+
+    // Update article
+    const { data: updated, error: updateError } = await supabaseAdmin
+      .from("association_news")
+      .update({
+        title,
+        content,
+        image_url: image_url || null,
+        published_date: published_date || new Date().toISOString().split("T")[0],
+      })
+      .eq("id", id)
+      .select()
+      .single();
+
+    if (updateError) {
+      return NextResponse.json({ error: updateError.message }, { status: 400 });
+    }
+
+    return NextResponse.json({ success: true, article: updated });
+  } catch (error) {
+    console.error("Error updating article:", error);
+    return NextResponse.json(
+      { error: "Failed to update article" },
+      { status: 500 }
+    );
+  }
+}
 // DELETE: Delete article
 export async function DELETE(request: NextRequest) {
   try {
