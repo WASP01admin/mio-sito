@@ -93,6 +93,10 @@ export default function DonationSection() {
           {t("noCashStamp")}
         </span>
 
+        <p className="mt-6 text-xs font-bold text-red-600 sm:text-sm">
+          L'IMPORTO DELLE DONAZIONI NON VIENE MAI MOSTRATO
+        </p>
+
         <fieldset className="mt-8 flex w-full flex-col gap-4">
           <legend className="sr-only">{t("heading")}</legend>
           {paymentMethods.map((method) => (
@@ -116,6 +120,10 @@ export default function DonationSection() {
             </label>
           ))}
         </fieldset>
+
+        <p className="mt-8 text-xs font-bold text-red-600 sm:text-sm">
+          SE LA DONAZIONE E' DA PARTE DI UNA DITTA/AZIENDA/ATTIVITA' COMMERCIALE, RICORDA DI SCRIVERE (nelle note della donazione o per email) IL NOME E L'INDIRIZZO PER POTERLA INSERIRE NELLA MAPPA DEGLI AMICI DEGLI ANIMALI
+        </p>
 
         <p className="mt-6 text-xs text-gray-600 sm:text-sm">{t("note")}</p>
       </div>
