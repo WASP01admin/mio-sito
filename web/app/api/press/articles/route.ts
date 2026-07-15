@@ -1,16 +1,33 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
-// Convert URLs in text to clickable links
+// Convert URLs in text to clickable links (skip URLs already in <a> tags)
 function convertUrlsToLinks(text: string): string {
-  // Match URLs like https://example.com, http://example.com, and www.example.com
-  const urlRegex = /(?:https?:\/\/|www\.)[^\s<>"\)]+/g;
+  // First, protect existing <a> tags by replacing them with a placeholder
+  const linkPlaceholders: { [key: string]: string } = {};
+  let placeholderIndex = 0;
 
-  return text.replace(urlRegex, (url) => {
-    // Add https:// to www URLs
+  const protectedText = text.replace(/<a\s+[^>]*href="[^"]*"[^>]*>.*?<\/a>/g, (match) => {
+    const placeholder = `__LINK_PLACEHOLDER_${placeholderIndex}__`;
+    linkPlaceholders[placeholder] = match;
+    placeholderIndex++;
+    return placeholder;
+  });
+
+  // Now convert bare URLs (not already in links)
+  const urlRegex = /(?:https?:\/\/|www\.)[^\s<>"\)]+/g;
+  const withLinks = protectedText.replace(urlRegex, (url) => {
     const href = url.startsWith("http") ? url : `https://${url}`;
     return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
   });
+
+  // Restore original links
+  let result = withLinks;
+  for (const [placeholder, link] of Object.entries(linkPlaceholders)) {
+    result = result.replace(placeholder, link);
+  }
+
+  return result;
 }
 
 // GET: Fetch press's articles
