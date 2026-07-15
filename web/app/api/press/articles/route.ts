@@ -1,33 +1,15 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
-// Convert URLs in text to clickable links (skip URLs already in <a> tags)
+// Convert bare URLs to clickable links, but only outside of existing <a> tags
 function convertUrlsToLinks(text: string): string {
-  // First, protect existing <a> tags by replacing them with a placeholder
-  const linkPlaceholders: { [key: string]: string } = {};
-  let placeholderIndex = 0;
-
-  const protectedText = text.replace(/<a\s+[^>]*href="[^"]*"[^>]*>.*?<\/a>/g, (match) => {
-    const placeholder = `__LINK_PLACEHOLDER_${placeholderIndex}__`;
-    linkPlaceholders[placeholder] = match;
-    placeholderIndex++;
-    return placeholder;
-  });
-
-  // Now convert bare URLs (not already in links)
-  const urlRegex = /(?:https?:\/\/|www\.)[^\s<>"\)]+/g;
-  const withLinks = protectedText.replace(urlRegex, (url) => {
+  // Only convert URLs that aren't already in <a href="..."> tags
+  // Use negative lookbehind to avoid URLs that are already href values
+  return text.replace(/(?<!href=")(?<!href=')(?:https?:\/\/|www\.)[^\s<>"')]+/g, (url) => {
+    // Skip if this URL is inside a tag attribute
     const href = url.startsWith("http") ? url : `https://${url}`;
     return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
   });
-
-  // Restore original links
-  let result = withLinks;
-  for (const [placeholder, link] of Object.entries(linkPlaceholders)) {
-    result = result.replace(placeholder, link);
-  }
-
-  return result;
 }
 
 // GET: Fetch press's articles
@@ -105,8 +87,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Skip auto-linking since Quill editor already handles link formatting
-    const contentWithLinks = content;
+    // Convert bare URLs to links (won't double-wrap Quill links)
+    const contentWithLinks = convertUrlsToLinks(content);
 
     // Create article
     const { data: article, error } = await supabaseAdmin

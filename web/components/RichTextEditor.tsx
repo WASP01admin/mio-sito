@@ -18,8 +18,14 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write y
   useEffect(() => {
     if (!editorRef.current) return;
 
-    // Prevent double initialization in React Strict Mode
-    if (quillRef.current) return;
+    // Prevent double initialization
+    if (quillRef.current) {
+      // Update existing Quill instance if value changed externally
+      if (value && value !== quillRef.current.root.innerHTML) {
+        quillRef.current.root.innerHTML = value;
+      }
+      return;
+    }
 
     // Clear any existing Quill instances
     const existingToolbar = editorRef.current.previousElementSibling;

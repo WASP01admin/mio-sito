@@ -850,7 +850,7 @@ export default function PublicNewsPage() {
                 </div>
 
                 <div
-                  className="prose prose-sm max-w-none text-gray-700 leading-relaxed"
+                  className="prose prose-sm max-w-none text-gray-700 leading-relaxed [&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-blue-800"
                   dangerouslySetInnerHTML={{ __html: selectedNews.description }}
                 />
               </div>
