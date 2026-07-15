@@ -22,8 +22,10 @@
     "next": "16.2.9",
     "next-intl": "^4.13.1",
     "passkit-generator": "^3.5.7",
+    "quill": "^2.0.3",
     "react": "19.2.4",
     "react-dom": "19.2.4",
+    "react-quill": "^2.0.0",
     "resend": "^6.16.0",
     "server-only": "^0.0.1",
     "socket.io-client": "^4.8.3"

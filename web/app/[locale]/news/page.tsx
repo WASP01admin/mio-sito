@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import RichTextEditor from "@/components/RichTextEditor";
 
 interface NewsItem {
   id: string;
@@ -303,28 +304,6 @@ export default function PublicNewsPage() {
     }
   }
 
-  function insertHtmlTag(tag: "b" | "i" | "u") {
-    const textarea = (window as any).contentTextarea as HTMLTextAreaElement;
-    if (!textarea) return;
-
-    const start = textarea.selectionStart;
-    const end = textarea.selectionEnd;
-    const selectedText = formData.content.substring(start, end);
-    const beforeText = formData.content.substring(0, start);
-    const afterText = formData.content.substring(end);
-
-    const tagName = tag === "b" ? "b" : tag === "i" ? "i" : "u";
-    const newContent = `${beforeText}<${tagName}>${selectedText}</${tagName}>${afterText}`;
-
-    setFormData({ ...formData, content: newContent });
-
-    // Restore selection after state update
-    setTimeout(() => {
-      textarea.focus();
-      const newEnd = start + selectedText.length + tagName.length * 2 + 5; // <tag>text</tag>
-      textarea.setSelectionRange(newEnd, newEnd);
-    }, 0);
-  }
 
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
@@ -511,47 +490,12 @@ export default function PublicNewsPage() {
                     </span>
                   </div>
 
-                  {/* Formatting buttons */}
-                  <div className="flex gap-2 mb-2">
-                    <button
-                      type="button"
-                      onClick={() => insertHtmlTag("b")}
-                      className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm font-bold"
-                      title="Make text bold"
-                    >
-                      B
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => insertHtmlTag("i")}
-                      className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm italic"
-                      title="Make text italic"
-                    >
-                      I
-                    </button>
-                    <button
-                      type="button"
-                      onClick={() => insertHtmlTag("u")}
-                      className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm underline"
-                      title="Underline text"
-                    >
-                      U
-                    </button>
-                  </div>
-
-                  <textarea
-                    ref={(el) => {
-                      if (el) (window as any).contentTextarea = el;
-                    }}
+                  <RichTextEditor
                     value={formData.content}
-                    onChange={(e) =>
-                      setFormData({ ...formData, content: e.target.value })
-                    }
+                    onChange={(value) => setFormData({ ...formData, content: value })}
                     placeholder="Write your article... (minimum 500 characters)"
-                    rows={6}
-                    className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
-                    required
                   />
+
                   {formData.content.length < 500 && (
                     <p className="text-red-600 text-sm mt-1">
                       Minimum 500 characters required ({500 - formData.content.length} more needed)
