@@ -23,6 +23,14 @@ import {
   validateMessageBody,
   validateSlug,
 } from "./channels";
+import {
+  blockUser,
+  deleteDirectMessage,
+  getDirectMessageHistory,
+  isUserBlocked,
+  sendDirectMessage,
+  unblockUser,
+} from "./direct-messages";
 import { clearRateLimit, isChannelCreationRateLimited, isRateLimited } from "./rate-limit";
 import { getChannelNicknames, joinChannelPresence, leaveAllChannels } from "./presence";
 import { startBot } from "./bot";
@@ -237,6 +245,138 @@ io.on("connection", async (socket) => {
     } catch (error) {
       console.error("createChannel failed:", error);
       socket.emit("errorMessage", "Couldn't create that channel.");
+    }
+  });
+
+  // Direct Messages
+  socket.on("sendDirectMessage", async ({ recipientId, body, imagePath }) => {
+    try {
+      if (isRateLimited(socket.id)) {
+        socket.emit("errorMessage", "You're sending messages too fast. Slow down a little.");
+        return;
+      }
+      if (typeof recipientId !== "string") {
+        socket.emit("errorMessage", "Message couldn't be sent.");
+        return;
+      }
+      const cleanImagePath = imagePath === undefined ? null : validateImagePath(imagePath);
+      if (imagePath !== undefined && cleanImagePath === null) {
+        socket.emit("errorMessage", "Message couldn't be sent.");
+        return;
+      }
+      const bodyResult = validateMessageBody(body, cleanImagePath !== null);
+      if (!bodyResult.valid) {
+        socket.emit(
+          "errorMessage",
+          bodyResult.error === "inappropriate"
+            ? "That message isn't allowed here. Please rephrase."
+            : "Message couldn't be sent."
+        );
+        return;
+      }
+
+      const message = await sendDirectMessage(
+        socket.data.userProfileId,
+        recipientId,
+        bodyResult.value,
+        socket.data.nickname,
+        cleanImagePath ?? undefined
+      );
+
+      // Notify recipient if online
+      io.to(recipientId).emit("directMessageReceived", message);
+
+      // Echo to sender for other tabs
+      socket.emit("directMessageReceived", message);
+      socket.emit("errorMessage", "Message sent");
+    } catch (error) {
+      console.error("sendDirectMessage failed:", error);
+      const message = (error as Error).message;
+      if (message === "User has blocked you") {
+        socket.emit("errorMessage", "This user has blocked you.");
+      } else if (message === "Message contains blocked words") {
+        socket.emit("errorMessage", "That message isn't allowed here. Please rephrase.");
+      } else {
+        socket.emit("errorMessage", "Message couldn't be sent.");
+      }
+    }
+  });
+
+  socket.on("startDirectConversation", async ({ userId }) => {
+    try {
+      // Fetch DM history with the user
+      if (userId === null) {
+        // Load all active conversations (not implemented yet in this version)
+        // For now, just acknowledge
+        socket.emit("directConversationsList", { conversations: [] });
+        return;
+      }
+
+      if (typeof userId !== "string") {
+        socket.emit("errorMessage", "Couldn't load conversation.");
+        return;
+      }
+
+      // TODO: Create a userNicknames map from active sockets or cache
+      const userNicknames = new Map<string, string>();
+      userNicknames.set(socket.data.userProfileId, socket.data.nickname);
+
+      const history = await getDirectMessageHistory(socket.data.userProfileId, userId, userNicknames);
+      socket.emit("directMessageHistory", { messages: history });
+    } catch (error) {
+      console.error("startDirectConversation failed:", error);
+      socket.emit("errorMessage", "Couldn't load conversation.");
+    }
+  });
+
+  socket.on("deleteDirectMessage", async ({ messageId }) => {
+    try {
+      if (typeof messageId !== "string") return;
+      await deleteDirectMessage(messageId, socket.data.userProfileId);
+      // Broadcast deletion to both parties
+      io.emit("directMessageDeleted", { messageId });
+    } catch (error) {
+      console.error("deleteDirectMessage failed:", error);
+      socket.emit("errorMessage", "Couldn't delete that message.");
+    }
+  });
+
+  // User Blocking
+  socket.on("blockUser", async ({ userId, reason }) => {
+    try {
+      if (typeof userId !== "string") {
+        socket.emit("errorMessage", "Couldn't block that user.");
+        return;
+      }
+      await blockUser(socket.data.userProfileId, userId, reason);
+      socket.emit("errorMessage", "User blocked");
+      // Notify the blocked user if they're online (optional)
+      io.to(userId).emit("userBlocked", {
+        userId: socket.data.userProfileId,
+        nickname: socket.data.nickname,
+      });
+    } catch (error) {
+      console.error("blockUser failed:", error);
+      socket.emit("errorMessage", "Couldn't block that user.");
+    }
+  });
+
+  socket.on("unblockUser", async ({ userId }) => {
+    try {
+      if (typeof userId !== "string") {
+        socket.emit("errorMessage", "Couldn't unblock that user.");
+        return;
+      }
+      await unblockUser(socket.data.userProfileId, userId);
+      socket.emit("errorMessage", "User unblocked");
+      // Notify the unblocked user if they're online (optional)
+      io.to(userId).emit("userUnblocked", {
+        userId: socket.data.userProfileId,
+        nickname: socket.data.nickname,
+      });
+    } catch (error) {
+      console.error("unblockUser failed:", error);
+      socket.emit("errorMessage", "Couldn't unblock that user.");
     }
   });
 

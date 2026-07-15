@@ -26,6 +26,24 @@ export interface ChatMessage {
   reactions: ChatReactionSummary[];
 }
 
+export interface DirectMessage {
+  id: string;
+  senderId: string;
+  recipientId: string;
+  senderNickname: string;
+  body: string;
+  imageUrl: string | null;
+  createdAt: string;
+}
+
+export interface DirectConversation {
+  userId: string;
+  nickname: string;
+  lastMessage: string;
+  lastMessageAt: string;
+  isUnread: boolean;
+}
+
 // Socket.io event contracts shared between chat-service and the web client.
 export interface ServerToClientEvents {
   channelList: (channels: ChatChannel[]) => void;
@@ -42,6 +60,16 @@ export interface ServerToClientEvents {
     messageId: string;
     reactions: ChatReactionSummary[];
   }) => void;
+
+  // Direct Messages
+  directMessageReceived: (message: DirectMessage) => void;
+  directMessageHistory: (payload: { messages: DirectMessage[] }) => void;
+  directConversationsList: (payload: { conversations: DirectConversation[] }) => void;
+  directMessageDeleted: (payload: { messageId: string }) => void;
+
+  // User Blocking
+  userBlocked: (payload: { userId: string; nickname: string }) => void;
+  userUnblocked: (payload: { userId: string; nickname: string }) => void;
 }
 
 export interface ClientToServerEvents {
@@ -52,4 +80,13 @@ export interface ClientToServerEvents {
   typing: (channelId: string) => void;
   toggleReaction: (payload: { channelId: string; messageId: string; emoji: string }) => void;
   reportMessage: (payload: { channelId: string; messageId: string }) => void;
+
+  // Direct Messages
+  sendDirectMessage: (payload: { recipientId: string; body: string; imagePath?: string }) => void;
+  startDirectConversation: (payload: { userId: string | null }) => void;
+  deleteDirectMessage: (payload: { messageId: string }) => void;
+
+  // User Blocking
+  blockUser: (payload: { userId: string; reason?: string }) => void;
+  unblockUser: (payload: { userId: string }) => void;
 }
