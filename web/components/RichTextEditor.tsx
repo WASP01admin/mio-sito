@@ -33,14 +33,13 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write y
       existingToolbar.remove();
     }
 
-    // Initialize Quill
+    // Initialize Quill (no link button - autolink handles URLs)
     const quill = new Quill(editorRef.current, {
       theme: "snow",
       placeholder: placeholder,
       modules: {
         toolbar: [
           ["bold", "italic", "underline"],
-          ["link"],
           [{ list: "ordered" }, { list: "bullet" }],
           [{ header: [1, 2, 3, false] }],
           ["clean"],
@@ -74,13 +73,6 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write y
       }
     };
   }, []);
-
-  // Update content when value prop changes externally
-  useEffect(() => {
-    if (isReady && quillRef.current && value !== quillRef.current.root.innerHTML) {
-      quillRef.current.root.innerHTML = value;
-    }
-  }, [value, isReady]);
 
   return (
     <div className="quill-editor-wrapper">
