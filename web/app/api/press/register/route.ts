@@ -20,11 +20,19 @@ function siteUrl() {
 
 export async function POST(request: NextRequest) {
   try {
-    const { publisher_name, email } = await request.json();
+    const { publisher_name, email, country } = await request.json();
 
-    if (!publisher_name || !email) {
+    if (!publisher_name || !email || !country) {
       return NextResponse.json(
-        { error: "Publisher name and email required" },
+        { error: "Publisher name, email, and country required" },
+        { status: 400 }
+      );
+    }
+
+    // Validate country code format (3 letters)
+    if (!/^[A-Z]{3}$/.test(country)) {
+      return NextResponse.json(
+        { error: "Country must be a 3-letter code (e.g., ITA)" },
         { status: 400 }
       );
     }
@@ -78,6 +86,7 @@ export async function POST(request: NextRequest) {
         code: pressCode,
         name: publisher_name,
         email: email.toLowerCase(),
+        country: country,
         password: PRESS_PASSWORD,
         verified: false,
         verification_token: verificationToken,

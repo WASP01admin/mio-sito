@@ -53,6 +53,7 @@ export default function PublicNewsPage() {
   const [showPressRegister, setShowPressRegister] = useState(false);
   const [registerPublisherName, setRegisterPublisherName] = useState("");
   const [registerEmail, setRegisterEmail] = useState("");
+  const [registerCountry, setRegisterCountry] = useState("");
   const [registerLoading, setRegisterLoading] = useState(false);
   const [registerError, setRegisterError] = useState("");
   const [registerSuccess, setRegisterSuccess] = useState(false);
@@ -278,6 +279,7 @@ export default function PublicNewsPage() {
         body: JSON.stringify({
           publisher_name: registerPublisherName,
           email: registerEmail,
+          country: registerCountry,
         }),
       });
 
@@ -292,6 +294,7 @@ export default function PublicNewsPage() {
       setRegisterSuccess(true);
       setRegisterPublisherName("");
       setRegisterEmail("");
+      setRegisterCountry("");
     } catch (error) {
       setRegisterError("An error occurred during registration");
       console.error(error);
@@ -958,6 +961,21 @@ export default function PublicNewsPage() {
                     placeholder="es. La Gazzetta del Web"
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500"
+                  />
+                </div>
+
+                <div>
+                  <label className="block text-sm font-semibold text-gray-700 mb-2">
+                    Paese (3-letter code) *
+                  </label>
+                  <input
+                    type="text"
+                    value={registerCountry}
+                    onChange={(e) => setRegisterCountry(e.target.value.toUpperCase().slice(0, 3))}
+                    placeholder="es. ITA"
+                    maxLength={3}
+                    required
+                    className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 uppercase"
                   />
                 </div>
 
