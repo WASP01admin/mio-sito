@@ -107,6 +107,15 @@ export async function POST(request: NextRequest) {
 
     if (createError) {
       console.error("Press creation error:", createError);
+
+      // Check if it's a unique constraint violation on the name field
+      if (createError.code === "23505" || createError.message?.includes("press_name_unique")) {
+        return NextResponse.json(
+          { error: "Publisher name already in use. Please choose a different name." },
+          { status: 400 }
+        );
+      }
+
       return NextResponse.json(
         { error: "Failed to create press record" },
         { status: 500 }
