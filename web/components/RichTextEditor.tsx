@@ -41,11 +41,10 @@ function RichTextEditorComponent({ value, onChange, placeholder = "Write your ar
         toolbar: [
           ["bold", "italic", "underline"],
           [{ list: "ordered" }, { list: "bullet" }],
-          [{ header: [1, 2, 3, false] }],
           ["clean"],
         ],
       },
-      formats: ["bold", "italic", "underline", "link", "list", "header"],
+      formats: ["bold", "italic", "underline", "link", "list"],
     });
 
     quillRef.current = quill;
