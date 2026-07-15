@@ -57,24 +57,15 @@ export default async function RegistrationSuccessPage({
               </p>
             )}
 
-            <div className="mt-8 flex justify-center gap-8">
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-black text-2xl">
-                  🍎
-                </div>
-                <span className="text-xs font-semibold">Apple Wallet</span>
+            <div className="mt-8 flex flex-wrap justify-center gap-4">
+              <div className="rounded-lg border-2 border-black bg-black px-4 py-2 text-center text-white">
+                <div className="text-xs font-bold">Apple Wallet</div>
               </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500 text-2xl">
-                  🔵
-                </div>
-                <span className="text-xs font-semibold">Google Wallet</span>
+              <div className="rounded-lg border-2 border-blue-500 bg-blue-50 px-4 py-2 text-center">
+                <div className="text-xs font-bold text-blue-600">Google Wallet</div>
               </div>
-              <div className="flex flex-col items-center gap-2">
-                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-600 text-2xl">
-                  💳
-                </div>
-                <span className="text-xs font-semibold">Samsung Wallet</span>
+              <div className="rounded-lg border-2 border-blue-600 bg-blue-50 px-4 py-2 text-center">
+                <div className="text-xs font-bold text-blue-700">Samsung Wallet</div>
               </div>
             </div>
 
