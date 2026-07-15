@@ -727,9 +727,10 @@ export default function PublicNewsPage() {
                       <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1 break-words">
                         {news.headline}
                       </h3>
-                      <p className="text-sm text-gray-700 line-clamp-2 break-words">
-                        {news.description}
-                      </p>
+                      <div
+                        className="text-sm text-gray-700 line-clamp-2 break-words prose prose-sm max-w-none"
+                        dangerouslySetInnerHTML={{ __html: news.description }}
+                      />
                     </button>
                   </div>
 
