@@ -1,6 +1,18 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 
+// Convert URLs in text to clickable links
+function convertUrlsToLinks(text: string): string {
+  // Match URLs like https://example.com, http://example.com, and www.example.com
+  const urlRegex = /(?:https?:\/\/|www\.)[^\s<>"\)]+/g;
+
+  return text.replace(urlRegex, (url) => {
+    // Add https:// to www URLs
+    const href = url.startsWith("http") ? url : `https://${url}`;
+    return `<a href="${href}" target="_blank" rel="noopener noreferrer">${url}</a>`;
+  });
+}
+
 // GET: Fetch press's articles
 export async function GET(request: NextRequest) {
   try {
@@ -76,13 +88,16 @@ export async function POST(request: NextRequest) {
       );
     }
 
+    // Convert URLs to links in content
+    const contentWithLinks = convertUrlsToLinks(content);
+
     // Create article
     const { data: article, error } = await supabaseAdmin
       .from("press_articles")
       .insert({
         press_id: pressId,
         title,
-        content,
+        content: contentWithLinks,
         image_url: image_url || null,
         published_date: published_date || new Date().toISOString().split("T")[0],
       })
