@@ -6,6 +6,7 @@ import { Geist, Geist_Mono } from "next/font/google";
 import { routing } from "@/i18n/routing";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
+import "@fortawesome/fontawesome-free/css/all.min.css";
 import "../../styles/globals.css";
 
 const geistSans = Geist({

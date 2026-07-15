@@ -57,9 +57,26 @@ export default async function RegistrationSuccessPage({
               </p>
             )}
 
-            <p className="mt-8 text-xs text-gray-500">
-              {t("pending.walletComingSoon")}
-            </p>
+            <div className="mt-8 flex justify-center gap-8">
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-black">
+                  <i className="fab fa-apple text-2xl text-white"></i>
+                </div>
+                <span className="text-xs font-semibold">Apple Wallet</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500">
+                  <i className="fab fa-google text-2xl text-white"></i>
+                </div>
+                <span className="text-xs font-semibold">Google Wallet</span>
+              </div>
+              <div className="flex flex-col items-center gap-2">
+                <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-600">
+                  <i className="fas fa-wallet text-2xl text-white"></i>
+                </div>
+                <span className="text-xs font-semibold">Samsung Wallet</span>
+              </div>
+            </div>
 
             {chatToken && (
               <a
