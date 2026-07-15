@@ -454,6 +454,18 @@ export default function PublicNewsPage() {
     setPressName("");
   }
 
+  // Handle link clicks to prevent button event capture
+  const handleLinkClick = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const target = e.target as HTMLElement;
+    if (target.tagName === 'A') {
+      e.stopPropagation();
+      const href = target.getAttribute('href');
+      if (href) {
+        window.open(href, '_blank', 'noopener,noreferrer');
+      }
+    }
+  }, []);
+
   // If press is logged in, show dashboard
   if (isPressLoggedIn) {
     return (
@@ -749,6 +761,7 @@ export default function PublicNewsPage() {
                       <div
                         className="text-sm text-gray-700 line-clamp-2 break-words prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a]:pointer-events-auto [&_a]:cursor-pointer"
                         dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(news.description) }}
+                        onClick={handleLinkClick}
                       />
                     </button>
                   </div>
@@ -871,6 +884,7 @@ export default function PublicNewsPage() {
                 <div
                   className="prose prose-sm max-w-none text-gray-700 leading-relaxed [&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-blue-800 [&_a]:pointer-events-auto [&_a]:cursor-pointer"
                   dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(selectedNews.description) }}
+                  onClick={handleLinkClick}
                 />
               </div>
             </div>
