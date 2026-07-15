@@ -303,6 +303,29 @@ export default function PublicNewsPage() {
     }
   }
 
+  function insertHtmlTag(tag: "b" | "i" | "u") {
+    const textarea = (window as any).contentTextarea as HTMLTextAreaElement;
+    if (!textarea) return;
+
+    const start = textarea.selectionStart;
+    const end = textarea.selectionEnd;
+    const selectedText = formData.content.substring(start, end);
+    const beforeText = formData.content.substring(0, start);
+    const afterText = formData.content.substring(end);
+
+    const tagName = tag === "b" ? "b" : tag === "i" ? "i" : "u";
+    const newContent = `${beforeText}<${tagName}>${selectedText}</${tagName}>${afterText}`;
+
+    setFormData({ ...formData, content: newContent });
+
+    // Restore selection after state update
+    setTimeout(() => {
+      textarea.focus();
+      const newEnd = start + selectedText.length + tagName.length * 2 + 5; // <tag>text</tag>
+      textarea.setSelectionRange(newEnd, newEnd);
+    }, 0);
+  }
+
   async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
     const file = e.target.files?.[0];
     if (!file) return;
@@ -487,7 +510,39 @@ export default function PublicNewsPage() {
                       {formData.content.length}/500 characters
                     </span>
                   </div>
+
+                  {/* Formatting buttons */}
+                  <div className="flex gap-2 mb-2">
+                    <button
+                      type="button"
+                      onClick={() => insertHtmlTag("b")}
+                      className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm font-bold"
+                      title="Make text bold"
+                    >
+                      B
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertHtmlTag("i")}
+                      className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm italic"
+                      title="Make text italic"
+                    >
+                      I
+                    </button>
+                    <button
+                      type="button"
+                      onClick={() => insertHtmlTag("u")}
+                      className="px-3 py-1 bg-gray-200 hover:bg-gray-300 rounded text-sm underline"
+                      title="Underline text"
+                    >
+                      U
+                    </button>
+                  </div>
+
                   <textarea
+                    ref={(el) => {
+                      if (el) (window as any).contentTextarea = el;
+                    }}
                     value={formData.content}
                     onChange={(e) =>
                       setFormData({ ...formData, content: e.target.value })
