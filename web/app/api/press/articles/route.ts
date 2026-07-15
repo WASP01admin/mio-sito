@@ -105,8 +105,8 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Convert URLs to links in content
-    const contentWithLinks = convertUrlsToLinks(content);
+    // Skip auto-linking since Quill editor already handles link formatting
+    const contentWithLinks = content;
 
     // Create article
     const { data: article, error } = await supabaseAdmin
