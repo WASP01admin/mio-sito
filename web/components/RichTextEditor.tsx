@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Quill from "quill";
 import "quill/dist/quill.snow.css";
 
@@ -10,7 +10,7 @@ interface RichTextEditorProps {
   placeholder?: string;
 }
 
-export default function RichTextEditor({ value, onChange, placeholder = "Write your article..." }: RichTextEditorProps) {
+function RichTextEditorComponent({ value, onChange, placeholder = "Write your article..." }: RichTextEditorProps) {
   const editorRef = useRef<HTMLDivElement>(null);
   const quillRef = useRef<Quill | null>(null);
   const [isReady, setIsReady] = useState(false);
@@ -122,3 +122,5 @@ export default function RichTextEditor({ value, onChange, placeholder = "Write y
     </div>
   );
 }
+
+export default React.memo(RichTextEditorComponent);
