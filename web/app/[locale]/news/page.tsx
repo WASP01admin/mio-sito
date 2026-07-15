@@ -966,17 +966,48 @@ export default function PublicNewsPage() {
 
                 <div>
                   <label className="block text-sm font-semibold text-gray-700 mb-2">
-                    Paese (3-letter code) *
+                    Paese *
                   </label>
                   <input
                     type="text"
+                    list="countries"
                     value={registerCountry}
                     onChange={(e) => setRegisterCountry(e.target.value.toUpperCase().slice(0, 3))}
-                    placeholder="es. ITA"
+                    placeholder="es. Italia (ITA)"
                     maxLength={3}
                     required
                     className="w-full px-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-green-500 uppercase"
                   />
+                  <datalist id="countries">
+                    <option value="ITA">Italia</option>
+                    <option value="USA">USA</option>
+                    <option value="GBR">Regno Unito</option>
+                    <option value="FRA">Francia</option>
+                    <option value="DEU">Germania</option>
+                    <option value="ESP">Spagna</option>
+                    <option value="POR">Portogallo</option>
+                    <option value="GRC">Grecia</option>
+                    <option value="AUT">Austria</option>
+                    <option value="BEL">Belgio</option>
+                    <option value="NLD">Olanda</option>
+                    <option value="POL">Polonia</option>
+                    <option value="CZE">Repubblica Ceca</option>
+                    <option value="SWE">Svezia</option>
+                    <option value="NOR">Norvegia</option>
+                    <option value="DNK">Danimarca</option>
+                    <option value="FIN">Finlandia</option>
+                    <option value="IRL">Irlanda</option>
+                    <option value="CHE">Svizzera</option>
+                    <option value="CAN">Canada</option>
+                    <option value="AUS">Australia</option>
+                    <option value="NZL">Nuova Zelanda</option>
+                    <option value="JPN">Giappone</option>
+                    <option value="CHN">Cina</option>
+                    <option value="IND">India</option>
+                    <option value="BRA">Brasile</option>
+                    <option value="MEX">Messico</option>
+                    <option value="ZAF">Sud Africa</option>
+                  </datalist>
                 </div>
 
                 <div>
