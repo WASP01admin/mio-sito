@@ -94,7 +94,7 @@ export default function DonationSection() {
         </span>
 
         <p className="mt-6 text-xs font-bold text-red-600 sm:text-sm">
-          THE AMOUNT OF THE DONATIONS IS NEVER SHOWN TO THE PUBLIC.
+          {t("amountPrivacy")}
         </p>
 
         <fieldset className="mt-8 flex w-full flex-col gap-4">
@@ -122,7 +122,7 @@ export default function DonationSection() {
         </fieldset>
 
         <p className="mt-8 text-xs font-bold text-red-600 sm:text-sm">
-          If the donation comes from a company, business, or commercial activity, remember to write (in the donation notes or by email) the NAME and ADDRESS so we can add your company it to the Animal Friends Map.
+          {t("companyNotice")}
         </p>
 
         <p className="mt-6 text-xs text-gray-600 sm:text-sm">{t("note")}</p>

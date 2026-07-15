@@ -60,19 +60,25 @@ export default async function RegistrationSuccessPage({
             <div className="mt-8 flex justify-center gap-8">
               <div className="flex flex-col items-center gap-2">
                 <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-black">
-                  <i className="fab fa-apple text-2xl text-white"></i>
+                  <svg viewBox="0 0 24 24" className="h-8 w-8 fill-white">
+                    <path d="M17.05 13.5c-.91 0-1.64.54-2.05 1.29-.4-.75-1.14-1.29-2.05-1.29s-1.64.54-2.05 1.29c-.4-.75-1.14-1.29-2.05-1.29-1.66 0-3 1.34-3 3 0 1.66 1.34 3 3 3 .91 0 1.64-.54 2.05-1.29.4.75 1.14 1.29 2.05 1.29s1.64-.54 2.05-1.29c.4.75 1.14 1.29 2.05 1.29 1.66 0 3-1.34 3-3s-1.34-3-3-3M5 6.5C5 4.57 6.57 3 8.5 3S12 4.57 12 6.5c0 1.93-1.57 3.5-3.5 3.5S5 8.43 5 6.5m7 0C12 4.57 13.57 3 15.5 3S19 4.57 19 6.5c0 1.93-1.57 3.5-3.5 3.5S12 8.43 12 6.5Z" />
+                  </svg>
                 </div>
                 <span className="text-xs font-semibold">Apple Wallet</span>
               </div>
               <div className="flex flex-col items-center gap-2">
                 <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-500">
-                  <i className="fab fa-google text-2xl text-white"></i>
+                  <svg viewBox="0 0 24 24" className="h-8 w-8 fill-white">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2m0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8m3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z" />
+                  </svg>
                 </div>
                 <span className="text-xs font-semibold">Google Wallet</span>
               </div>
               <div className="flex flex-col items-center gap-2">
                 <div className="flex h-16 w-16 items-center justify-center rounded-lg bg-blue-600">
-                  <i className="fas fa-wallet text-2xl text-white"></i>
+                  <svg viewBox="0 0 24 24" className="h-8 w-8 fill-white">
+                    <path d="M18 6H2v12h16m0-14H2c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm0 16H2V4h16v14z" />
+                  </svg>
                 </div>
                 <span className="text-xs font-semibold">Samsung Wallet</span>
               </div>

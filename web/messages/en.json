@@ -167,6 +167,8 @@
         "label": "Bank Transfer"
       }
     },
+    "amountPrivacy": "THE AMOUNT OF THE DONATIONS IS NEVER SHOWN TO THE PUBLIC.",
+    "companyNotice": "If the donation comes from a company, business, or commercial activity, remember to write (in the donation notes or by email) the NAME and ADDRESS so we can add your company it to the Animal Friends Map.",
     "note": "N.B. if you want to donate to a specific Animal Welfare Organization, you must specify it in the donation's 'notes', thank you."
   },
   "Footer": {

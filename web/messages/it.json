@@ -167,6 +167,8 @@
         "label": "Bonifico Bancario"
       }
     },
+    "amountPrivacy": "L'IMPORTO DELLE DONAZIONI NON VIENE MAI MOSTRATO A NESSUNO.",
+    "companyNotice": "SE LA DONAZIONE E' DA PARTE DI UNA DITTA/AZIENDA/ATTIVITA' COMMERCIALE, RICORDA DI SCRIVERE (nelle note della donazione o per email) IL NOME E L'INDIRIZZO PER POTERLA INSERIRE NELLA MAPPA DEGLI AMICI DEGLI ANIMALI.",
     "note": "N.B. se vuoi donare ad una Organizzazione Animalista in particolare lo devi specificare nelle 'note' della donazione, grazie."
   },
   "Footer": {
