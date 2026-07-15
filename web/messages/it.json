@@ -28,7 +28,7 @@
     "wordmark": "WASP",
     "tagline": "World Animal Solidarity Project",
     "subtitle": "Associazione Filantropica Animalista Registrata",
-    "explanation": "WASP e' una piattaforma gratuita che unisce tutti gli animalisti del mondo. La nostra WASP CARD e' una tessera virtuale che si unisce alle altre nel tuo cellulare ed e' emessa solo a chi e' iscritto (o fa parte in qualche modo) ad una qualsiasi Associazione Animalista. In totale anonimato e sicurezza ti permette di accedere a molti servizi riservati solo ai veri amanti degli animali. Con questa tessera farai parte del Movimento Animalista assieme a chi la pensa come te.",
+    "explanation": "WASP e' una piattaforma gratuita che unisce tutti gli animalisti del mondo. La nostra WASP CARD e' una tessera virtuale che si unisce alle altre nel wallet del tuo cellulare. La WASP CARD  e' emessa gratuitamente solo a chi appartiene ad una Associazione Animalista (basta essere un socio, attivista, volontario, sponsor o membro dello staff di una qualsiasi  organizzazione per gli animali). La WASP CARD e' anonima e sicura e  ti permette di accedere a molti servizi riservati solo ai veri amanti degli animali. Con questa tessera farai parte del Movimento Animalista assieme a chi la pensa come te.",
     "headline": "ANIMALISTI DEL MONDO, UNITEVI!",
     "subheadline": "...con la tessera virtuale WASP nel wallet del tuo cellulare",
     "cardGallery": {
@@ -43,7 +43,7 @@
       "freeTitle": "GRATIS",
       "freeDescription": "se sei socio, volontario o attivista di una qualsiasi associazione animalista"
     },
-    "noOrgCta": "clicca <link>QUI</link> se non hai o appartieni ad una organizzazione animalista e iscriviti a WASP (1 minuto)",
+    "noOrgCta": "clicca <link>QUI</link> se non appartieni ad una organizzazione animalista per ottenere la tessera  direttamente da WASP (1 minuto)",
     "trustBadges": [
       "NO PUBBLICITA'",
       "NO DATI PERSONALI",
@@ -97,8 +97,8 @@
     "info": {
       "toggleLabel": "Informazioni utili prima di iscriverti",
       "nicknameRules": "Il nickname non può contenere volgarità, incitamento all'odio o razzismo.",
-      "organizationNotFound": "Se non trovi la tua associazione, scrivi a WASP <link>QUI</link> per farla aggiungere.",
-      "emailMatching": "Per proteggere l'anonimato tuo e degli altri, la stessa email va comunicata anche alla tua associazione ai fini di verifica: due email diverse non permetteranno l'emissione della card."
+      "organizationNotFound": "Se non trovi la tua associazione nel nostro elenco, scrivi ugualmente il nome dell'orgnizzazione / citta nel secondo campo, poi (per velocizzare il processo) scrivilo anche <link>QUI</link> per farcela inserire nel nostro archivio.",
+      "emailMatching": "Per proteggere l'anonimato di tutti e mantenere WASP un luogo sicuro, l'email che usi per la verifica della WASP CARD deve essere nota/conosciuta/depositata anche alla tua Associazione, se loro non la riconoscono noi non possiamo emettere la tessera, quindi assicurati che ce la hanno!"
     },
     "orgSuggestModal": {
       "title": "Segnala un'associazione mancante",
@@ -110,14 +110,14 @@
       "caption": "l'iscrizione e' possibile solo da cellulare - inquadra il QR CODE dal cellulare se sei su PC/Tablet"
     },
     "cta": {
-      "text": "SE NON APPARTIENI A NESSUNA ASSOCIAZIONE ANIMALISTA, ISCRIVITI A WASP (sempre 1 minuto) E OTTIENI SUBITO LA TUA WASP CARD",
-      "link": "ISCRIVITI QUI"
+      "text": "SE NON APPARTIENI A NESSUNA ASSOCIAZIONE ANIMALISTA, PUOI OTTENERE SUBITO LA TUA WASP CARD RICHIEDENDOLA",
+      "link": "QUI"
     }
   },
   "About": {
     "mission": {
       "paragraph1": "WASP e' una piattaforma sicura che unisce gli amanti degli animali di tutto il mondo. Crediamo che costruendo una rete di solidarieta' reciproca con chi la pensa come noi, possiamo cambiare la cultura dominante che ci ha portato fin qui. Spendere i nostri soldi consapevolmente puo' essere una strategia vincente.",
-      "paragraph2": "Per esempio: perche' acquistare prodotti o servizi in un posto qualsiasi? Ci sono molte aziende e negozi che fanno regolari donazioni per gli animali, se offrono gli stessi beni e servizi non e' meglio rifornirsi da loro? Inoltre, proprio perche' siamo amanti degli animali potremmo ricevere un trattamento speciale! La Mappa degli Amici degli Animali ci indica i negozi/aziende che donano alle Organizzazioni Animaliste... e loro, se sono disponibili ad offrire un trattamento speciale agli animalisti, sapranno che lo siamo mostrandogli la WASP CARD!",
+      "paragraph2": "Per esempio: perche' acquistare prodotti o servizi in un posto qualsiasi? Ci sono molte aziende e negozi che fanno regolari donazioni per gli animali, se offrono gli stessi beni e servizi non e' meglioessere solidali e rifornirsi da loro? Lo sapevi che alcune di queste attivita' commerciali offrono un trattamento speciale a chi ha una WASP CARD? La solidarieta' e reciproca! La Mappa degli Amici degli Animali ci indica i negozi/aziende/professionisti che donano alle Organizzazioni Animaliste con un segnalino arancione. Le attivita' commerciali indicate con il segnalino rosso sono quelle che ci danno un 'trattamento speciale' [che non significa uno sconto, potrebbe essere una stretta di mano, non e' il valore commerciale che conta, ma il gesto di reciproca solidarieta', e' come dire: Hey, siamo dalla stessa parte!",
       "paragraph3": "Il nostro potere di acquisto e', appunto, un potere... anzi, un SUPER POTERE! Usiamolo!"
     },
     "cta": "DIVENTA UNA WASP E AIUTACI",
@@ -133,7 +133,7 @@
         "Le aziende che vanno incontro a queste crescenti esigenze di mercato prosperano."
       ]
     },
-    "callout": "PER ESSERE AMICI DEGLI ANIMALI BISOGNA FARE UNA QUALSIASI DONAZIONE (anche 1 Euro) AD UNA QUALSIASI ORGANIZZAZIONE ANIMALISTA",
+    "callout": "PER ESSERE AMICI DEGLI ANIMALI BISOGNA FARE UNA QUALSIASI DONAZIONE (anche 1 Euro) AD UNA QUALSIASI ORGANIZZAZIONE ANIMALISTA REGISTRATA",
     "friendsExplanation": {
       "paragraph1": "Gli Amici degli Animali saranno VISIBILI sulla mappa per un anno (poi potranno rinnovare la loro posizione). La loro donazione li rende AMICI e portera' loro nuovi guadagni sottoforma di nuovi clienti consapevoli. Conviene a loro (le ditte), conviene a noi (consumatori) e conviene agli animali (che saranno i beneficiari di questo circolo virtuoso).",
       "ps": "P.S. In futuro faremo una classifica per omaggiare le WASP piu' virtuose!",
