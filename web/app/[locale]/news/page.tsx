@@ -588,9 +588,10 @@ export default function PublicNewsPage() {
                       <h3 className="text-lg font-bold text-gray-900">
                         {article.title}
                       </h3>
-                      <p className="text-gray-600 text-sm mt-2 line-clamp-2">
-                        {article.content}
-                      </p>
+                      <div
+                        className="text-gray-600 text-sm mt-2 line-clamp-2 prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline"
+                        dangerouslySetInnerHTML={{ __html: article.content }}
+                      />
                       <div className="flex gap-4 mt-3 text-xs text-gray-500">
                         <span>
                           Published:{" "}
