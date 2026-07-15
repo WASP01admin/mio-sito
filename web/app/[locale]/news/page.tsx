@@ -599,7 +599,7 @@ export default function PublicNewsPage() {
                         {article.title}
                       </h3>
                       <div
-                        className="text-gray-600 text-sm mt-2 line-clamp-2 prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline"
+                        className="text-gray-600 text-sm mt-2 line-clamp-2 prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a]:pointer-events-auto [&_a]:cursor-pointer"
                         dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(article.content) }}
                       />
                       <div className="flex gap-4 mt-3 text-xs text-gray-500">
@@ -747,7 +747,7 @@ export default function PublicNewsPage() {
                         {news.headline}
                       </h3>
                       <div
-                        className="text-sm text-gray-700 line-clamp-2 break-words prose prose-sm max-w-none"
+                        className="text-sm text-gray-700 line-clamp-2 break-words prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline [&_a]:pointer-events-auto [&_a]:cursor-pointer"
                         dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(news.description) }}
                       />
                     </button>
@@ -869,7 +869,7 @@ export default function PublicNewsPage() {
                 </div>
 
                 <div
-                  className="prose prose-sm max-w-none text-gray-700 leading-relaxed [&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-blue-800"
+                  className="prose prose-sm max-w-none text-gray-700 leading-relaxed [&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-blue-800 [&_a]:pointer-events-auto [&_a]:cursor-pointer"
                   dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(selectedNews.description) }}
                 />
               </div>
