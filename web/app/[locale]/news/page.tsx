@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import RichTextEditor from "@/components/RichTextEditor";
 
 interface NewsItem {
@@ -305,7 +305,7 @@ export default function PublicNewsPage() {
   }
 
 
-  async function handleImageUpload(e: React.ChangeEvent<HTMLInputElement>) {
+  const handleImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
 
@@ -315,7 +315,19 @@ export default function PublicNewsPage() {
       setImagePreview(event.target?.result as string);
     };
     reader.readAsDataURL(file);
-  }
+  }, []);
+
+  const handleTitleChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, title: e.target.value }));
+  }, []);
+
+  const handleContentChange = useCallback((value: string) => {
+    setFormData(prev => ({ ...prev, content: value }));
+  }, []);
+
+  const handleDateChange = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormData(prev => ({ ...prev, published_date: e.target.value }));
+  }, []);
 
   async function handleCreateArticle(e: React.FormEvent) {
     e.preventDefault();
@@ -469,9 +481,7 @@ export default function PublicNewsPage() {
                   <input
                     type="text"
                     value={formData.title}
-                    onChange={(e) =>
-                      setFormData({ ...formData, title: e.target.value })
-                    }
+                    onChange={handleTitleChange}
                     placeholder="Article title"
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                     required
@@ -492,7 +502,7 @@ export default function PublicNewsPage() {
 
                   <RichTextEditor
                     value={formData.content}
-                    onChange={(value) => setFormData({ ...formData, content: value })}
+                    onChange={handleContentChange}
                     placeholder="Write your article... (minimum 500 characters)"
                   />
 
@@ -540,9 +550,7 @@ export default function PublicNewsPage() {
                   <input
                     type="date"
                     value={formData.published_date}
-                    onChange={(e) =>
-                      setFormData({ ...formData, published_date: e.target.value })
-                    }
+                    onChange={handleDateChange}
                     className="w-full px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:border-blue-500"
                   />
                 </div>
