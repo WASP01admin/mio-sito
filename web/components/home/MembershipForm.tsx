@@ -212,18 +212,6 @@ export default function MembershipForm({ isMobile }: MembershipFormProps) {
           {t("explanation")}
         </p>
 
-        <div className="mt-8 flex flex-wrap justify-center gap-4">
-          <div className="rounded-lg border-2 border-black bg-black px-4 py-2 text-center text-white">
-            <div className="text-xs font-bold">Apple Wallet</div>
-          </div>
-          <div className="rounded-lg border-2 border-blue-500 bg-blue-50 px-4 py-2 text-center">
-            <div className="text-xs font-bold text-blue-600">Google Wallet</div>
-          </div>
-          <div className="rounded-lg border-2 border-blue-600 bg-blue-50 px-4 py-2 text-center">
-            <div className="text-xs font-bold text-blue-700">Samsung Wallet</div>
-          </div>
-        </div>
-
         {submitState === "success" ? (
           <div className="mt-8 rounded-md border border-green-300 bg-green-50 p-4 text-center text-sm font-semibold text-green-900">
             {successStatus === "verify_email_sent"
