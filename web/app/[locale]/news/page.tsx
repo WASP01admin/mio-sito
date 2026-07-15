@@ -3,6 +3,16 @@
 import { useState, useEffect, useCallback } from "react";
 import RichTextEditor from "@/components/RichTextEditor";
 
+// Fix links without protocol - ensure all links have http:// or https://
+function fixLinksWithoutProtocol(html: string): string {
+  return html.replace(/href="(?!https?:\/\/)([^"]+)"/g, (match, url) => {
+    if (url.startsWith("www.") || url.includes(".")) {
+      return `href="https://${url}"`;
+    }
+    return match;
+  });
+}
+
 interface NewsItem {
   id: string;
   headline: string;
@@ -590,7 +600,7 @@ export default function PublicNewsPage() {
                       </h3>
                       <div
                         className="text-gray-600 text-sm mt-2 line-clamp-2 prose prose-sm max-w-none [&_a]:text-blue-600 [&_a]:underline"
-                        dangerouslySetInnerHTML={{ __html: article.content }}
+                        dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(article.content) }}
                       />
                       <div className="flex gap-4 mt-3 text-xs text-gray-500">
                         <span>
@@ -738,7 +748,7 @@ export default function PublicNewsPage() {
                       </h3>
                       <div
                         className="text-sm text-gray-700 line-clamp-2 break-words prose prose-sm max-w-none"
-                        dangerouslySetInnerHTML={{ __html: news.description }}
+                        dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(news.description) }}
                       />
                     </button>
                   </div>
@@ -860,7 +870,7 @@ export default function PublicNewsPage() {
 
                 <div
                   className="prose prose-sm max-w-none text-gray-700 leading-relaxed [&_a]:text-blue-600 [&_a]:underline [&_a]:hover:text-blue-800"
-                  dangerouslySetInnerHTML={{ __html: selectedNews.description }}
+                  dangerouslySetInnerHTML={{ __html: fixLinksWithoutProtocol(selectedNews.description) }}
                 />
               </div>
             </div>
