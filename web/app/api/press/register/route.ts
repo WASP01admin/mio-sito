@@ -3,7 +3,6 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 import { resend, RESEND_FROM } from "@/lib/resend";
 import { generateToken } from "@/lib/membership-code";
 
-const PRESS_PASSWORD = "press123"; // Same password for all press orgs
 const VERIFICATION_TOKEN_EXPIRY_HOURS = 24;
 
 function generatePressCode(): string {
@@ -12,6 +11,16 @@ function generatePressCode(): string {
     .toString()
     .padStart(4, "0");
   return `ITA${num}`;
+}
+
+function generatePassword(): string {
+  // Generate a random password: 12 characters mix of uppercase, lowercase, numbers
+  const chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%";
+  let password = "";
+  for (let i = 0; i < 12; i++) {
+    password += chars.charAt(Math.floor(Math.random() * chars.length));
+  }
+  return password;
 }
 
 function siteUrl() {
@@ -73,8 +82,9 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Generate verification token
+    // Generate verification token and unique password
     const verificationToken = generateToken();
+    const generatedPassword = generatePassword();
     const expiresAt = new Date(
       Date.now() + VERIFICATION_TOKEN_EXPIRY_HOURS * 60 * 60 * 1000
     ).toISOString();
@@ -87,7 +97,7 @@ export async function POST(request: NextRequest) {
         name: publisher_name,
         email: email.toLowerCase(),
         country: country,
-        password: PRESS_PASSWORD,
+        password: generatedPassword,
         verified: false,
         verification_token: verificationToken,
         token_expires_at: expiresAt,
@@ -123,6 +133,14 @@ export async function POST(request: NextRequest) {
           <p>Se non riesci a cliccare il link, copia e incolla questo URL nel tuo browser:</p>
           <p>${verifyUrl}</p>
           <p>Questo link scade tra ${VERIFICATION_TOKEN_EXPIRY_HOURS} ore.</p>
+
+          <hr style="margin: 20px 0;">
+
+          <h3>Le tue credenziali di accesso:</h3>
+          <p><strong>Press Code:</strong> ${pressCode}</p>
+          <p><strong>Password:</strong> ${generatedPassword}</p>
+          <p style="font-size: 12px; color: #666;">Salva queste credenziali in un posto sicuro. Potrai cambiarle dopo il login.</p>
+
           <p>A presto!</p>
         `,
       });
