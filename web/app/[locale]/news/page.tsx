@@ -97,7 +97,11 @@ export default function PublicNewsPage() {
   useEffect(() => {
     const sorted = [...newsList];
     if (sortBy === "date") {
-      sorted.sort((a, b) => new Date(b.created_at).getTime() - new Date(a.created_at).getTime());
+      sorted.sort((a, b) => {
+        const dateA = new Date(b.published_date || b.created_at).getTime();
+        const dateB = new Date(a.published_date || a.created_at).getTime();
+        return dateA - dateB;
+      });
     } else if (sortBy === "country") {
       sorted.sort((a, b) => (a.associations?.code || "").localeCompare(b.associations?.code || ""));
     } else if (sortBy === "association") {
@@ -720,7 +724,7 @@ export default function PublicNewsPage() {
           <div className="space-y-4">
             {sortedNews.map((news) => {
               const countryCode = news.associations?.code?.substring(0, 3) || "---";
-              const date = new Date(news.created_at).toLocaleDateString("en-US", {
+              const date = new Date(news.published_date || news.created_at).toLocaleDateString("en-US", {
                 month: "2-digit",
                 day: "2-digit",
                 year: "2-digit",
