@@ -143,7 +143,36 @@ export async function generateWaspCardPass(cardData: WaspCardData): Promise<Buff
       }
     }
 
-    // Generate pass (will be signed when Apple certificate is available)
+    // Load and sign with Apple certificate if available
+    try {
+      const certPath = path.join(process.cwd(), "web", "certificates");
+      const certFile = path.join(certPath, "wasp.pem");
+      const keyFile = path.join(certPath, "wasp.key");
+
+      if (fs.existsSync(certFile) && fs.existsSync(keyFile)) {
+        const certificate = fs.readFileSync(certFile);
+        const privateKey = fs.readFileSync(keyFile);
+
+        // Set signing certificate and key
+        pass.signingCertificate = certificate;
+        pass.signingCertificatePrivateKey = privateKey;
+
+        // TODO: Add WWDR certificate when obtained from Apple
+        // Download from: https://developer.apple.com/certificationauthority/AppleWWDRCA.cer
+        // const wwdrFile = path.join(certPath, "AppleWWDRCA.cer");
+        // if (fs.existsSync(wwdrFile)) {
+        //   pass.wwdrCertificate = fs.readFileSync(wwdrFile);
+        // }
+
+        console.log("✅ Wallet pass will be cryptographically signed");
+      } else {
+        console.warn("⚠️ Certificate files not found - pass will be unsigned");
+      }
+    } catch (certError) {
+      console.warn("Warning: Could not load signing certificate:", certError);
+    }
+
+    // Generate and sign pass
     const passBuffer = pass.getAsBuffer();
     return passBuffer;
   } catch (error) {
