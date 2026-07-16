@@ -484,6 +484,13 @@ export default function PublicNewsPage() {
         </div>
 
         <div className="max-w-6xl mx-auto px-4 py-8">
+          {/* WASP NEWS Rules Banner */}
+          <div className="mb-8 p-4 bg-red-50 border-2 border-red-500 rounded-lg">
+            <p className="text-red-700 text-xs leading-relaxed font-semibold">
+              <span className="font-bold text-sm">WASP NEWS TOLLERANZA ZERO:</span> Sono ammessi articoli esclusivamente riguardanti gli animali, il tema 'ambientale' vale solo se riguarda la fauna selvatica. Niente petizioni, niente suggerimenti alimentari, niente pubblicita'. I link sono ammessi… ma solo se usati con moderazione. Il privilegio di pubblicare, una volta revocato, non è rinnovabile.
+            </p>
+          </div>
+
           {/* New Article Section */}
           <div className="bg-white rounded-lg border border-gray-200 p-6 mb-8">
             <div className="flex justify-between items-center mb-4">
