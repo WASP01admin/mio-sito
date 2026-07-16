@@ -7,93 +7,94 @@ export interface WaspCardData {
   userName: string;
   issuedAt: Date;
   expiresAt: Date;
-  type: "associated" | "direct";
-  associationName?: string;
+  associationName: string;
+  associationCity: string;
+  userEmail: string;
   userImageUrl?: string;
 }
 
 export async function generateWaspCardPass(cardData: WaspCardData): Promise<Buffer> {
   try {
-    // Fetch user image if provided
-    let userImageBuffer: Buffer | undefined;
-    if (cardData.userImageUrl) {
-      try {
-        const imageResponse = await fetch(cardData.userImageUrl);
-        if (imageResponse.ok) {
-          const arrayBuffer = await imageResponse.arrayBuffer();
-          userImageBuffer = Buffer.from(arrayBuffer);
-        }
-      } catch (err) {
-        console.warn("Failed to fetch user image for pass:", err);
-      }
-    }
+    const assetsPath = path.join(process.cwd(), "public", "card-assets");
 
-    // Create pass structure
+    // Create pass structure using FRONT image as main visual
     const pass = new PKPass({
-      // Pass type identifier (would need Apple-issued identifier when company cert is ready)
       passTypeIdentifier: "pass.com.wasp.card",
-      teamIdentifier: "YOUR_TEAM_ID",
+      teamIdentifier: "", // Will be updated when Apple cert arrives
       organizationName: "WASP",
-      description: "WASP World Animal Solidarity Project Card",
+      description: `${cardData.userName} - ${cardData.associationName} Card`,
+      serialNumber: cardData.cardNumber,
 
-      // Visual appearance
-      backgroundColor: "rgb(0, 0, 0)", // Black background
-      foregroundColor: "rgb(255, 206, 0)", // WASP Yellow text
-      labelColor: "rgb(255, 206, 0)", // WASP Yellow labels
+      // Visual appearance (WASP theme: yellow & black)
+      backgroundColor: "rgb(0, 0, 0)",
+      foregroundColor: "rgb(255, 206, 0)",
+      labelColor: "rgb(255, 206, 0)",
 
       // Pass content
       generic: {
         headerFields: [
           {
-            key: "cardType",
-            label: "WASP CARD",
-            value: cardData.type === "associated" ? "ASSOCIATED" : "DIRECT",
+            key: "association",
+            label: "ASSOCIATION",
+            value: cardData.associationName,
+            textAlignment: "PKTextAlignmentCenter",
           },
         ],
         primaryFields: [
           {
-            key: "cardNumber",
-            label: "Card Number",
-            value: cardData.cardNumber,
+            key: "holder",
+            label: "MEMBER",
+            value: cardData.userName,
             textAlignment: "PKTextAlignmentCenter",
           },
         ],
         secondaryFields: [
           {
-            key: "holder",
-            label: "Holder",
-            value: cardData.userName,
-          },
-          {
-            key: "type",
-            label: "Type",
-            value: cardData.associationName || "Direct Card",
+            key: "location",
+            label: "LOCATION",
+            value: cardData.associationCity,
           },
         ],
         auxiliaryFields: [
           {
-            key: "issued",
-            label: "Issued",
-            value: cardData.issuedAt.toLocaleDateString(),
-            dateStyle: "PKDateStyleMedium",
-          },
-          {
-            key: "expires",
-            label: "Expires",
-            value: cardData.expiresAt.toLocaleDateString(),
-            dateStyle: "PKDateStyleMedium",
+            key: "cardNumber",
+            label: "CARD NUMBER",
+            value: cardData.cardNumber,
           },
         ],
         backFields: [
           {
-            key: "info",
-            label: "Information",
-            value: "This is your World Animal Solidarity Project Card. Valid for 1 year from issue date.",
+            key: "email",
+            label: "Email",
+            value: cardData.userEmail,
+          },
+          {
+            key: "issued",
+            label: "Issued",
+            value: new Date(cardData.issuedAt).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            }),
+          },
+          {
+            key: "expires",
+            label: "Expires",
+            value: new Date(cardData.expiresAt).toLocaleDateString("en-US", {
+              month: "short",
+              day: "numeric",
+              year: "numeric",
+            }),
+          },
+          {
+            key: "disclaimer",
+            label: "Terms",
+            value: "This card is non-transferable. Valid only for the named member. Lost or damaged cards must be replaced by contacting the association.",
           },
         ],
       },
 
-      // Add barcode (would be QR code with card number + validation hash)
+      // QR code with card number for scanning
       barcodes: [
         {
           format: "PKBarcodeFormatQR",
@@ -102,27 +103,47 @@ export async function generateWaspCardPass(cardData: WaspCardData): Promise<Buff
         },
       ],
 
-      // Expiration
       expirationDate: cardData.expiresAt,
       voided: false,
     });
 
-    // Add user image as thumbnail if available
-    if (userImageBuffer) {
-      pass.addBuffer("thumbnail", userImageBuffer);
+    // Load and set images from card assets
+    try {
+      // Main strip image (front of card)
+      const stripImage = fs.readFileSync(path.join(assetsPath, "FRONT.png"));
+      pass.setImage("strip", stripImage, { density: 2 });
+
+      // Logo
+      const logoImage = fs.readFileSync(path.join(assetsPath, "logo.png"));
+      pass.setImage("logo", logoImage);
+
+      // Wasp icon
+      const waspIcon = fs.readFileSync(path.join(assetsPath, "wasp.png"));
+      pass.setImage("icon", waspIcon);
+
+      // Background pattern
+      const bgImage = fs.readFileSync(path.join(assetsPath, "seamless.png"));
+      pass.setImage("background", bgImage);
+    } catch (imgError) {
+      console.warn("Warning: Some card images could not be loaded:", imgError);
+      // Pass generation will continue with missing images
     }
 
-    // TODO: Sign with certificate when Apple provides company cert
-    // For now, this is stubbed - we'll update when cert arrives
-    // The actual signing would look like:
-    // const certificate = fs.readFileSync(path.join(process.cwd(), 'certificates', 'pass.cer'));
-    // const wwdrCertificate = fs.readFileSync(path.join(process.cwd(), 'certificates', 'wwdr.cer'));
-    // const key = fs.readFileSync(path.join(process.cwd(), 'certificates', 'key.p8'));
-    // pass.signingCertificate = certificate;
-    // pass.signingCertificatePrivateKey = key;
-    // pass.wwdrCertificate = wwdrCertificate;
+    // Fetch and add user image if provided
+    if (cardData.userImageUrl) {
+      try {
+        const imageResponse = await fetch(cardData.userImageUrl);
+        if (imageResponse.ok) {
+          const arrayBuffer = await imageResponse.arrayBuffer();
+          const userImageBuffer = Buffer.from(arrayBuffer);
+          pass.setImage("thumbnail", userImageBuffer);
+        }
+      } catch (err) {
+        console.warn("Failed to fetch user image for pass:", err);
+      }
+    }
 
-    // Generate pass (unsigned for now)
+    // Generate pass (will be signed when Apple certificate is available)
     const passBuffer = pass.getAsBuffer();
     return passBuffer;
   } catch (error) {
@@ -131,15 +152,13 @@ export async function generateWaspCardPass(cardData: WaspCardData): Promise<Buff
   }
 }
 
-// Validation helper to verify card pass integrity
 export function generateCardValidationHash(cardNumber: string, issuedAt: Date): string {
-  // Simple hash for validation (would be more complex in production)
   const data = `${cardNumber}${issuedAt.getTime()}`;
   let hash = 0;
   for (let i = 0; i < data.length; i++) {
     const char = data.charCodeAt(i);
     hash = (hash << 5) - hash + char;
-    hash = hash & hash; // Convert to 32bit integer
+    hash = hash & hash;
   }
   return Math.abs(hash).toString(16);
 }
