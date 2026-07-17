@@ -15,15 +15,16 @@ export default function WalletButtons({ code }: WalletButtonsProps) {
       const response = await fetch(`/api/wallet/google-link?code=${encodeURIComponent(code)}`);
       const data = await response.json();
 
-      if (data.url) {
+      if (response.ok && data.url) {
         // Redirect to Google Wallet save URL
         window.location.href = data.url;
       } else {
-        alert("Failed to generate Google Wallet link");
+        console.error("Wallet API error:", data);
+        alert(data.error || "Failed to generate Google Wallet link");
       }
     } catch (error) {
       console.error("Error getting Google Wallet link:", error);
-      alert("Error connecting to Google Wallet");
+      alert("Error connecting to Google Wallet: " + (error instanceof Error ? error.message : "Unknown error"));
     } finally {
       setIsLoading(false);
     }

@@ -10,10 +10,10 @@ interface GoogleWalletPassData {
   userEmail: string;
 }
 
-function createGenericCardObject(passData: GoogleWalletPassData) {
+function createGenericCardObject(passData: GoogleWalletPassData, issuerId: string) {
   return {
-    classId: `${process.env.GOOGLE_WALLET_ISSUER_ID}!generic_class`,
-    objectId: `${process.env.GOOGLE_WALLET_ISSUER_ID}!${passData.cardNumber}`,
+    classId: `${issuerId}!generic_class`,
+    objectId: `${issuerId}!${passData.cardNumber}`,
     genericType: "GENERIC_TYPE_UNSPECIFIED",
     hexBackgroundColor: "#000000",
     logo: {
@@ -65,20 +65,34 @@ function createGenericCardObject(passData: GoogleWalletPassData) {
 export async function generateGoogleWalletJwt(
   passData: GoogleWalletPassData
 ): Promise<string> {
-  const privateKey = process.env.GOOGLE_WALLET_PRIVATE_KEY;
+  const credentialsB64 = process.env.GOOGLE_WALLET_CREDENTIALS_B64;
   const issuerId = process.env.GOOGLE_WALLET_ISSUER_ID;
 
-  if (!privateKey || !issuerId) {
+  if (!credentialsB64) {
     throw new Error("Google Wallet credentials not configured");
   }
 
+  if (!issuerId) {
+    throw new Error("Google Wallet issuer ID not configured");
+  }
+
+  // Decode base64 credentials and parse JSON
+  const credentialsJson = Buffer.from(credentialsB64, "base64").toString("utf-8");
+  const credentials = JSON.parse(credentialsJson);
+
+  const privateKey = credentials.private_key;
+
+  if (!privateKey) {
+    throw new Error("Invalid Google Wallet credentials: missing private key");
+  }
+
   const payload = {
-    iss: `wasp-card-issuer@${issuerId}.iam.gserviceaccount.com`,
+    iss: issuerId,
     aud: "google",
     origins: ["https://waspnest.org"],
     typ: "savetowallet",
     payload: {
-      genericObjects: [createGenericCardObject(passData)],
+      genericObjects: [createGenericCardObject(passData, issuerId)],
     },
   };
 
