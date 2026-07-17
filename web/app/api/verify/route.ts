@@ -22,26 +22,15 @@ interface VerifyRow {
   token_expires_at: string | null;
   token_purpose: string | null;
   is_verified: boolean;
-  associations: AssociationRef | AssociationRef[] | null;
+  associations: AssociationRef | null;
 }
 
 function siteUrl() {
   return process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 }
 
-function associationOf(row: VerifyRow): AssociationRef | null {
-  const value = row.associations;
-  if (!value) return null;
-  return Array.isArray(value) ? (value[0] ?? null) : value;
-}
-
-// Best-effort: the association's own confirmation is a separate, manual
-// process (admin reads their reply and approves later). A failure here
-// must never block the user from seeing their own success page.
 async function notifyAssociation(userProfileId: string, association: AssociationRef, memberEmail: string) {
   if (association.code === WASP_DIRECT_ASSOCIATION_CODE) {
-    // Direct-to-WASP members have no external association to confirm with --
-    // WASP is the sole verifier, via the identity fields collected at signup.
     return;
   }
 
@@ -73,13 +62,6 @@ async function notifyAssociation(userProfileId: string, association: Association
         association_confirmation_token: confirmationToken,
       })
       .eq("id", userProfileId);
-    await supabaseAdmin.from("audit_log").insert({
-      entity_type: "user_profile",
-      entity_id: userProfileId,
-      field: "association_contacted_at",
-      old_value: null,
-      new_value: contactedAt,
-    });
   } catch (error) {
     console.error("Failed to notify association:", error);
   }
@@ -92,14 +74,11 @@ export async function GET(request: NextRequest) {
   const isMobile = device.type === "mobile";
   const base = `${siteUrl()}/${locale}`;
 
-  console.log(`[VERIFY] Starting verification with token: ${token?.slice(0, 8)}...`);
-
   if (!token) {
-    console.log("[VERIFY] No token provided");
     return NextResponse.redirect(`${base}/registrati/errore?reason=missing_token`);
   }
 
-  // First, find user WITHOUT join to avoid join failures
+  // Find user without join to avoid join failures
   const { data: userOnly, error: userError } = await supabaseAdmin
     .from("user_profiles")
     .select("id, nickname, email, token_expires_at, token_purpose, is_verified, association_id")
@@ -107,48 +86,37 @@ export async function GET(request: NextRequest) {
     .maybeSingle();
 
   if (userError) {
-    console.error("[VERIFY] Lookup query failed:", userError);
+    console.error("[VERIFY] Lookup failed:", userError);
     return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
   }
 
   if (!userOnly) {
-    console.log("[VERIFY] No profile found with this token");
+    console.log("[VERIFY] No profile found with token");
     return NextResponse.redirect(`${base}/registrati/errore?reason=invalid_token`);
   }
 
-  console.log(`[VERIFY] Found profile: ${userOnly.email}, purpose: ${userOnly.token_purpose}, verified: ${userOnly.is_verified}`);
-
-  // Then fetch association separately
-  const { data: association, error: assocError } = await supabaseAdmin
+  // Fetch association separately
+  const { data: assocData, error: assocError } = await supabaseAdmin
     .from("associations")
     .select("code, name, email")
     .eq("id", userOnly.association_id)
     .maybeSingle();
 
-  if (assocError || !association) {
+  if (assocError || !assocData) {
     console.error("[VERIFY] Association lookup failed:", assocError);
     return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
   }
 
-  // Convert to VerifyRow format
-  const profile: VerifyRow = {
-    id: userOnly.id,
-    nickname: userOnly.nickname,
-    email: userOnly.email,
-    token_expires_at: userOnly.token_expires_at,
-    token_purpose: userOnly.token_purpose,
-    is_verified: userOnly.is_verified,
-    associations: association,
-  };
-
-  const expiresAt = profile.token_expires_at ? new Date(profile.token_expires_at) : null;
+  // Check token expiry
+  const expiresAt = userOnly.token_expires_at ? new Date(userOnly.token_expires_at) : null;
   if (!expiresAt || expiresAt.getTime() < Date.now()) {
     return NextResponse.redirect(`${base}/registrati/errore?reason=expired_token`);
   }
 
-  if (profile.token_purpose === "renewal") {
+  // Handle renewal
+  if (userOnly.token_purpose === "renewal") {
     const newExpiresAt = new Date(Date.now() + ONE_YEAR_MS).toISOString();
-    const { error: renewError } = await supabaseAdmin
+    await supabaseAdmin
       .from("user_profiles")
       .update({
         expires_at: newExpiresAt,
@@ -156,16 +124,11 @@ export async function GET(request: NextRequest) {
         token_expires_at: null,
         token_purpose: null,
       })
-      .eq("id", profile.id);
-
-    if (renewError) {
-      console.error("Renewal update failed:", renewError);
-      return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
-    }
+      .eq("id", userOnly.id);
 
     await supabaseAdmin.from("audit_log").insert({
       entity_type: "user_profile",
-      entity_id: profile.id,
+      entity_id: userOnly.id,
       field: "expires_at",
       old_value: null,
       new_value: newExpiresAt,
@@ -174,65 +137,59 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${base}/registrati/successo?renewed=true`);
   }
 
-  if (profile.is_verified) {
+  // Skip if already verified
+  if (userOnly.is_verified) {
     return NextResponse.redirect(`${base}/registrati/successo?mobile=${isMobile}`);
   }
 
-  // Use the association we already fetched
-  const assocData = profile.associations as AssociationRef | null;
-  if (!assocData) {
-    console.error("Verify: profile has no association", profile.id);
-    return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
-  }
-
+  // Generate membership code and token
   const uniqueCode = await generateUniqueMembershipCode(assocData.code);
   const walletAuthToken = generateToken();
-
-  // Set temporary card expiry (48 hours for temporary, then association confirms)
   const tempExpiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
 
-  const { error: verifyUpdateError } = await supabaseAdmin
+  // Update user as verified with temporary card
+  const { error: verifyError } = await supabaseAdmin
     .from("user_profiles")
     .update({
       is_verified: true,
       unique_membership_code: uniqueCode,
       wallet_authentication_token: walletAuthToken,
-      membership_status: "temporary", // User gets TEMPORARY card immediately
-      expires_at: tempExpiresAt, // Temporary card expires in 48 hours
+      membership_status: "temporary",
+      expires_at: tempExpiresAt,
       verification_token: null,
       token_expires_at: null,
       token_purpose: null,
     })
-    .eq("id", profile.id);
+    .eq("id", userOnly.id);
 
-  if (verifyUpdateError) {
-    console.error("Verify update failed:", verifyUpdateError);
+  if (verifyError) {
+    console.error("Verify update failed:", verifyError);
     return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
   }
 
   await supabaseAdmin.from("audit_log").insert({
     entity_type: "user_profile",
-    entity_id: profile.id,
+    entity_id: userOnly.id,
     field: "is_verified",
     old_value: "false",
     new_value: "true",
   });
 
-  // Generate TEMPORARY card for wallet immediately after email verification
-  // NOTE: This is async and should not block user verification
+  // Generate wallet pass (async, non-blocking)
   generateWaspCardPass({
     cardNumber: uniqueCode,
-    userName: profile.nickname || profile.email,
+    userName: userOnly.nickname || userOnly.email,
     issuedAt: new Date(),
     expiresAt: new Date(tempExpiresAt),
     associationName: assocData.name,
-    associationCity: "Italy", // TODO: get from association record
-    userEmail: profile.email,
+    associationCity: "Italy",
+    userEmail: userOnly.email,
   })
     .then(() => console.log(`✅ Wallet pass generated for ${uniqueCode}`))
-    .catch((passError) => console.error("Failed to generate wallet pass:", passError));
+    .catch((err) => console.error("Wallet pass generation failed:", err));
 
-  await notifyAssociation(profile.id, assocData, profile.email);
+  // Notify association
+  await notifyAssociation(userOnly.id, assocData as AssociationRef, userOnly.email);
 
   return NextResponse.redirect(
     `${base}/registrati/successo?code=${encodeURIComponent(uniqueCode)}&mobile=${isMobile}&chatToken=${encodeURIComponent(walletAuthToken)}`
