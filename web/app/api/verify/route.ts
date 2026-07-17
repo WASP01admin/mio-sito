@@ -99,26 +99,47 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${base}/registrati/errore?reason=missing_token`);
   }
 
-  const { data, error } = await supabaseAdmin
+  // First, find user WITHOUT join to avoid join failures
+  const { data: userOnly, error: userError } = await supabaseAdmin
     .from("user_profiles")
-    .select(
-      "id, nickname, email, token_expires_at, token_purpose, is_verified, associations(code, name, email)"
-    )
+    .select("id, nickname, email, token_expires_at, token_purpose, is_verified, association_id")
     .eq("verification_token", token)
     .maybeSingle();
 
-  if (error) {
-    console.error("[VERIFY] Lookup query failed:", error);
+  if (userError) {
+    console.error("[VERIFY] Lookup query failed:", userError);
     return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
   }
 
-  const profile = data as VerifyRow | null;
-  if (!profile) {
+  if (!userOnly) {
     console.log("[VERIFY] No profile found with this token");
     return NextResponse.redirect(`${base}/registrati/errore?reason=invalid_token`);
   }
 
-  console.log(`[VERIFY] Found profile: ${profile.email}, purpose: ${profile.token_purpose}, verified: ${profile.is_verified}`);
+  console.log(`[VERIFY] Found profile: ${userOnly.email}, purpose: ${userOnly.token_purpose}, verified: ${userOnly.is_verified}`);
+
+  // Then fetch association separately
+  const { data: association, error: assocError } = await supabaseAdmin
+    .from("associations")
+    .select("code, name, email")
+    .eq("id", userOnly.association_id)
+    .maybeSingle();
+
+  if (assocError || !association) {
+    console.error("[VERIFY] Association lookup failed:", assocError);
+    return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
+  }
+
+  // Convert to VerifyRow format
+  const profile: VerifyRow = {
+    id: userOnly.id,
+    nickname: userOnly.nickname,
+    email: userOnly.email,
+    token_expires_at: userOnly.token_expires_at,
+    token_purpose: userOnly.token_purpose,
+    is_verified: userOnly.is_verified,
+    associations: association,
+  };
 
   const expiresAt = profile.token_expires_at ? new Date(profile.token_expires_at) : null;
   if (!expiresAt || expiresAt.getTime() < Date.now()) {
