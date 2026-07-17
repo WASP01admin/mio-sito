@@ -191,25 +191,18 @@ export async function GET(request: NextRequest) {
   });
 
   // Generate TEMPORARY card for wallet immediately after email verification
-  try {
-    const cardPass = await generateWaspCardPass({
-      cardNumber: uniqueCode,
-      userName: profile.nickname || profile.email,
-      issuedAt: new Date(),
-      expiresAt: new Date(tempExpiresAt),
-      associationName: association.name,
-      associationCity: "Italy", // TODO: get from association record
-      userEmail: profile.email,
-    });
-
-    console.log(`✅ Wallet pass generated for ${uniqueCode}`);
-
-    // TODO: Send push notification to device to add card to wallet
-    // For now: card is ready at /api/cards/download/{uniqueCode}
-  } catch (passError) {
-    console.error("Failed to generate wallet pass:", passError);
-    // Don't block user - card is created, just pass generation failed
-  }
+  // NOTE: This is async and should not block user verification
+  generateWaspCardPass({
+    cardNumber: uniqueCode,
+    userName: profile.nickname || profile.email,
+    issuedAt: new Date(),
+    expiresAt: new Date(tempExpiresAt),
+    associationName: association.name,
+    associationCity: "Italy", // TODO: get from association record
+    userEmail: profile.email,
+  })
+    .then(() => console.log(`✅ Wallet pass generated for ${uniqueCode}`))
+    .catch((passError) => console.error("Failed to generate wallet pass:", passError));
 
   await notifyAssociation(profile.id, association, profile.email);
 
