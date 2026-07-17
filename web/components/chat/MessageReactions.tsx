@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { ALLOWED_REACTION_EMOJIS, type ChatReactionSummary } from "";
+import { ALLOWED_REACTION_EMOJIS, type ChatReactionSummary } from "@wasp/shared";
 
 interface MessageReactionsProps {
   reactions: ChatReactionSummary[];
