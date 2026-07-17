@@ -5,6 +5,7 @@ import Link from "next/link";
 import { Home } from "lucide-react";
 
 const LINKS = [
+  { href: "/admin/users-search", label: "🔍 Delete Users" },
   { href: "/admin/members", label: "Members" },
   { href: "/admin/pending", label: "Pending Submissions" },
   { href: "/admin/associations", label: "Associations" },
