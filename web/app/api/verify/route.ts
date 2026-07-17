@@ -5,6 +5,7 @@ import { resolveLocale } from "@/lib/locale";
 import { resend, RESEND_FROM } from "@/lib/resend";
 import { associationConfirmationEmail } from "@/lib/email-templates";
 import { WASP_DIRECT_ASSOCIATION_CODE } from "@/lib/constants";
+import { generateWaspCardPass } from "@/lib/wallet-pass-generator";
 
 const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
@@ -159,12 +160,17 @@ export async function GET(request: NextRequest) {
   const uniqueCode = await generateUniqueMembershipCode(association.code);
   const walletAuthToken = generateToken();
 
+  // Set temporary card expiry (48 hours for temporary, then association confirms)
+  const tempExpiresAt = new Date(Date.now() + 48 * 60 * 60 * 1000).toISOString();
+
   const { error: verifyUpdateError } = await supabaseAdmin
     .from("user_profiles")
     .update({
       is_verified: true,
       unique_membership_code: uniqueCode,
       wallet_authentication_token: walletAuthToken,
+      membership_status: "temporary", // User gets TEMPORARY card immediately
+      expires_at: tempExpiresAt, // Temporary card expires in 48 hours
       verification_token: null,
       token_expires_at: null,
       token_purpose: null,
@@ -183,6 +189,27 @@ export async function GET(request: NextRequest) {
     old_value: "false",
     new_value: "true",
   });
+
+  // Generate TEMPORARY card for wallet immediately after email verification
+  try {
+    const cardPass = await generateWaspCardPass({
+      cardNumber: uniqueCode,
+      userName: profile.nickname || profile.email,
+      issuedAt: new Date(),
+      expiresAt: new Date(tempExpiresAt),
+      associationName: association.name,
+      associationCity: "Italy", // TODO: get from association record
+      userEmail: profile.email,
+    });
+
+    console.log(`✅ Wallet pass generated for ${uniqueCode}`);
+
+    // TODO: Send push notification to device to add card to wallet
+    // For now: card is ready at /api/cards/download/{uniqueCode}
+  } catch (passError) {
+    console.error("Failed to generate wallet pass:", passError);
+    // Don't block user - card is created, just pass generation failed
+  }
 
   await notifyAssociation(profile.id, association, profile.email);
 
