@@ -264,9 +264,9 @@
     "pending": {
       "title": "Ecco la tua WASP Card!",
       "statusBadge": "Stato: Temporanea",
-      "codeLabel": "Il tuo codice tessera:",
-      "explanation": "Questa è la tua card temporanea, già valida da aggiungere al wallet. Per diventare permanente (valida 1 anno) ci serve la conferma della tua associazione.",
-      "associationCta": "Abbiamo già scritto alla tua associazione, ma il modo più veloce è che tu stesso/a la contatti e le chieda di risponderci al più presto. Più in fretta confermano, più in fretta la tua card diventa permanente!",
+      "codeLabel": "Il tuo numero di card univoco:",
+      "explanation": "La tua card ha uno status temporaneo fino a quando non riceviamo la validazione della tua email dalla tua organizzazione (se hai ricevuto la card direttamente da noi, ignora questo messaggio)",
+      "associationCta": "abbiamo chiesto alla tua organizzazione di verificare la tua email, contattali per assicurarti che ci rispondano! La tua card rimarrà temporanea per una settimana, se non rispondono verrà cancellata",
       "walletComingSoon": "I pulsanti Aggiungi a Apple Wallet / Google Wallet appariranno qui appena l'integrazione wallet sarà attiva.",
       "enterChat": "Entra nella Chat WASP"
     },

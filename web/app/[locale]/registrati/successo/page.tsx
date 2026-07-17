@@ -56,15 +56,6 @@ export default async function RegistrationSuccessPage({
                 {t("mobileWarning")}
               </p>
             )}
-
-            {chatToken && (
-              <a
-                href={`/api/chat/enter?token=${encodeURIComponent(chatToken)}`}
-                className="mt-6 inline-block rounded-md bg-black px-6 py-3 text-sm font-bold text-wasp-yellow"
-              >
-                {t("pending.enterChat")}
-              </a>
-            )}
           </>
         )}
       </div>
