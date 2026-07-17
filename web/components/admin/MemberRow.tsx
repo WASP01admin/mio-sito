@@ -128,6 +128,22 @@ export default function MemberRow({ member }: { member: MemberRowData }) {
     router.refresh();
   }
 
+  async function handleDelete() {
+    if (!window.confirm(`Delete user ${member.email}? This cannot be undone.`)) {
+      return;
+    }
+    setIsSubmitting(true);
+    const response = await fetch(`/api/admin/members/${member.id}/delete`, {
+      method: "DELETE",
+    });
+    setIsSubmitting(false);
+    if (response.ok) {
+      router.refresh();
+    } else {
+      alert("Failed to delete user");
+    }
+  }
+
   const isDirect = member.associationCode === DIRECT_ASSOCIATION_CODE;
 
   return (
@@ -214,6 +230,14 @@ export default function MemberRow({ member }: { member: MemberRowData }) {
               className="text-left text-xs text-blue-600 underline"
             >
               {isEditing ? "Close" : "Edit"}
+            </button>
+            <button
+              type="button"
+              disabled={isSubmitting}
+              onClick={handleDelete}
+              className="text-left text-xs text-red-600 underline disabled:opacity-50"
+            >
+              Delete
             </button>
           </div>
         </td>
