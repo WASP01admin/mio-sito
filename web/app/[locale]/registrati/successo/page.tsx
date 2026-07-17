@@ -51,6 +51,25 @@ export default async function RegistrationSuccessPage({
               {t("pending.associationCta")}
             </p>
 
+            {code && isMobile && (
+              <div className="mt-6 flex flex-col gap-3">
+                <a
+                  href={`/api/wallet/pass?code=${encodeURIComponent(code)}`}
+                  download={`WASP-${code}.pkpass`}
+                  className="inline-block rounded-md bg-black px-6 py-3 text-sm font-bold text-wasp-yellow hover:bg-gray-900"
+                >
+                  Add to Apple Wallet
+                </a>
+                <a
+                  href={`/api/wallet/pass?code=${encodeURIComponent(code)}`}
+                  download={`WASP-${code}.pkpass`}
+                  className="inline-block rounded-md bg-black px-6 py-3 text-sm font-bold text-wasp-yellow hover:bg-gray-900"
+                >
+                  Add to Google Wallet
+                </a>
+              </div>
+            )}
+
             {!isMobile && (
               <p className="mt-6 rounded-md border border-yellow-300 bg-yellow-50 p-3 text-sm text-yellow-900">
                 {t("mobileWarning")}
