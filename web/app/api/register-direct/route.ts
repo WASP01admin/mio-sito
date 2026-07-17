@@ -91,6 +91,8 @@ export async function POST(request: NextRequest) {
     Date.now() + TOKEN_EXPIRY_DAYS * 24 * 60 * 60 * 1000
   ).toISOString();
 
+  console.log(`[REGISTER-DIRECT] Creating user: ${email}, token: ${token.slice(0, 8)}...`);
+
   const { error: insertError } = await supabaseAdmin.from("user_profiles").insert({
     association_id: waspAssociation.id,
     nickname,
@@ -107,9 +109,11 @@ export async function POST(request: NextRequest) {
   });
 
   if (insertError) {
-    console.error("Failed to create direct user_profiles row:", insertError);
+    console.error("[REGISTER-DIRECT] Insert failed:", insertError);
     return NextResponse.json({ ok: false, error: "server_error" }, { status: 500 });
   }
+
+  console.log(`[REGISTER-DIRECT] User created successfully: ${email}`);
 
   const verificationUrl = `${siteUrl()}/api/verify?token=${token}&locale=${locale}`;
   const { subject, html } = verifyEmail({ nickname, verificationUrl });

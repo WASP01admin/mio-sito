@@ -92,7 +92,10 @@ export async function GET(request: NextRequest) {
   const isMobile = device.type === "mobile";
   const base = `${siteUrl()}/${locale}`;
 
+  console.log(`[VERIFY] Starting verification with token: ${token?.slice(0, 8)}...`);
+
   if (!token) {
+    console.log("[VERIFY] No token provided");
     return NextResponse.redirect(`${base}/registrati/errore?reason=missing_token`);
   }
 
@@ -105,14 +108,17 @@ export async function GET(request: NextRequest) {
     .maybeSingle();
 
   if (error) {
-    console.error("Verify lookup failed:", error);
+    console.error("[VERIFY] Lookup query failed:", error);
     return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
   }
 
   const profile = data as VerifyRow | null;
   if (!profile) {
+    console.log("[VERIFY] No profile found with this token");
     return NextResponse.redirect(`${base}/registrati/errore?reason=invalid_token`);
   }
+
+  console.log(`[VERIFY] Found profile: ${profile.email}, purpose: ${profile.token_purpose}, verified: ${profile.is_verified}`);
 
   const expiresAt = profile.token_expires_at ? new Date(profile.token_expires_at) : null;
   if (!expiresAt || expiresAt.getTime() < Date.now()) {
