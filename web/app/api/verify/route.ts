@@ -178,13 +178,14 @@ export async function GET(request: NextRequest) {
     return NextResponse.redirect(`${base}/registrati/successo?mobile=${isMobile}`);
   }
 
-  const association = associationOf(profile);
-  if (!association) {
-    console.error("Verify: profile has no resolvable association", profile.id);
+  // Use the association we already fetched
+  const assocData = profile.associations as AssociationRef | null;
+  if (!assocData) {
+    console.error("Verify: profile has no association", profile.id);
     return NextResponse.redirect(`${base}/registrati/errore?reason=server_error`);
   }
 
-  const uniqueCode = await generateUniqueMembershipCode(association.code);
+  const uniqueCode = await generateUniqueMembershipCode(assocData.code);
   const walletAuthToken = generateToken();
 
   // Set temporary card expiry (48 hours for temporary, then association confirms)
@@ -224,14 +225,14 @@ export async function GET(request: NextRequest) {
     userName: profile.nickname || profile.email,
     issuedAt: new Date(),
     expiresAt: new Date(tempExpiresAt),
-    associationName: association.name,
+    associationName: assocData.name,
     associationCity: "Italy", // TODO: get from association record
     userEmail: profile.email,
   })
     .then(() => console.log(`✅ Wallet pass generated for ${uniqueCode}`))
     .catch((passError) => console.error("Failed to generate wallet pass:", passError));
 
-  await notifyAssociation(profile.id, association, profile.email);
+  await notifyAssociation(profile.id, assocData, profile.email);
 
   return NextResponse.redirect(
     `${base}/registrati/successo?code=${encodeURIComponent(uniqueCode)}&mobile=${isMobile}&chatToken=${encodeURIComponent(walletAuthToken)}`
