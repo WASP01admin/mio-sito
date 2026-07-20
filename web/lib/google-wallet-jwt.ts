@@ -50,11 +50,6 @@ function createGenericCardObject(passData: GoogleWalletPassData, issuerId: strin
         header: "ORGANIZATION",
         body: passData.associationName,
       },
-      {
-        id: "email",
-        header: "EMAIL",
-        body: passData.userEmail,
-      },
     ],
     expiryDate: {
       date: passData.expiresAt.toISOString().split("T")[0],
