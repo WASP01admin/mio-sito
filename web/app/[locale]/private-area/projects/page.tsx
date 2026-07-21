@@ -27,6 +27,12 @@ export default function AssociationProjectsPage() {
   const [formData, setFormData] = useState({
     headline: "",
     description: "",
+    needs_online_personnel: false,
+    needs_field_personnel: false,
+    needs_volunteers: false,
+    needs_instruments: false,
+    needs_financial: false,
+    financial_target: "",
   });
   const [submitting, setSubmitting] = useState(false);
   const [imageFile, setImageFile] = useState<File | null>(null);
@@ -86,6 +92,12 @@ export default function AssociationProjectsPage() {
           headline,
           description,
           image_url: imageUrl,
+          needs_online_personnel: formData.needs_online_personnel,
+          needs_field_personnel: formData.needs_field_personnel,
+          needs_volunteers: formData.needs_volunteers,
+          needs_instruments: formData.needs_instruments,
+          needs_financial: formData.needs_financial,
+          financial_target: formData.needs_financial ? parseInt(formData.financial_target) : null,
         }),
       });
 
@@ -235,6 +247,99 @@ export default function AssociationProjectsPage() {
                   </span>
                 </label>
               </div>
+
+              {/* Resources Section */}
+              <div className="border-t pt-4">
+                <p className="text-sm font-bold text-gray-900 mb-3">🎯 What resources are you looking for? (select at least one)</p>
+
+                <div className="space-y-3">
+                  <label className="flex items-start gap-3 p-3 border border-gray-200 rounded bg-gray-50 hover:bg-gray-100 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.needs_online_personnel}
+                      onChange={(e) => setFormData({ ...formData, needs_online_personnel: e.target.checked })}
+                      className="mt-1"
+                      disabled={submitting}
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-900">💻 Online Personnel</p>
+                      <p className="text-xs text-gray-600">Lawyers, software developers, consultants - skills you need remotely</p>
+                    </div>
+                  </label>
+
+                  <label className="flex items-start gap-3 p-3 border border-gray-200 rounded bg-gray-50 hover:bg-gray-100 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.needs_field_personnel}
+                      onChange={(e) => setFormData({ ...formData, needs_field_personnel: e.target.checked })}
+                      className="mt-1"
+                      disabled={submitting}
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-900">🔨 Field Personnel</p>
+                      <p className="text-xs text-gray-600">Architects, engineers, builders - professionals who need to be on-site</p>
+                    </div>
+                  </label>
+
+                  <label className="flex items-start gap-3 p-3 border border-gray-200 rounded bg-gray-50 hover:bg-gray-100 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.needs_volunteers}
+                      onChange={(e) => setFormData({ ...formData, needs_volunteers: e.target.checked })}
+                      className="mt-1"
+                      disabled={submitting}
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-900">🤝 Volunteers</p>
+                      <p className="text-xs text-gray-600">General volunteers to help with your project</p>
+                    </div>
+                  </label>
+
+                  <label className="flex items-start gap-3 p-3 border border-gray-200 rounded bg-gray-50 hover:bg-gray-100 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.needs_instruments}
+                      onChange={(e) => setFormData({ ...formData, needs_instruments: e.target.checked })}
+                      className="mt-1"
+                      disabled={submitting}
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-900">🛠️ Instruments & Tools</p>
+                      <p className="text-xs text-gray-600">Machinery, equipment, or tools needed to accomplish the project</p>
+                    </div>
+                  </label>
+
+                  <label className="flex items-start gap-3 p-3 border border-gray-200 rounded bg-gray-50 hover:bg-gray-100 cursor-pointer">
+                    <input
+                      type="checkbox"
+                      checked={formData.needs_financial}
+                      onChange={(e) => setFormData({ ...formData, needs_financial: e.target.checked })}
+                      className="mt-1"
+                      disabled={submitting}
+                    />
+                    <div>
+                      <p className="font-semibold text-gray-900">💰 Financial Support</p>
+                      <p className="text-xs text-gray-600">Funds needed to complete the project</p>
+                    </div>
+                  </label>
+                </div>
+
+                {/* Financial Target Input */}
+                {formData.needs_financial && (
+                  <div className="mt-3">
+                    <label className="block text-xs text-gray-600 mb-1">Target Amount (€)</label>
+                    <input
+                      type="number"
+                      placeholder="e.g., 5000"
+                      value={formData.financial_target}
+                      onChange={(e) => setFormData({ ...formData, financial_target: e.target.value })}
+                      className="w-full px-4 py-2 border border-gray-300 rounded text-sm"
+                      disabled={submitting}
+                    />
+                  </div>
+                )}
+              </div>
+
               <button
                 type="submit"
                 disabled={submitting}

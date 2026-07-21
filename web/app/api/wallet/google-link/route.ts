@@ -38,7 +38,20 @@ export async function GET(request: NextRequest) {
 
     const saveUrl = getGoogleWalletSaveUrl(jwt);
 
-    return NextResponse.json({ url: saveUrl });
+    // Return debug info for support ticket
+    return NextResponse.json({
+      url: saveUrl,
+      debug: {
+        jwt,
+        passData: {
+          cardNumber: code,
+          userName: user.nickname || user.email,
+          associationName: association?.name || "WASP",
+          userEmail: user.email,
+          expiresAt: new Date(user.expires_at || Date.now() + 48 * 60 * 60 * 1000).toISOString(),
+        }
+      }
+    });
   } catch (error) {
     console.error("Google Wallet JWT error:", error);
     return NextResponse.json({ error: "Failed to generate wallet link" }, { status: 500 });

@@ -24,11 +24,35 @@ export async function GET(request: NextRequest) {
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { headline, description, image_url } = body;
+    const {
+      headline,
+      description,
+      image_url,
+      needs_online_personnel,
+      needs_field_personnel,
+      needs_volunteers,
+      needs_instruments,
+      needs_financial,
+      financial_target,
+    } = body;
 
     if (!headline || !description) {
       return NextResponse.json(
         { error: "Missing required fields" },
+        { status: 400 }
+      );
+    }
+
+    // At least one resource must be selected
+    if (
+      !needs_online_personnel &&
+      !needs_field_personnel &&
+      !needs_volunteers &&
+      !needs_instruments &&
+      !needs_financial
+    ) {
+      return NextResponse.json(
+        { error: "At least one resource type must be selected" },
         { status: 400 }
       );
     }
@@ -79,6 +103,12 @@ export async function POST(request: NextRequest) {
         headline,
         description,
         image_url: image_url || null,
+        needs_online_personnel: needs_online_personnel || false,
+        needs_field_personnel: needs_field_personnel || false,
+        needs_volunteers: needs_volunteers || false,
+        needs_instruments: needs_instruments || false,
+        needs_financial: needs_financial || false,
+        financial_target: financial_target || null,
       })
       .select()
       .single();

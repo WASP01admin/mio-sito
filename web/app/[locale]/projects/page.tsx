@@ -8,6 +8,12 @@ interface ProjectItem {
   description: string;
   image_url: string;
   created_at: string;
+  needs_online_personnel: boolean;
+  needs_field_personnel: boolean;
+  needs_volunteers: boolean;
+  needs_instruments: boolean;
+  needs_financial: boolean;
+  financial_target: number | null;
   associations?: {
     code: string;
     name: string;
@@ -118,13 +124,13 @@ export default function PublicProjectsPage() {
                   onClick={() => setSelectedProject(project)}
                   className="w-full flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow text-left hover:bg-gray-50"
                 >
-                  {/* Left Panel - Metadata */}
+                  {/* Left Panel - Country + Association */}
                   <div className="w-32 bg-gray-100 p-4 flex flex-col justify-center items-center border-r border-gray-300">
-                    <div className="text-sm font-bold text-gray-900">{date}</div>
-                    <div className="text-lg font-bold text-gray-700 mt-2">{countryCode}</div>
-                    <div className="text-xs text-gray-600 text-center mt-2 line-clamp-3">
+                    <div className="text-2xl font-bold text-gray-700">{countryCode}</div>
+                    <div className="text-xs text-gray-600 text-center mt-2 line-clamp-2 font-semibold">
                       {project.associations?.name || "WASP"}
                     </div>
+                    <div className="text-xs text-gray-500 mt-1">{date}</div>
                   </div>
 
                   {/* Middle Panel - Content */}
@@ -132,9 +138,28 @@ export default function PublicProjectsPage() {
                     <h3 className="font-bold text-gray-900 text-base line-clamp-2 mb-1">
                       {project.headline}
                     </h3>
-                    <p className="text-sm text-gray-700 line-clamp-3">
+                    <p className="text-sm text-gray-700 line-clamp-2">
                       {project.description}
                     </p>
+                  </div>
+
+                  {/* Resource Icons */}
+                  <div className="flex items-center gap-2 px-4 border-l border-gray-300">
+                    {project.needs_online_personnel && (
+                      <img src="/icons/resources/online-personnel.png" alt="Online Personnel" title="Online Personnel" className="w-6 h-6" />
+                    )}
+                    {project.needs_field_personnel && (
+                      <img src="/icons/resources/field-personnel.png" alt="Field Personnel" title="Field Personnel" className="w-6 h-6" />
+                    )}
+                    {project.needs_volunteers && (
+                      <img src="/icons/resources/volunteer.png" alt="Volunteers" title="Volunteers" className="w-6 h-6" />
+                    )}
+                    {project.needs_instruments && (
+                      <img src="/icons/resources/instruments.png" alt="Instruments & Tools" title="Instruments & Tools" className="w-6 h-6" />
+                    )}
+                    {project.needs_financial && (
+                      <img src="/icons/resources/financial.png" alt="Financial Support" title="Financial Support" className="w-6 h-6" />
+                    )}
                   </div>
 
                   {/* Right Panel - Image Thumbnail */}
@@ -206,6 +231,46 @@ export default function PublicProjectsPage() {
                   <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
                     {selectedProject.description}
                   </p>
+                </div>
+
+                {/* Resources Needed */}
+                <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                  <h3 className="font-bold text-gray-900 mb-3">🎯 Resources Needed</h3>
+                  <div className="space-y-2">
+                    {selectedProject.needs_online_personnel && (
+                      <div className="flex items-center gap-2 text-sm text-gray-700">
+                        <img src="/icons/resources/online-personnel.png" alt="Online Personnel" className="w-5 h-5" />
+                        <span>Online Personnel (remote skills)</span>
+                      </div>
+                    )}
+                    {selectedProject.needs_field_personnel && (
+                      <div className="flex items-center gap-2 text-sm text-gray-700">
+                        <img src="/icons/resources/field-personnel.png" alt="Field Personnel" className="w-5 h-5" />
+                        <span>Field Personnel (on-site professionals)</span>
+                      </div>
+                    )}
+                    {selectedProject.needs_volunteers && (
+                      <div className="flex items-center gap-2 text-sm text-gray-700">
+                        <img src="/icons/resources/volunteer.png" alt="Volunteers" className="w-5 h-5" />
+                        <span>Volunteers</span>
+                      </div>
+                    )}
+                    {selectedProject.needs_instruments && (
+                      <div className="flex items-center gap-2 text-sm text-gray-700">
+                        <img src="/icons/resources/instruments.png" alt="Instruments & Tools" className="w-5 h-5" />
+                        <span>Instruments & Tools / Machinery</span>
+                      </div>
+                    )}
+                    {selectedProject.needs_financial && (
+                      <div className="flex items-center gap-2 text-sm text-gray-700">
+                        <img src="/icons/resources/financial.png" alt="Financial Support" className="w-5 h-5" />
+                        <span>Financial Support</span>
+                        {selectedProject.financial_target && (
+                          <span className="font-semibold">€{selectedProject.financial_target.toLocaleString()}</span>
+                        )}
+                      </div>
+                    )}
+                  </div>
                 </div>
               </div>
             </div>
