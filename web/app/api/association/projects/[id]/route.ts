@@ -4,10 +4,10 @@ import { verifySessionToken, ADMIN_SESSION_COOKIE } from "@/lib/admin-auth";
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = params.id;
+    const { id } = await params;
     const body = await request.json();
     const {
       headline,
@@ -102,10 +102,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
-    const id = params.id;
+    const { id } = await params;
 
     // Verify project exists
     const { data: project, error: fetchError } = await supabaseAdmin
@@ -126,14 +126,14 @@ export async function DELETE(
     const isAdmin = verifySessionToken(adminSession);
 
     console.log("🔍 DELETE Project Auth Check:");
-    console.log("  Admin session:", !!adminSession);
-    console.log("  Is admin:", isAdmin);
-    console.log("  Project association:", project.association_id);
+    console.log("  Admin session cookie:", !!adminSession);
+    console.log("  Is admin verified:", isAdmin);
+    console.log("  Project association_id:", project.association_id);
 
     // If not admin, verify ownership
     if (!isAdmin) {
       const associationId = request.cookies.get("wasp_association_id")?.value || "";
-      console.log("  User association:", associationId);
+      console.log("  User association_id:", associationId);
       if (project.association_id !== associationId) {
         return NextResponse.json(
           { error: "Unauthorized - not admin and no ownership" },
@@ -142,26 +142,32 @@ export async function DELETE(
       }
     }
 
-    const { error } = await supabaseAdmin
+    console.log("🗑️ Attempting delete for project:", id);
+
+    const { data, error } = await supabaseAdmin
       .from("association_projects")
       .delete()
-      .eq("id", id);
+      .eq("id", id)
+      .select();
+
+    console.log("Delete response - Data:", data);
+    console.log("Delete response - Error:", error);
 
     if (error) {
-      console.error("❌ Supabase delete error:", error);
+      console.error("❌ Supabase delete error:", JSON.stringify(error));
       return NextResponse.json(
-        { error: `Delete failed: ${error.message}` },
+        { error: `Supabase error: ${error.message || JSON.stringify(error)}` },
         { status: 500 }
       );
     }
 
     console.log("✅ Project deleted successfully");
-    return NextResponse.json({ ok: true }, { status: 200 });
+    return NextResponse.json({ ok: true, deleted: data }, { status: 200 });
   } catch (error) {
-    console.error("💥 Error deleting project:", error);
-    const msg = error instanceof Error ? error.message : "Unknown error";
+    console.error("💥 Caught exception:", error);
+    const msg = error instanceof Error ? error.message : String(error);
     return NextResponse.json(
-      { error: `Delete error: ${msg}` },
+      { error: `Exception: ${msg}` },
       { status: 500 }
     );
   }
