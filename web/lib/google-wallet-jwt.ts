@@ -10,15 +10,55 @@ interface GoogleWalletPassData {
   userEmail: string;
 }
 
+// Class definition (template) - defines how passes look
+function createGenericCardClass(issuerId: string) {
+  return {
+    id: `${issuerId}.wasp_generic_class`,
+    classTemplateInfo: {
+      cardTemplateOverride: {
+        cardRowTemplateInfos: [
+          {
+            twoItems: {
+              startItem: {
+                firstValue: {
+                  fields: [
+                    {
+                      fieldPath: "object.textModulesData['cardNumber']"
+                    }
+                  ]
+                }
+              },
+              endItem: {
+                firstValue: {
+                  fields: [
+                    {
+                      fieldPath: "object.textModulesData['organization']"
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        ]
+      }
+    }
+  };
+}
+
+// Object definition (individual pass instance) - matches Google's required format
 function createGenericCardObject(passData: GoogleWalletPassData, issuerId: string) {
   return {
-    classId: `${issuerId}!generic_class`,
-    objectId: `${issuerId}!${passData.cardNumber}`,
-    genericType: "GENERIC_TYPE_UNSPECIFIED",
-    hexBackgroundColor: "#000000",
+    id: `${issuerId}.wasp_generic_class!${passData.cardNumber}`,
+    classId: `${issuerId}.wasp_generic_class`,
     logo: {
       sourceUri: {
         uri: "https://waspnest.org/logo-yellow.png",
+      },
+      contentDescription: {
+        defaultValue: {
+          language: "en-US",
+          value: "WASP Logo",
+        },
       },
     },
     cardTitle: {
@@ -47,12 +87,26 @@ function createGenericCardObject(passData: GoogleWalletPassData, issuerId: strin
       },
       {
         id: "organization",
-        header: "ORGANIZATION",
+        header: "ASSOCIATION",
         body: passData.associationName,
       },
     ],
-    expiryDate: {
-      date: passData.expiresAt.toISOString().split("T")[0],
+    barcode: {
+      type: "QR_CODE",
+      value: passData.cardNumber,
+      alternateText: passData.cardNumber,
+    },
+    hexBackgroundColor: "#000000",
+    heroImage: {
+      sourceUri: {
+        uri: "https://waspnest.org/hero-card.png",
+      },
+      contentDescription: {
+        defaultValue: {
+          language: "en-US",
+          value: "WASP Card Hero Image",
+        },
+      },
     },
   };
 }
@@ -87,6 +141,7 @@ export async function generateGoogleWalletJwt(
     origins: ["https://waspnest.org"],
     typ: "savetowallet",
     payload: {
+      genericClasses: [createGenericCardClass(issuerId)],
       genericObjects: [createGenericCardObject(passData, issuerId)],
     },
   };
