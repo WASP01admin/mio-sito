@@ -6,7 +6,7 @@ export async function GET(request: NextRequest) {
   try {
     const { data, error } = await supabaseAdmin
       .from("association_projects")
-      .select("*, associations(code, name)")
+      .select("*, associations(code, name, website, extra_details)")
       .order("created_at", { ascending: false });
 
     if (error) throw error;

@@ -23,6 +23,12 @@ interface ProjectItem {
   associations?: {
     code: string;
     name: string;
+    website?: string;
+    extra_details?: {
+      facebook?: string;
+      instagram?: string;
+      [key: string]: any;
+    };
   };
 }
 
@@ -240,6 +246,46 @@ export default function PublicProjectsPage() {
                   <p className="text-gray-700 whitespace-pre-wrap leading-relaxed">
                     {selectedProject.description}
                   </p>
+                </div>
+
+                {/* Contact Section */}
+                <div className="mt-6 p-4 bg-blue-50 border-2 border-blue-300 rounded-lg">
+                  <h3 className="font-bold text-gray-900 mb-3">📞 Get in Touch</h3>
+                  <div className="space-y-2">
+                    <p className="text-sm text-gray-700 mb-3">
+                      Interested in this project? Contact the association to discuss how you can help:
+                    </p>
+                    {selectedProject.associations?.website && (
+                      <a
+                        href={selectedProject.associations.website}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full bg-blue-600 text-white text-center py-2 px-4 rounded font-bold hover:bg-blue-700 transition-colors"
+                      >
+                        🌐 Visit Association Website
+                      </a>
+                    )}
+                    {selectedProject.associations?.extra_details?.facebook && (
+                      <a
+                        href={selectedProject.associations.extra_details.facebook}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full bg-blue-500 text-white text-center py-2 px-4 rounded font-bold hover:bg-blue-600 transition-colors"
+                      >
+                        f Follow on Facebook
+                      </a>
+                    )}
+                    {selectedProject.associations?.extra_details?.instagram && (
+                      <a
+                        href={selectedProject.associations.extra_details.instagram}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="block w-full bg-pink-500 text-white text-center py-2 px-4 rounded font-bold hover:bg-pink-600 transition-colors"
+                      >
+                        📷 Follow on Instagram
+                      </a>
+                    )}
+                  </div>
                 </div>
 
                 {/* Resources Needed */}
