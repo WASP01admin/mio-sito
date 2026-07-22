@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
+import { verifySessionToken, ADMIN_SESSION_COOKIE } from "@/lib/admin-auth";
 
 export async function PATCH(
   request: NextRequest,
@@ -106,7 +107,7 @@ export async function DELETE(
   try {
     const id = params.id;
 
-    // Verify ownership
+    // Verify project exists
     const { data: project, error: fetchError } = await supabaseAdmin
       .from("association_projects")
       .select("association_id")
@@ -120,13 +121,25 @@ export async function DELETE(
       );
     }
 
-    const associationId = request.cookies.get("wasp_association_id")?.value || "";
+    // Check if user is admin (verify admin session token)
+    const adminSession = request.cookies.get(ADMIN_SESSION_COOKIE)?.value;
+    const isAdmin = verifySessionToken(adminSession);
 
-    if (project.association_id !== associationId) {
-      return NextResponse.json(
-        { error: "Unauthorized" },
-        { status: 403 }
-      );
+    console.log("🔍 DELETE Project Auth Check:");
+    console.log("  Admin session:", !!adminSession);
+    console.log("  Is admin:", isAdmin);
+    console.log("  Project association:", project.association_id);
+
+    // If not admin, verify ownership
+    if (!isAdmin) {
+      const associationId = request.cookies.get("wasp_association_id")?.value || "";
+      console.log("  User association:", associationId);
+      if (project.association_id !== associationId) {
+        return NextResponse.json(
+          { error: "Unauthorized - not admin and no ownership" },
+          { status: 403 }
+        );
+      }
     }
 
     const { error } = await supabaseAdmin
@@ -135,15 +148,20 @@ export async function DELETE(
       .eq("id", id);
 
     if (error) {
-      console.error("Supabase error:", error);
-      throw error;
+      console.error("❌ Supabase delete error:", error);
+      return NextResponse.json(
+        { error: `Delete failed: ${error.message}` },
+        { status: 500 }
+      );
     }
 
+    console.log("✅ Project deleted successfully");
     return NextResponse.json({ ok: true }, { status: 200 });
   } catch (error) {
-    console.error("Error deleting project:", error);
+    console.error("💥 Error deleting project:", error);
+    const msg = error instanceof Error ? error.message : "Unknown error";
     return NextResponse.json(
-      { error: "Failed to delete project" },
+      { error: `Delete error: ${msg}` },
       { status: 500 }
     );
   }

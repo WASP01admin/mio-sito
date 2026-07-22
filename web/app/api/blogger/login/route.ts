@@ -88,11 +88,7 @@ export async function POST(request: NextRequest) {
     });
 
     return response;
-      token,
-      blogger: {
-        id: blogger.id,
-        name: blogger.name,
-        email: blogger.email,
+  } catch (error) {
     console.error("Blogger login error:", error);
     return NextResponse.json(
       { error: "Login failed" },
