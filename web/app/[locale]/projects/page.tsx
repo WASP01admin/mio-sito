@@ -9,10 +9,15 @@ interface ProjectItem {
   image_url: string;
   created_at: string;
   needs_online_personnel: boolean;
+  needs_online_personnel_details: string | null;
   needs_field_personnel: boolean;
+  needs_field_personnel_details: string | null;
   needs_volunteers: boolean;
+  needs_volunteers_details: string | null;
   needs_instruments: boolean;
+  needs_instruments_details: string | null;
   needs_financial: boolean;
+  needs_financial_details: string | null;
   financial_target: number | null;
   associations?: {
     code: string;
@@ -144,21 +149,21 @@ export default function PublicProjectsPage() {
                   </div>
 
                   {/* Resource Icons */}
-                  <div className="flex items-center gap-2 px-4 border-l border-gray-300">
+                  <div className="flex items-center gap-3 px-4 border-l border-gray-300">
                     {project.needs_online_personnel && (
-                      <img src="/icons/resources/online-personnel.png" alt="Online Personnel" title="Online Personnel" className="w-6 h-6" />
+                      <img src="/icons/resources/online-personnel.png" alt="Online Personnel" title="Online Personnel" className="w-10 h-10" />
                     )}
                     {project.needs_field_personnel && (
-                      <img src="/icons/resources/field-personnel.png" alt="Field Personnel" title="Field Personnel" className="w-6 h-6" />
+                      <img src="/icons/resources/field-personnel.png" alt="Field Personnel" title="Field Personnel" className="w-10 h-10" />
                     )}
                     {project.needs_volunteers && (
-                      <img src="/icons/resources/volunteer.png" alt="Volunteers" title="Volunteers" className="w-6 h-6" />
+                      <img src="/icons/resources/volunteer.png" alt="Volunteers" title="Volunteers" className="w-10 h-10" />
                     )}
                     {project.needs_instruments && (
-                      <img src="/icons/resources/instruments.png" alt="Instruments & Tools" title="Instruments & Tools" className="w-6 h-6" />
+                      <img src="/icons/resources/instruments.png" alt="Instruments & Tools" title="Instruments & Tools" className="w-10 h-10" />
                     )}
                     {project.needs_financial && (
-                      <img src="/icons/resources/financial.png" alt="Financial Support" title="Financial Support" className="w-6 h-6" />
+                      <img src="/icons/resources/financial.png" alt="Financial Support" title="Financial Support" className="w-10 h-10" />
                     )}
                   </div>
 
@@ -236,37 +241,62 @@ export default function PublicProjectsPage() {
                 {/* Resources Needed */}
                 <div className="mt-6 p-4 bg-gray-50 rounded-lg">
                   <h3 className="font-bold text-gray-900 mb-3">🎯 Resources Needed</h3>
-                  <div className="space-y-2">
+                  <div className="space-y-3">
                     {selectedProject.needs_online_personnel && (
-                      <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <img src="/icons/resources/online-personnel.png" alt="Online Personnel" className="w-5 h-5" />
-                        <span>Online Personnel (remote skills)</span>
+                      <div>
+                        <div className="flex items-center gap-2 text-sm text-gray-700 mb-1">
+                          <img src="/icons/resources/online-personnel.png" alt="Online Personnel" className="w-5 h-5" />
+                          <span className="font-semibold">Online Personnel (remote skills)</span>
+                        </div>
+                        {selectedProject.needs_online_personnel_details && (
+                          <p className="text-sm text-gray-600 ml-7">{selectedProject.needs_online_personnel_details}</p>
+                        )}
                       </div>
                     )}
                     {selectedProject.needs_field_personnel && (
-                      <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <img src="/icons/resources/field-personnel.png" alt="Field Personnel" className="w-5 h-5" />
-                        <span>Field Personnel (on-site professionals)</span>
+                      <div>
+                        <div className="flex items-center gap-2 text-sm text-gray-700 mb-1">
+                          <img src="/icons/resources/field-personnel.png" alt="Field Personnel" className="w-5 h-5" />
+                          <span className="font-semibold">Field Personnel (on-site professionals)</span>
+                        </div>
+                        {selectedProject.needs_field_personnel_details && (
+                          <p className="text-sm text-gray-600 ml-7">{selectedProject.needs_field_personnel_details}</p>
+                        )}
                       </div>
                     )}
                     {selectedProject.needs_volunteers && (
-                      <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <img src="/icons/resources/volunteer.png" alt="Volunteers" className="w-5 h-5" />
-                        <span>Volunteers</span>
+                      <div>
+                        <div className="flex items-center gap-2 text-sm text-gray-700 mb-1">
+                          <img src="/icons/resources/volunteer.png" alt="Volunteers" className="w-5 h-5" />
+                          <span className="font-semibold">Volunteers</span>
+                        </div>
+                        {selectedProject.needs_volunteers_details && (
+                          <p className="text-sm text-gray-600 ml-7">{selectedProject.needs_volunteers_details}</p>
+                        )}
                       </div>
                     )}
                     {selectedProject.needs_instruments && (
-                      <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <img src="/icons/resources/instruments.png" alt="Instruments & Tools" className="w-5 h-5" />
-                        <span>Instruments & Tools / Machinery</span>
+                      <div>
+                        <div className="flex items-center gap-2 text-sm text-gray-700 mb-1">
+                          <img src="/icons/resources/instruments.png" alt="Instruments & Tools" className="w-5 h-5" />
+                          <span className="font-semibold">Instruments & Tools / Machinery</span>
+                        </div>
+                        {selectedProject.needs_instruments_details && (
+                          <p className="text-sm text-gray-600 ml-7">{selectedProject.needs_instruments_details}</p>
+                        )}
                       </div>
                     )}
                     {selectedProject.needs_financial && (
-                      <div className="flex items-center gap-2 text-sm text-gray-700">
-                        <img src="/icons/resources/financial.png" alt="Financial Support" className="w-5 h-5" />
-                        <span>Financial Support</span>
-                        {selectedProject.financial_target && (
-                          <span className="font-semibold">€{selectedProject.financial_target.toLocaleString()}</span>
+                      <div>
+                        <div className="flex items-center gap-2 text-sm text-gray-700 mb-1">
+                          <img src="/icons/resources/financial.png" alt="Financial Support" className="w-5 h-5" />
+                          <span className="font-semibold">Financial Support</span>
+                          {selectedProject.financial_target && (
+                            <span className="font-semibold text-wasp-yellow">€{selectedProject.financial_target.toLocaleString()}</span>
+                          )}
+                        </div>
+                        {selectedProject.needs_financial_details && (
+                          <p className="text-sm text-gray-600 ml-7">{selectedProject.needs_financial_details}</p>
                         )}
                       </div>
                     )}

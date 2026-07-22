@@ -29,10 +29,15 @@ export async function POST(request: NextRequest) {
       description,
       image_url,
       needs_online_personnel,
+      needs_online_personnel_details,
       needs_field_personnel,
+      needs_field_personnel_details,
       needs_volunteers,
+      needs_volunteers_details,
       needs_instruments,
+      needs_instruments_details,
       needs_financial,
+      needs_financial_details,
       financial_target,
     } = body;
 
@@ -57,44 +62,17 @@ export async function POST(request: NextRequest) {
       );
     }
 
-    // Check if admin
-    const adminToken = request.cookies.get("wasp_admin_session")?.value;
-    const isAdmin = adminToken ? verifySessionToken(adminToken) : false;
+    // Get association ID from cookie (associations create their own projects)
+    const associationId = request.cookies.get("wasp_association_id")?.value || "";
 
-    console.log("Project creation - isAdmin:", isAdmin, "adminToken:", !!adminToken);
-
-    let associationId: string;
-
-    if (isAdmin) {
-      // Admin projects are created as WASP - look up the UUID
-      const { data: wasp, error: waspError } = await supabaseAdmin
-        .from("associations")
-        .select("id")
-        .eq("code", "ITAWASP")
-        .single();
-
-      if (waspError || !wasp) {
-        console.error("Could not find ITAWASP association:", waspError);
-        return NextResponse.json(
-          { error: "WASP association not found" },
-          { status: 500 }
-        );
-      }
-
-      associationId = wasp.id;
-    } else {
-      // Get association ID from cookie (should be UUID)
-      associationId = request.cookies.get("wasp_association_id")?.value || "";
-
-      if (!associationId) {
-        return NextResponse.json(
-          { error: "Not authenticated" },
-          { status: 401 }
-        );
-      }
+    if (!associationId) {
+      return NextResponse.json(
+        { error: "Not authenticated" },
+        { status: 401 }
+      );
     }
 
-    console.log("Creating project with associationId:", associationId);
+    console.log("✅ Creating project with associationId:", associationId.substring(0, 10));
 
     const { data, error } = await supabaseAdmin
       .from("association_projects")
@@ -104,10 +82,15 @@ export async function POST(request: NextRequest) {
         description,
         image_url: image_url || null,
         needs_online_personnel: needs_online_personnel || false,
+        needs_online_personnel_details: needs_online_personnel_details || null,
         needs_field_personnel: needs_field_personnel || false,
+        needs_field_personnel_details: needs_field_personnel_details || null,
         needs_volunteers: needs_volunteers || false,
+        needs_volunteers_details: needs_volunteers_details || null,
         needs_instruments: needs_instruments || false,
+        needs_instruments_details: needs_instruments_details || null,
         needs_financial: needs_financial || false,
+        needs_financial_details: needs_financial_details || null,
         financial_target: financial_target || null,
       })
       .select()

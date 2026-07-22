@@ -18,38 +18,63 @@ export async function GET(request: NextRequest) {
   }
 
   try {
-    // Get the highest existing number for this country code
-    const { data, error } = await supabaseAdmin
+    // Get count of existing codes to estimate the next number
+    const { count, error: countError } = await supabaseAdmin
       .from("associations")
-      .select("code")
-      .ilike("code", `${countryCode}%`)
-      .order("code", { ascending: false })
-      .limit(1);
+      .select("code", { count: "exact", head: true })
+      .ilike("code", `${countryCode}%`);
 
-    if (error) {
-      console.error("Database error:", error);
+    if (countError) {
+      console.error("Count error:", countError);
       return NextResponse.json(
         { ok: false, error: "database_error" },
         { status: 500 }
       );
     }
 
+    // Fetch all codes for this country to find actual max (handles pagination)
+    let allCodes: string[] = [];
+    let page = 0;
+    const pageSize = 1000;
+
+    while (true) {
+      const { data, error } = await supabaseAdmin
+        .from("associations")
+        .select("code")
+        .ilike("code", `${countryCode}%`)
+        .range(page * pageSize, (page + 1) * pageSize - 1);
+
+      if (error) {
+        console.error("Fetch error:", error);
+        return NextResponse.json(
+          { ok: false, error: "database_error" },
+          { status: 500 }
+        );
+      }
+
+      if (!data || data.length === 0) break;
+      allCodes = allCodes.concat(data.map(d => d.code));
+
+      if (data.length < pageSize) break;
+      page++;
+    }
+
+    // Find the actual max numeric value
     let nextNumber = 10;
+    if (allCodes.length > 0) {
+      const numbers = allCodes
+        .map(code => parseInt(code.slice(3), 10))
+        .filter(num => !isNaN(num));
 
-    if (data && data.length > 0) {
-      // Extract number from code (e.g., "ITA0123" -> 123)
-      const lastCode = data[0].code;
-      const lastNumber = parseInt(lastCode.slice(3), 10);
-
-      if (!isNaN(lastNumber)) {
-        nextNumber = lastNumber + 1;
+      if (numbers.length > 0) {
+        nextNumber = Math.max(...numbers) + 1;
       }
     }
 
     // Validate: number must not exceed 4 digits (0000-9999)
     if (nextNumber > 9999) {
       return NextResponse.json(
-        { ok: false, error: "code_limit_exceeded", message: `Maximum codes reached for ${countryCode}. Limit is 10,000 (0010-9999). Found ${nextNumber} codes already exist.` },
+        { ok: false, error: "code_limit_exceeded", message: `Maximum codes reached for ${countryCode}. Limit is 10,000 (0010-9999).` },
         { status: 409 }
       );
     }
@@ -57,18 +82,28 @@ export async function GET(request: NextRequest) {
     // Format with leading zeros (0010, 0011, etc.)
     const nextCode = `${countryCode}${String(nextNumber).padStart(4, "0")}`;
 
-    // Validate code doesn't exist (extra safety)
+    // Verify code doesn't exist (safety check)
     const { data: checkData } = await supabaseAdmin
       .from("associations")
       .select("id")
-      .eq("code", nextCode)
-      .single();
+      .eq("code", nextCode);
 
-    if (checkData) {
-      return NextResponse.json(
-        { ok: false, error: "code_already_exists" },
-        { status: 409 }
-      );
+    if (checkData && checkData.length > 0) {
+      // Collision - shouldn't happen, but retry just in case
+      const retryNumber = nextNumber + 1;
+      if (retryNumber > 9999) {
+        return NextResponse.json(
+          { ok: false, error: "code_limit_exceeded" },
+          { status: 409 }
+        );
+      }
+      const retryCode = `${countryCode}${String(retryNumber).padStart(4, "0")}`;
+      return NextResponse.json({
+        ok: true,
+        code: retryCode,
+        countryCode,
+        nextNumber: retryNumber,
+      });
     }
 
     return NextResponse.json({
