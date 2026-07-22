@@ -321,7 +321,10 @@ export default function AssociationProjectsPage() {
                 disabled={submitting}
               />
               <textarea
-                placeholder="Description"
+                placeholder={locale === "it"
+                  ? "Descrizione del progetto... 💡 RICORDA: includi come possono contattarti (email, telefono, sito web)"
+                  : "Project description... 💡 REMEMBER: include how people can contact you (email, phone, website)"
+                }
                 value={formData.description}
                 onChange={(e) => setFormData({ ...formData, description: e.target.value })}
                 className="w-full px-4 py-2 border border-gray-300 rounded text-sm"
