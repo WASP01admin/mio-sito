@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useParams } from "next/navigation";
 
 interface ProjectItem {
   id: string;
@@ -28,6 +29,9 @@ interface ProjectItem {
 type SortBy = "date" | "country" | "association";
 
 export default function PublicProjectsPage() {
+  const params = useParams();
+  const locale = params.locale as string;
+
   const [projectsList, setProjectsList] = useState<ProjectItem[]>([]);
   const [sortedProjects, setSortedProjects] = useState<ProjectItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -124,10 +128,10 @@ export default function PublicProjectsPage() {
               });
 
               return (
-                <button
+                <div
                   key={project.id}
+                  className="w-full flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow text-left hover:bg-gray-50 cursor-pointer"
                   onClick={() => setSelectedProject(project)}
-                  className="w-full flex bg-white rounded-lg shadow hover:shadow-lg transition-shadow text-left hover:bg-gray-50"
                 >
                   {/* Left Panel - Country + Association */}
                   <div className="w-32 bg-gray-100 p-4 flex flex-col justify-center items-center border-r border-gray-300">
@@ -167,7 +171,7 @@ export default function PublicProjectsPage() {
                     )}
                   </div>
 
-                  {/* Right Panel - Image Thumbnail */}
+                  {/* Right Panel - Image */}
                   {project.image_url && (
                     <div className="w-24 p-2">
                       <img
@@ -177,7 +181,7 @@ export default function PublicProjectsPage() {
                       />
                     </div>
                   )}
-                </button>
+                </div>
               );
             })}
           </div>

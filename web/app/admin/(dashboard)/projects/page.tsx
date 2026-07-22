@@ -58,6 +58,24 @@ export default function AdminProjectsPage() {
     }
   }
 
+  async function handleDeleteProject(projectId: string) {
+    if (!confirm("Delete this project? This cannot be undone.")) return;
+
+    try {
+      const res = await fetch(`/api/association/projects/${projectId}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        setProjectsList(projectsList.filter(p => p.id !== projectId));
+        alert("Project deleted");
+      } else {
+        alert("Failed to delete project");
+      }
+    } catch (error) {
+      alert("Failed to delete project");
+    }
+  }
+
   async function handleCreateProject(e: React.FormEvent) {
     e.preventDefault();
 
@@ -203,16 +221,18 @@ export default function AdminProjectsPage() {
                     </p>
                   </div>
 
-                  {/* Right Panel - Image Thumbnail */}
-                  {project.image_url && (
-                    <div className="w-24 p-2">
-                      <img
-                        src={project.image_url}
-                        alt={project.headline}
-                        className="w-full h-20 object-cover rounded"
-                      />
-                    </div>
-                  )}
+                  {/* Right Panel - Delete Button or Image */}
+                  <div className="w-32 p-2 flex items-center justify-center bg-red-50 border-l border-gray-300">
+                    <button
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleDeleteProject(project.id);
+                      }}
+                      className="text-sm bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700 font-bold"
+                    >
+                      DELETE
+                    </button>
+                  </div>
                 </div>
               );
             })}
