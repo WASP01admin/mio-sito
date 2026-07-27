@@ -106,6 +106,15 @@ export default async function AdminDashboardPage() {
             </div>
           </Link>
 
+          {/* Business Cards */}
+          <Link href="/admin/dashboard/business-cards">
+            <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-orange-300">
+              <div className="text-5xl mb-4">🏪</div>
+              <h2 className="text-2xl font-bold text-gray-900 mb-2">Business Cards</h2>
+              <p className="text-gray-600">Manage Amici degli Animali business cards</p>
+            </div>
+          </Link>
+
           {/* Chat */}
           <Link href="/admin/chat">
             <div className="bg-white rounded-lg shadow-lg p-8 hover:shadow-xl transition-shadow cursor-pointer border-2 border-gray-300">

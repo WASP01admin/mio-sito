@@ -171,3 +171,47 @@ export function associationConfirmationEmail({
 `,
   };
 }
+
+interface BusinessCardVerificationEmailParams {
+  nickname: string;
+  businessName: string;
+  cardId: string;
+  verificationUrl: string;
+}
+
+export function businessCardVerificationEmail({
+  nickname,
+  businessName,
+  cardId,
+  verificationUrl,
+}: BusinessCardVerificationEmailParams) {
+  const safeName = escapeHtml(nickname);
+  const safeBusiness = escapeHtml(businessName);
+  const safeCardId = escapeHtml(cardId);
+  return {
+    subject: "Verifica la tua WASP CARD di Amico degli Animali",
+    html: `
+<p>Ciao ${safeName},</p>
+
+<p>Grazie per aver richiesto la WASP CARD di <strong>Amico degli Animali</strong> per ${safeBusiness}.</p>
+
+<p>Clicca il link sottostante per verificare la tua email e attivare la tua card immediatamente:</p>
+
+<p style="margin: 25px 0;">
+  <a href="${verificationUrl}" style="background:#111; color:#FFD400; padding:12px 25px; text-decoration:none; border-radius:5px; font-weight:bold; display:inline-block;">VERIFICA LA MIA EMAIL</a>
+</p>
+
+<p><strong>Numero Card:</strong> ${safeCardId}</p>
+
+<p style="background:#FFF3CD; border:1px solid #FFE69C; padding:12px 16px; border-radius:6px; font-size:14px; margin:20px 0;">
+  ℹ️ <strong>Attenzione:</strong> Una sola WASP CARD per numero di telefono. Se hai già una WASP CARD personale, contattaci per eliminarla e attivare questa card di Amico degli Animali. Suggerimento: puoi usare 2 telefoni per avere entrambe le card!
+</p>
+
+<p>Una volta verificato, la tua card sarà attiva. Il nostro team revisionerà la tua richiesta e potrebbe chiederti informazioni aggiuntive o approvarla.</p>
+
+<p>Questo link scade in 24 ore. Se non clicchi, dovrai inviare una nuova richiesta.</p>
+
+<p>Grazie per aver scelto di supportare gli animali!<br>Il Team WASP</p>
+`,
+  };
+}

@@ -8,12 +8,16 @@ import { validateNickname, NICKNAME_MAX_LENGTH } from "@/lib/nickname-validation
 
 interface MembershipFormData {
   nickname: string;
+  organizationCode: string;
+  city: string;
   email: string;
   image: File | null;
 }
 
 const initialFormData: MembershipFormData = {
   nickname: "",
+  organizationCode: "",
+  city: "",
   email: "",
   image: null,
 };
@@ -93,7 +97,8 @@ export default function MembershipForm({ isMobile }: MembershipFormProps) {
 
   function handleSelectSuggestion(assoc: AssociationSearchResult) {
     setSelectedAssociation(assoc);
-    setOrgQuery(`${assoc.name} — ${assoc.city}`);
+    setOrgQuery(assoc.name);
+    setFormData((prev) => ({ ...prev, city: assoc.city }));
     setSuggestions([]);
     setShowDropdown(false);
   }
@@ -115,6 +120,7 @@ export default function MembershipForm({ isMobile }: MembershipFormProps) {
     body.set("nickname", nicknameResult.value);
     body.set("email", formData.email);
     body.set("locale", locale);
+    body.set("city", formData.city.trim());
     if (selectedAssociation) {
       body.set("associationId", selectedAssociation.id);
     } else {
@@ -238,64 +244,88 @@ export default function MembershipForm({ isMobile }: MembershipFormProps) {
               />
             </div>
 
-            <div className="relative flex flex-col gap-1">
-              <label
-                htmlFor={`${formId}-organization`}
-                className="text-sm font-semibold"
-              >
-                {t("fields.organization.label")}
-              </label>
-              <input
-                id={`${formId}-organization`}
-                type="text"
-                required
-                autoComplete="off"
-                placeholder={t("fields.organization.placeholder")}
-                value={orgQuery}
-                onChange={(e) => handleOrgInputChange(e.target.value)}
-                onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
-                onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
-                className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
-              />
+            <div className="flex flex-col gap-4 md:flex-row md:gap-3">
+              {/* Organization Code/Name Field */}
+              <div className="relative flex flex-1 flex-col gap-1">
+                <label
+                  htmlFor={`${formId}-organization`}
+                  className="text-sm font-semibold"
+                >
+                  {t("fields.organization.label")}
+                </label>
+                <input
+                  id={`${formId}-organization`}
+                  type="text"
+                  required
+                  autoComplete="off"
+                  placeholder={t("fields.organization.placeholder")}
+                  value={orgQuery}
+                  onChange={(e) => handleOrgInputChange(e.target.value)}
+                  onFocus={() => suggestions.length > 0 && setShowDropdown(true)}
+                  onBlur={() => setTimeout(() => setShowDropdown(false), 150)}
+                  className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+                />
 
-              {selectedAssociation && (
-                <p className="text-xs text-gray-600">
-                  {t("fields.organization.selectedPrefix")}{" "}
-                  <strong>
-                    {selectedAssociation.name} — {selectedAssociation.city}
-                  </strong>{" "}
-                  ({selectedAssociation.code})
-                </p>
-              )}
+                {selectedAssociation && (
+                  <p className="text-xs text-gray-600">
+                    {t("fields.organization.selectedPrefix")}{" "}
+                    <strong>
+                      {selectedAssociation.name}
+                    </strong>{" "}
+                    ({selectedAssociation.code})
+                  </p>
+                )}
 
-              {showDropdown && !selectedAssociation && (
-                <div className="absolute top-full z-10 mt-1 w-full rounded-md border border-gray-300 bg-white shadow-lg">
-                  {isSearching ? (
-                    <p className="px-3 py-2 text-sm text-gray-500">
-                      {t("fields.organization.searching")}
-                    </p>
-                  ) : suggestions.length > 0 ? (
-                    <ul>
-                      {suggestions.map((assoc) => (
-                        <li key={assoc.id}>
-                          <button
-                            type="button"
-                            onClick={() => handleSelectSuggestion(assoc)}
-                            className="block w-full px-3 py-2 text-left text-sm hover:bg-gray-100"
-                          >
-                            {assoc.name} — {assoc.city}{" "}
-                            <span className="text-gray-400">({assoc.code})</span>
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="px-3 py-2 text-sm text-gray-500">
-                      {t("fields.organization.noMatches")}
-                    </p>
-                  )}
-                </div>
-              )}
+                {showDropdown && !selectedAssociation && (
+                  <div className="absolute top-full z-10 mt-1 w-full rounded-md border border-gray-300 bg-white shadow-lg">
+                    {isSearching ? (
+                      <p className="px-3 py-2 text-sm text-gray-500">
+                        {t("fields.organization.searching")}
+                      </p>
+                    ) : suggestions.length > 0 ? (
+                      <ul>
+                        {suggestions.map((assoc) => (
+                          <li key={assoc.id}>
+                            <button
+                              type="button"
+                              onClick={() => handleSelectSuggestion(assoc)}
+                              className="block w-full px-3 py-2 text-left text-sm hover:bg-gray-100"
+                            >
+                              {assoc.name}{" "}
+                              <span className="text-gray-400">({assoc.code})</span>
+                            </button>
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="px-3 py-2 text-sm text-gray-500">
+                        {t("fields.organization.noMatches")}
+                      </p>
+                    )}
+                  </div>
+                )}
+              </div>
+
+              {/* City / Location Field */}
+              <div className="flex flex-1 flex-col gap-1">
+                <label
+                  htmlFor={`${formId}-city`}
+                  className="text-sm font-semibold"
+                >
+                  {t("fields.city.label")}
+                </label>
+                <input
+                  id={`${formId}-city`}
+                  type="text"
+                  required
+                  placeholder={t("fields.city.placeholder")}
+                  value={formData.city}
+                  onChange={(e) =>
+                    setFormData((prev) => ({ ...prev, city: e.target.value }))
+                  }
+                  className="rounded-md border border-gray-300 bg-gray-100 px-3 py-2 focus:border-black focus:outline-none"
+                />
+              </div>
             </div>
 
             <div className="flex flex-col gap-1">

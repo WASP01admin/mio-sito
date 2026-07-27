@@ -58,12 +58,16 @@
         "placeholder": "Your nickname"
       },
       "organization": {
-        "label": "Organization Code or Name / City",
-        "placeholder": "example: ITA0123 or Amici Pelosi / Rome",
+        "label": "Organization Code or Name",
+        "placeholder": "example: ITA0123 or Amici Pelosi",
         "searching": "Searching...",
         "noMatches": "No matches found. If you submit anyway, we'll email you to help add your association.",
         "selectedPrefix": "Selected:",
         "changeSelection": "Change"
+      },
+      "city": {
+        "label": "City / Location",
+        "placeholder": "Rome"
       },
       "email": {
         "label": "Verification email",

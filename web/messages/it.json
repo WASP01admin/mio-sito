@@ -58,12 +58,16 @@
         "placeholder": "Il tuo nickname"
       },
       "organization": {
-        "label": "Codice o Nome Associazione / Città",
-        "placeholder": "esempio: ITA0123 oppure Amici Pelosi / Roma",
+        "label": "Codice o Nome Associazione",
+        "placeholder": "esempio: ITA0123 oppure Amici Pelosi",
         "searching": "Ricerca in corso...",
         "noMatches": "Nessun risultato trovato. Se invii comunque, ti scriveremo via email per aggiungere la tua associazione.",
         "selectedPrefix": "Selezionata:",
         "changeSelection": "Cambia"
+      },
+      "city": {
+        "label": "Città / Location",
+        "placeholder": "Roma"
       },
       "email": {
         "label": "Email di verifica",
