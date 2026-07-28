@@ -65,7 +65,7 @@ export async function GET(
     });
 
     // Return as downloadable file
-    return new NextResponse(passBuffer, {
+    return new NextResponse(passBuffer as any, {
       status: 200,
       headers: {
         "Content-Type": "application/vnd.apple.pkpass",
