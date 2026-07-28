@@ -8,9 +8,10 @@ const supabase = createClient(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await context.params;
     const cookieStore = await cookies();
     const token = cookieStore.get("association_token")?.value;
 
