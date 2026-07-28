@@ -11,7 +11,7 @@ function verifyAdminToken(token: string | null): boolean {
 
 export async function DELETE(
   request: NextRequest,
-  { params }: any
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = request.headers.get("x-admin-token");
