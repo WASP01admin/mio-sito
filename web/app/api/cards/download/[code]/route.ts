@@ -9,10 +9,10 @@ import { generateWaspCardPass } from "@/lib/wallet-pass-generator";
  */
 export async function GET(
   request: NextRequest,
-  { params }: { params: Promise<{ code: string }> }
+  context: { params: Promise<{ code: string }> }
 ) {
   try {
-    const { code } = await params;
+    const { code } = await context.params;
 
     if (!code) {
       return NextResponse.json(

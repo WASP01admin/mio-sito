@@ -4,7 +4,7 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   const isAdmin = await isAdminAuthenticated();
   console.log("DELETE /api/admin/associations/[id] - isAdmin:", isAdmin);
@@ -13,7 +13,7 @@ export async function DELETE(
     return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id } = await context.params;
   console.log("DELETE association id:", id);
 
   if (!id) {

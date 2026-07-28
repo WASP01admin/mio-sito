@@ -7,12 +7,12 @@ const supabase = createClient(
 
 export async function PATCH(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     // TODO: Add admin authentication check
 
-    const { id } = await params;
+    const { id } = await context.params;
     const { status } = await request.json();
 
     if (!["active", "suspended", "rejected", "pending"].includes(status)) {
@@ -43,12 +43,12 @@ export async function PATCH(
 
 export async function DELETE(
   request: Request,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     // TODO: Add admin authentication check
 
-    const { id } = await params;
+    const { id } = await context.params;
     const { error: deleteError } = await supabase
       .from("business_cards")
       .delete()

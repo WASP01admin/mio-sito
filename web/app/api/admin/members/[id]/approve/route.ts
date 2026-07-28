@@ -6,13 +6,13 @@ const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   if (!(await isAdminAuthenticated())) {
     return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id } = await context.params;
 
   const { data: existing, error: fetchError } = await supabaseAdmin
     .from("user_profiles")

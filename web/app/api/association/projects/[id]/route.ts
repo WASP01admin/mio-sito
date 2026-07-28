@@ -4,10 +4,10 @@ import { verifySessionToken, ADMIN_SESSION_COOKIE } from "@/lib/admin-auth";
 
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
     const body = await request.json();
     const {
       headline,
@@ -102,10 +102,10 @@ export async function PATCH(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
 
     // Verify project exists
     const { data: project, error: fetchError } = await supabaseAdmin

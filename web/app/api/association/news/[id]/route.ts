@@ -3,10 +3,10 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
     const associationId = request.cookies.get("wasp_association_id")?.value;
 
     if (!associationId) {

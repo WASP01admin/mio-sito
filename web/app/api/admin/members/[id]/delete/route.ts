@@ -9,10 +9,10 @@ import { supabaseAdmin } from "@/lib/supabase-admin";
  */
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
 
     if (!id) {
       return NextResponse.json({ error: "User ID required" }, { status: 400 });

@@ -4,13 +4,13 @@ import { isAdminAuthenticated } from "@/lib/admin-auth";
 
 export async function POST(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   if (!(await isAdminAuthenticated())) {
     return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
+  const { id } = await context.params;
   const body = await request.json().catch(() => null);
   const banned = body?.banned === true;
 
