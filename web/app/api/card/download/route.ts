@@ -33,13 +33,14 @@ export async function GET(request: Request) {
         `
         id,
         nickname,
+        email,
         card_number,
         card_issued_at,
         card_expires_at,
         card_status,
         card_request_type,
         photo_url,
-        associations (name)
+        associations (name, city)
       `
       )
       .eq("id", userId)
@@ -85,6 +86,8 @@ export async function GET(request: Request) {
         issuedAt: new Date(user.card_issued_at),
         expiresAt: new Date(user.card_expires_at),
         associationName: user.associations?.[0]?.name,
+        associationCity: user.associations?.[0]?.city,
+        userEmail: user.email,
         userImageUrl: user.photo_url || undefined,
       });
       contentType = "application/vnd.apple.pkpass";
