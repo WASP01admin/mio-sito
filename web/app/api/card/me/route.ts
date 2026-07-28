@@ -65,7 +65,7 @@ export async function GET(request: Request) {
         type: user.card_request_type,
         isExpired: expired,
         userName: user.nickname,
-        associationName: user.associations?.name || "WASP",
+        associationName: user.associations?.[0]?.name || "WASP",
         userImage: user.photo_url,
       },
     });
