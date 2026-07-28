@@ -99,7 +99,7 @@ export default function AssociationMapPage() {
     }, 100);
 
     return () => {
-      if (mapRef.current && showMapPicker === false) {
+      if (mapRef.current && !showMapPicker) {
         mapRef.current.remove();
         mapRef.current = null;
         markerRef.current = null;
