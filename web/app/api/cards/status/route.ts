@@ -66,9 +66,9 @@ export async function GET(request: NextRequest) {
       holder: userProfile.nickname || userProfile.email,
       email: userProfile.email,
       association: {
-        name: userProfile.associations?.name,
-        city: userProfile.associations?.city,
-        code: userProfile.associations?.code,
+        name: userProfile.associations?.[0]?.name,
+        city: userProfile.associations?.[0]?.city,
+        code: userProfile.associations?.[0]?.code,
       },
       issued: userProfile.created_at,
       expires: userProfile.expires_at,
