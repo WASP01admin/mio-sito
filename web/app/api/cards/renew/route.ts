@@ -71,15 +71,15 @@ export async function POST(request: NextRequest) {
     const passBuffer = await generateWaspCardPass({
       cardNumber: userProfile.unique_membership_code,
       userName: userProfile.nickname || userProfile.email,
-      associationName: userProfile.associations?.name || "WASP",
-      associationCity: userProfile.associations?.city || "Italy",
+      associationName: userProfile.associations?.[0]?.name || "WASP",
+      associationCity: userProfile.associations?.[0]?.city || "Italy",
       userEmail: userProfile.email,
       issuedAt: new Date(userProfile.expires_at || new Date()),
       expiresAt: newExpiresAt,
     });
 
     // Return the updated pass file
-    return new NextResponse(passBuffer, {
+    return new NextResponse(passBuffer as any, {
       status: 200,
       headers: {
         "Content-Type": "application/vnd.apple.pkpass",
