@@ -11,6 +11,16 @@ export function chatAuthSecret(): string {
   return value;
 }
 
+export function createChatSessionToken(
+  payload: { userProfileId: string; nickname: string },
+  secret: string,
+  ttlMs: number
+): string {
+  return jwt.sign(payload, secret, {
+    expiresIn: Math.floor(ttlMs / 1000),
+  });
+}
+
 export function verifyChatSessionToken(token: string, secret: string) {
   try {
     return jwt.verify(token, secret) as { userProfileId: string };
