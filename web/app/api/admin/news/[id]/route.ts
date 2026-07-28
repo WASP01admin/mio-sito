@@ -20,7 +20,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id: newsId } = await params;
+    const { id: newsId } = (await params) as { id: string };
     if (!newsId) {
       return NextResponse.json({ error: "Invalid news ID" }, { status: 400 });
     }
