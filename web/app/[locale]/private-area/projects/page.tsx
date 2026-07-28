@@ -159,7 +159,21 @@ export default function AssociationProjectsPage() {
 
       if (!response.ok) throw new Error(`Failed to ${editingProject ? "update" : "create"} project`);
 
-      setFormData({ headline: "", description: "" });
+      setFormData({
+        headline: "",
+        description: "",
+        needs_online_personnel: false,
+        needs_online_personnel_details: "",
+        needs_field_personnel: false,
+        needs_field_personnel_details: "",
+        needs_volunteers: false,
+        needs_volunteers_details: "",
+        needs_instruments: false,
+        needs_instruments_details: "",
+        needs_financial: false,
+        needs_financial_details: "",
+        financial_target: "",
+      });
       setImageFile(null);
       setShowForm(false);
       setEditingProject(null);
