@@ -1,4 +1,5 @@
 {
-  "buildCommand": "npm run build -w @wasp/web",
-  "outputDirectory": "web/.next"
+  "buildCommand": "npm run build",
+  "outputDirectory": "web/.next",
+  "framework": "nextjs"
 }
