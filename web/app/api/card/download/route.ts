@@ -38,6 +38,7 @@ export async function GET(request: Request) {
         card_expires_at,
         card_status,
         card_request_type,
+        photo_url,
         associations (name)
       `
       )
