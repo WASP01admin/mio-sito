@@ -324,7 +324,21 @@ export default function AssociationProjectsPage() {
             setShowForm(!showForm);
             if (showForm) {
               setEditingProject(null);
-              setFormData({ headline: "", description: "" });
+              setFormData({
+                headline: "",
+                description: "",
+                needs_online_personnel: false,
+                needs_online_personnel_details: "",
+                needs_field_personnel: false,
+                needs_field_personnel_details: "",
+                needs_volunteers: false,
+                needs_volunteers_details: "",
+                needs_instruments: false,
+                needs_instruments_details: "",
+                needs_financial: false,
+                needs_financial_details: "",
+                financial_target: "",
+              });
             }
           }}
           className="w-full px-6 py-3 rounded-full font-bold bg-yellow-400 text-gray-900 hover:bg-yellow-500 transition-colors shadow-md"
