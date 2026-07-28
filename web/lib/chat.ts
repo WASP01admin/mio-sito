@@ -23,7 +23,7 @@ export function createChatSessionToken(
 
 export function verifyChatSessionToken(token: string, secret: string) {
   try {
-    return jwt.verify(token, secret) as { userProfileId: string };
+    return jwt.verify(token, secret) as { userProfileId: string; nickname: string };
   } catch {
     return null;
   }

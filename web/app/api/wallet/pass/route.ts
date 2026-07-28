@@ -2,9 +2,10 @@ import { NextRequest, NextResponse } from "next/server";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import * as fs from "fs";
 import * as path from "path";
-import * as archiver from "archiver";
 import { createHash } from "crypto";
 import { Readable } from "stream";
+
+const archiver = require("archiver");
 
 interface PassJson {
   formatVersion: number;
@@ -190,7 +191,7 @@ export async function GET(request: NextRequest) {
     const pkpassBuffer = await createPassKitPackage(passJson);
 
     // Return as download
-    return new NextResponse(pkpassBuffer, {
+    return new NextResponse(pkpassBuffer as any, {
       status: 200,
       headers: {
         "Content-Type": "application/vnd.apple.pkpass",

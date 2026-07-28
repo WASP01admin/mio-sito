@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
 import { supabaseAdmin } from "@/lib/supabase-admin";
-import { verifyChatSessionToken } from "@/lib/chat";
+import { verifyChatSessionToken, chatAuthSecret } from "@/lib/chat";
 
 export async function GET(request: NextRequest) {
   try {
@@ -13,7 +13,7 @@ export async function GET(request: NextRequest) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const session = verifyChatSessionToken(sessionCookie.value);
+    const session = verifyChatSessionToken(sessionCookie.value, chatAuthSecret());
     if (!session) {
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -92,7 +92,7 @@ export async function GET(request: NextRequest) {
         const otherId =
           msg.sender_id === session.userProfileId ? msg.recipient_id : msg.sender_id;
         const otherNickname =
-          msg.sender_id === session.userProfileId ? msg.recipient?.nickname : msg.sender?.nickname;
+          msg.sender_id === session.userProfileId ? msg.recipient?.[0]?.nickname : msg.sender?.[0]?.nickname;
 
         if (!conversationsMap.has(otherId)) {
           conversationsMap.set(otherId, {

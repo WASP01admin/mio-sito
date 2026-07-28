@@ -30,6 +30,7 @@ interface MapViewProps {
 export default function MapView({ type, isAuthenticated }: MapViewProps) {
   const mapContainer = useRef<HTMLDivElement>(null);
   const map = useRef<any>(null);
+  const L = useRef<any>(null);
   const [markers, setMarkers] = useState<Marker[]>([]);
   const [selectedMarker, setSelectedMarker] = useState<Marker | null>(null);
   const [messages, setMessages] = useState<Message[]>([]);
@@ -44,26 +45,26 @@ export default function MapView({ type, isAuthenticated }: MapViewProps) {
     const initMap = async () => {
       if (!mapContainer.current) return;
 
-      const L = (await import("leaflet")).default;
+      L.current = (await import("leaflet")).default;
       await import("leaflet/dist/leaflet.css");
       await import("leaflet.markercluster/dist/MarkerCluster.css");
       await import("leaflet.markercluster/dist/MarkerCluster.Default.css");
       await import("leaflet.markercluster");
 
-      L.Icon.Default.mergeOptions({
+      L.current.Icon.Default.mergeOptions({
         iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
         iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
         shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
       });
 
-      map.current = L.map(mapContainer.current).setView([41.8719, 12.5674], 4);
-      L.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
+      map.current = L.current.map(mapContainer.current).setView([41.8719, 12.5674], 4);
+      L.current.tileLayer("https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png", {
         attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="https://carto.com/attributions">CARTO</a>',
         maxZoom: 19,
         subdomains: 'abcd'
       }).addTo(map.current);
 
-      clusterGroup.current = L.markerClusterGroup({ maxClusterRadius: 80 });
+      clusterGroup.current = L.current.markerClusterGroup({ maxClusterRadius: 80 });
       map.current.addLayer(clusterGroup.current);
     };
 
@@ -79,7 +80,7 @@ export default function MapView({ type, isAuthenticated }: MapViewProps) {
 
   // Create marker icon with custom colors - realistic pin style
   const createMarkerIcon = (color: string) => {
-    return L.divIcon({
+    return L.current?.divIcon({
       html: `
         <div style="
           position: absolute;

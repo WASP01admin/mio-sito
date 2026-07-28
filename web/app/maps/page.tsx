@@ -6,7 +6,7 @@ import MapView from "@/components/maps/MapView";
 export default async function MapsPage() {
   const cookieStore = await cookies();
   const token = cookieStore.get(CHAT_SESSION_COOKIE)?.value;
-  const payload = verifyChatSessionToken(token, chatAuthSecret());
+  const payload = token ? verifyChatSessionToken(token, chatAuthSecret()) : null;
   const isAuthenticated = !!payload;
 
   return (

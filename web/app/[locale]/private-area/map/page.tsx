@@ -3,14 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import Link from "next/link";
 import { useRouter, useParams } from "next/navigation";
-import L from "leaflet";
-import "leaflet/dist/leaflet.css";
-
-L.Icon.Default.mergeOptions({
-  iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
-  iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
-  shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
-});
 
 interface AssociationMarker {
   id: string;
@@ -37,8 +29,9 @@ export default function AssociationMapPage() {
   const params = useParams();
   const locale = params.locale as string;
   const mapContainerRef = useRef<HTMLDivElement>(null);
-  const mapRef = useRef<L.Map | null>(null);
-  const markerRef = useRef<L.Marker | null>(null);
+  const mapRef = useRef<any>(null);
+  const markerRef = useRef<any>(null);
+  const L = useRef<any>(null);
 
   const [marker, setMarker] = useState<AssociationMarker | null>(null);
   const [messages, setMessages] = useState<VisitorMessage[]>([]);
@@ -56,6 +49,18 @@ export default function AssociationMapPage() {
   });
 
   useEffect(() => {
+    (async () => {
+      L.current = (await import("leaflet")).default;
+      await import("leaflet/dist/leaflet.css");
+      L.current.Icon.Default.mergeOptions({
+        iconRetinaUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon-2x.png",
+        iconUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png",
+        shadowUrl: "https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png",
+      });
+    })();
+  }, []);
+
+  useEffect(() => {
     fetchMarkerData();
     fetchMessages();
   }, []);
@@ -69,21 +74,21 @@ export default function AssociationMapPage() {
         return;
       }
 
-      const map = L.map(mapContainerRef.current!).setView([41.8719, 12.5674], 5);
+      const map = L.current.map(mapContainerRef.current!).setView([41.8719, 12.5674], 5);
 
-      L.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
+      L.current.tileLayer("https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png", {
         attribution: '© OpenStreetMap contributors',
         maxZoom: 19,
       }).addTo(map);
 
       if (formData.latitude && formData.longitude) {
-        markerRef.current = L.marker([formData.latitude, formData.longitude])
+        markerRef.current = L.current.marker([formData.latitude, formData.longitude])
           .addTo(map)
           .setOpacity(0.8);
         map.setView([formData.latitude, formData.longitude], 12);
       }
 
-      map.on("click", (e: L.LeafletMouseEvent) => {
+      map.on("click", (e: any) => {
         const { lat, lng } = e.latlng;
         setFormData((prev) => ({
           ...prev,
@@ -92,7 +97,7 @@ export default function AssociationMapPage() {
         }));
 
         if (markerRef.current) map.removeLayer(markerRef.current);
-        markerRef.current = L.marker([lat, lng]).addTo(map).setOpacity(0.8);
+        markerRef.current = L.current.marker([lat, lng]).addTo(map).setOpacity(0.8);
       });
 
       mapRef.current = map;

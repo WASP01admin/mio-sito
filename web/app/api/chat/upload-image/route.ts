@@ -10,6 +10,11 @@ import { chatImagePublicUrl, uploadChatImage } from "@/lib/storage";
 export async function POST(request: NextRequest) {
   const authHeader = request.headers.get("authorization");
   const token = authHeader?.startsWith("Bearer ") ? authHeader.slice(7) : null;
+
+  if (!token) {
+    return NextResponse.json({ ok: false, error: "unauthorized" }, { status: 401 });
+  }
+
   const payload = verifyChatSessionToken(token, chatAuthSecret());
 
   if (!payload) {

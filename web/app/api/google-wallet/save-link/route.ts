@@ -33,11 +33,14 @@ export async function GET(request: Request) {
     }
 
     // Generate JWT for Google Wallet
+    const expiresDate = new Date(card.created_at);
+    expiresDate.setFullYear(expiresDate.getFullYear() + 5);
+
     const jwt = await generateGoogleWalletJwt({
       cardNumber: card.card_id,
       userName: card.nickname,
       issuedAt: new Date(card.created_at),
-      expiresAt: new Date(card.created_at).setFullYear(new Date().getFullYear() + 5), // 5-year expiry
+      expiresAt: expiresDate,
       associationName: "Amici degli Animali",
       associationCity: card.country_code,
       userEmail: card.email,
