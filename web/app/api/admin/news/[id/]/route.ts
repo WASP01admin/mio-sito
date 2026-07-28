@@ -9,14 +9,14 @@ async function verifyAdminToken(request: NextRequest) {
 // DELETE: Remove news (association or press)
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   if (!(await verifyAdminToken(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const { id } = params;
+    const { id } = await context.params;
 
     // Try to delete from association_news first
     const { data: assocData, error: assocError } = await supabaseAdmin

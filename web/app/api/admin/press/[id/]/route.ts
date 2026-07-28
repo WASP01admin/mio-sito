@@ -9,7 +9,7 @@ async function verifyAdminToken(request: NextRequest) {
 // UPDATE: Verify, disable, or update publisher
 export async function PATCH(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   if (!(await verifyAdminToken(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
@@ -17,7 +17,7 @@ export async function PATCH(
 
   try {
     const { action, verified, password } = await request.json();
-    const { id } = params;
+    const { id } = await context.params;
 
     let updateData: any = {};
 
@@ -55,14 +55,14 @@ export async function PATCH(
 // DELETE: Remove publisher
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: { id: string } }
+  context: { params: Promise<{ id: string }> }
 ) {
   if (!(await verifyAdminToken(request))) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
   try {
-    const { id } = params;
+    const { id } = await context.params;
 
     // First delete all articles from this publisher
     const { error: articlesError } = await supabaseAdmin
