@@ -1,3 +1,4 @@
+import { NextRequest, NextResponse } from "next/server";
 import { createClient } from "@supabase/supabase-js";
 import { cookies } from "next/headers";
 
@@ -7,26 +8,27 @@ const supabase = createClient(
 );
 
 export async function DELETE(
-  request: Request,
-  { params }: { params: { id: string } }
+  request: NextRequest,
+  { params }: { params: Promise<{ id: string }> }
 ) {
   try {
+    const { id } = await params;
     const cookieStore = await cookies();
     const adminToken = cookieStore.get("admin_token")?.value;
 
     if (!adminToken) {
-      return Response.json({ error: "Unauthorized" }, { status: 401 });
+      return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
     // Get the image to get the URL for storage deletion
     const { data: image, error: fetchError } = await supabase
       .from("association_images")
       .select("*")
-      .eq("id", params.id)
+      .eq("id", id)
       .single();
 
     if (fetchError || !image) {
-      return Response.json({ error: "Image not found" }, { status: 404 });
+      return NextResponse.json({ error: "Image not found" }, { status: 404 });
     }
 
     // Delete from storage
@@ -41,13 +43,13 @@ export async function DELETE(
     const { error } = await supabase
       .from("association_images")
       .delete()
-      .eq("id", params.id);
+      .eq("id", id);
 
     if (error) throw error;
 
-    return Response.json({ ok: true });
+    return NextResponse.json({ ok: true });
   } catch (error) {
     console.error("Error deleting image:", error);
-    return Response.json({ error: "Failed to delete image" }, { status: 500 });
+    return NextResponse.json({ error: "Failed to delete image" }, { status: 500 });
   }
 }
