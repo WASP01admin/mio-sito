@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
-import { verifyChatSessionToken } from "";
+import { verifyChatSessionToken } from "@/lib/chat";
 import { chatAuthSecret } from "@/lib/chat";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { chatImagePublicUrl, uploadChatImage } from "@/lib/storage";

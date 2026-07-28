@@ -1,5 +1,5 @@
 import { cookies } from "next/headers";
-import { verifyChatSessionToken } from "";
+import { verifyChatSessionToken } from "@/lib/chat";
 import { CHAT_SESSION_COOKIE, chatAuthSecret } from "@/lib/chat";
 import MapView from "@/components/maps/MapView";
 

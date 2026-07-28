@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from "next/server";
 import { cookies } from "next/headers";
-import { createChatSessionToken } from "";
+import { createChatSessionToken } from "@/lib/chat";
 import { supabaseAdmin } from "@/lib/supabase-admin";
 import { resolveLocale } from "@/lib/locale";
 import { CHAT_SESSION_COOKIE, CHAT_SESSION_TTL_MS, chatAuthSecret } from "@/lib/chat";
