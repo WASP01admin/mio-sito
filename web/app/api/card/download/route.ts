@@ -71,7 +71,7 @@ export async function GET(request: Request) {
         issuedAt: new Date(user.card_issued_at),
         expiresAt: new Date(user.card_expires_at),
         type: user.card_request_type as "associated" | "direct",
-        associationName: user.associations?.name,
+        associationName: user.associations?.[0]?.name,
         userImageUrl: user.photo_url || undefined,
       });
       contentType = "application/json";
