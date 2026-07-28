@@ -95,7 +95,7 @@ export async function GET(request: Request) {
     }
 
     // Return pass file
-    return new Response(passBuffer, {
+    return new Response(passBuffer as any, {
       headers: {
         "Content-Type": contentType,
         "Content-Disposition": `attachment; filename="${filename}"`,
