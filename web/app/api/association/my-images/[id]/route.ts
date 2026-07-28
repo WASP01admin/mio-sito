@@ -26,7 +26,7 @@ export async function DELETE(
     const { data: image, error: fetchError } = await supabase
       .from("association_images")
       .select("*")
-      .eq("id", params.id)
+      .eq("id", id)
       .eq("association_id", associationId)
       .single();
 
@@ -46,7 +46,7 @@ export async function DELETE(
     const { error } = await supabase
       .from("association_images")
       .delete()
-      .eq("id", params.id);
+      .eq("id", id);
 
     if (error) throw error;
 
