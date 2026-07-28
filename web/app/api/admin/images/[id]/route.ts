@@ -9,10 +9,10 @@ const supabase = createClient(
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
-    const { id } = await params;
+    const { id } = await context.params;
     const cookieStore = await cookies();
     const adminToken = cookieStore.get("admin_token")?.value;
 

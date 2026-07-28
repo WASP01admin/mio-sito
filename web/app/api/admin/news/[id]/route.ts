@@ -11,7 +11,7 @@ function verifyAdminToken(token: string | null): boolean {
 
 export async function DELETE(
   request: NextRequest,
-  { params }: { params: Promise<{ id: string }> }
+  context: { params: Promise<{ id: string }> }
 ) {
   try {
     const token = request.headers.get("x-admin-token");
@@ -20,7 +20,7 @@ export async function DELETE(
       return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
     }
 
-    const { id: newsId } = (await params) as { id: string };
+    const { id: newsId } = await context.params;
     if (!newsId) {
       return NextResponse.json({ error: "Invalid news ID" }, { status: 400 });
     }
