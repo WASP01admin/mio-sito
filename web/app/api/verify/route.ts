@@ -6,6 +6,7 @@ import { resend, RESEND_FROM } from "@/lib/resend";
 import { associationConfirmationEmail } from "@/lib/email-templates";
 import { WASP_DIRECT_ASSOCIATION_CODE } from "@/lib/constants";
 import { generateWaspCardPass } from "@/lib/wallet-pass-generator";
+import { createGoogleWalletObjectOnApi } from "@/lib/google-wallet-jwt";
 
 const ONE_YEAR_MS = 365 * 24 * 60 * 60 * 1000;
 
@@ -175,8 +176,8 @@ export async function GET(request: NextRequest) {
     new_value: "true",
   });
 
-  // Generate wallet pass (async, non-blocking)
-  generateWaspCardPass({
+  // Generate wallet passes (async, non-blocking)
+  const passData = {
     cardNumber: uniqueCode,
     userName: userOnly.nickname || userOnly.email,
     issuedAt: new Date(),
@@ -184,8 +185,13 @@ export async function GET(request: NextRequest) {
     associationName: assocData.name,
     associationCity: "Italy",
     userEmail: userOnly.email,
-  })
-    .then(() => console.log(`✅ Wallet pass generated for ${uniqueCode}`))
+  };
+
+  Promise.all([
+    generateWaspCardPass(passData),
+    createGoogleWalletObjectOnApi(passData),
+  ])
+    .then(() => console.log(`✅ All wallet passes generated for ${uniqueCode}`))
     .catch((err) => console.error("Wallet pass generation failed:", err));
 
   // Notify association

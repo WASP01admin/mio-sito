@@ -26,6 +26,7 @@ export async function GET(request: NextRequest) {
       : user.associations;
 
     // Generate JWT and get save URL
+    const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://waspnest.org";
     const jwt = await generateGoogleWalletJwt({
       cardNumber: code,
       userName: user.nickname || user.email,
@@ -34,9 +35,16 @@ export async function GET(request: NextRequest) {
       associationName: association?.name || "WASP",
       associationCity: "Italy",
       userEmail: user.email,
-    });
+    }, siteUrl);
 
     const saveUrl = getGoogleWalletSaveUrl(jwt);
+
+    // Log full payload for debugging
+    console.log("=== GOOGLE WALLET DEBUG ===");
+    console.log("Card Code:", code);
+    console.log("Save URL:", saveUrl);
+    console.log("JWT:", jwt);
+    console.log("========================");
 
     // Return debug info for support ticket
     return NextResponse.json({

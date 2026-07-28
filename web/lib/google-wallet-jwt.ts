@@ -158,10 +158,12 @@ async function createGenericCardObject(
 }
 
 export async function generateGoogleWalletJwt(
-  passData: GoogleWalletPassData
+  passData: GoogleWalletPassData,
+  siteUrl?: string
 ): Promise<string> {
   const credentialsB64 = process.env.GOOGLE_WALLET_CREDENTIALS_B64;
   const issuerId = process.env.GOOGLE_WALLET_ISSUER_ID;
+  const baseUrl = siteUrl || process.env.NEXT_PUBLIC_SITE_URL || "https://waspnest.org";
 
   if (!credentialsB64) {
     throw new Error("Google Wallet credentials not configured");
@@ -187,10 +189,14 @@ export async function generateGoogleWalletJwt(
   // Create card object with all required fields
   const cardObject = await createGenericCardObject(passData, issuerId, qrCodeDataUrl);
 
+  // Extract origin from base URL (remove path if any)
+  const originUrl = new URL(baseUrl);
+  const origin = originUrl.origin;
+
   const payload = {
     iss: issuerId,
     aud: "google",
-    origins: ["https://waspnest.org"],
+    origins: [origin],
     typ: "savetowallet",
     payload: {
       genericObjects: [cardObject],
@@ -207,4 +213,87 @@ export async function generateGoogleWalletJwt(
 
 export function getGoogleWalletSaveUrl(jwt: string): string {
   return `https://pay.google.com/gp/v/save/${jwt}`;
+}
+
+// Get OAuth2 token for Google Wallet API
+async function getGoogleWalletOAuthToken(): Promise<string> {
+  const credentialsB64 = process.env.GOOGLE_WALLET_CREDENTIALS_B64;
+
+  if (!credentialsB64) {
+    throw new Error("Google Wallet credentials not configured");
+  }
+
+  const credentialsJson = Buffer.from(credentialsB64, "base64").toString("utf-8");
+  const credentials = JSON.parse(credentialsJson);
+
+  const privateKey = credentials.private_key;
+  if (!privateKey) {
+    throw new Error("Invalid Google Wallet credentials: missing private key");
+  }
+
+  // Create JWT for OAuth2 token request
+  const now = Math.floor(Date.now() / 1000);
+  const jwtPayload = {
+    iss: credentials.client_email,
+    scope: "https://www.googleapis.com/auth/wallet_object.issuer",
+    aud: "https://oauth2.googleapis.com/token",
+    exp: now + 3600,
+    iat: now,
+  };
+
+  const token = jwt.sign(jwtPayload, privateKey, {
+    algorithm: "RS256",
+  });
+
+  // Exchange JWT for OAuth2 token
+  const response = await fetch("https://oauth2.googleapis.com/token", {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body: `grant_type=urn:ietf:params:oauth:grant-type:jwt-bearer&assertion=${token}`,
+  });
+
+  if (!response.ok) {
+    const errorText = await response.text();
+    throw new Error(`OAuth2 token request failed: ${errorText}`);
+  }
+
+  const data = (await response.json()) as { access_token: string };
+  return data.access_token;
+}
+
+// Create Pass Object on Google Wallet API
+export async function createGoogleWalletObjectOnApi(
+  passData: GoogleWalletPassData
+): Promise<void> {
+  const issuerId = process.env.GOOGLE_WALLET_ISSUER_ID;
+
+  if (!issuerId) {
+    throw new Error("Google Wallet issuer ID not configured");
+  }
+
+  const token = await getGoogleWalletOAuthToken();
+  const qrCodeDataUrl = await generateQRCode(passData.cardNumber);
+  const cardObject = await createGenericCardObject(passData, issuerId, qrCodeDataUrl);
+
+  const url = `https://walletobjects.googleapis.com/walletobjects/v1/genericObject`;
+
+  const response = await fetch(url, {
+    method: "POST",
+    headers: {
+      Authorization: `Bearer ${token}`,
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(cardObject),
+  });
+
+  const responseData = await response.json();
+
+  if (!response.ok) {
+    console.error(`Google Wallet API error: ${JSON.stringify(responseData, null, 2)}`);
+    throw new Error(`Failed to create Google Wallet pass: ${response.statusText}`);
+  }
+
+  const objectId = `${issuerId}.${passData.cardNumber}`;
+  console.log(`✅ Google Wallet object created: ${objectId}`);
+  console.log(`Response:`, JSON.stringify(responseData, null, 2));
 }
