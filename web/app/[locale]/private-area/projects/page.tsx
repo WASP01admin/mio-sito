@@ -14,6 +14,17 @@ interface ProjectItem {
     code: string;
     name: string;
   };
+  needs_online_personnel?: boolean;
+  needs_online_personnel_details?: string;
+  needs_field_personnel?: boolean;
+  needs_field_personnel_details?: string;
+  needs_volunteers?: boolean;
+  needs_volunteers_details?: string;
+  needs_instruments?: boolean;
+  needs_instruments_details?: string;
+  needs_financial?: boolean;
+  needs_financial_details?: string;
+  financial_target?: string | number;
 }
 
 const translations = {
