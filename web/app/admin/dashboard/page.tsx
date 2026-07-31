@@ -10,6 +10,9 @@ import {
   Gift,
   MessageSquare,
   Search,
+  BookOpen,
+  Image,
+  Crown,
 } from "lucide-react";
 
 const dashboardItems = [
@@ -68,6 +71,30 @@ const dashboardItems = [
     description: "Monitor and moderate chat channels",
     color: "from-indigo-600 to-indigo-800",
     borderColor: "border-indigo-400",
+  },
+  {
+    href: "/admin/bloggers",
+    icon: BookOpen,
+    title: "Bloggers",
+    description: "Manage blog content and writers",
+    color: "from-cyan-600 to-cyan-800",
+    borderColor: "border-cyan-400",
+  },
+  {
+    href: "/admin/images",
+    icon: Image,
+    title: "Images",
+    description: "Manage and organize media library",
+    color: "from-orange-600 to-orange-800",
+    borderColor: "border-orange-400",
+  },
+  {
+    href: "/admin/vips",
+    icon: Crown,
+    title: "VIPs",
+    description: "Manage VIP members and special access",
+    color: "from-amber-600 to-amber-800",
+    borderColor: "border-amber-400",
   },
 ];
 
