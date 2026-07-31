@@ -103,7 +103,7 @@ export default function CredentialsPage() {
                 </div>
                 {cred.value && (
                   <button
-                    onClick={() => copyToClipboard(cred.value, cred.id)}
+                    onClick={() => copyToClipboard(cred.value!, cred.id)}
                     className={`px-4 py-2 rounded font-semibold transition ${
                       copiedKey === cred.id
                         ? "bg-green-600 text-white"
