@@ -29,9 +29,9 @@ export default function AdminNav() {
       <div className="flex items-center gap-6">
         <span className="font-bold text-wasp-yellow">WASP Admin</span>
         <Link
-          href="/admin/associations"
+          href="/admin/dashboard"
           className={`flex items-center gap-2 text-sm transition-colors ${
-            pathname === "/admin/associations"
+            pathname === "/admin/dashboard"
               ? "font-bold text-wasp-yellow"
               : "text-gray-300 hover:text-white"
           }`}

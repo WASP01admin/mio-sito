@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import "../../styles/globals.css";
+import AdminNav from "@/components/admin/AdminNav";
 
 export const metadata: Metadata = {
   title: "WASP Admin",
@@ -13,7 +14,10 @@ export default function AdminRootLayout({
 }) {
   return (
     <html lang="en" className="h-full antialiased">
-      <body className="min-h-full bg-gray-50 text-black">{children}</body>
+      <body className="min-h-full bg-gray-900 text-white">
+        <AdminNav />
+        {children}
+      </body>
     </html>
   );
 }
