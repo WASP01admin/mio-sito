@@ -13,6 +13,7 @@ import {
   BookOpen,
   Image,
   Crown,
+  Rocket,
 } from "lucide-react";
 
 const dashboardItems = [
@@ -95,6 +96,22 @@ const dashboardItems = [
     description: "Manage VIP members and special access",
     color: "from-amber-600 to-amber-800",
     borderColor: "border-amber-400",
+  },
+  {
+    href: "/admin/news",
+    icon: Newspaper,
+    title: "News",
+    description: "Manage and delete news articles",
+    color: "from-teal-600 to-teal-800",
+    borderColor: "border-teal-400",
+  },
+  {
+    href: "/admin/projects",
+    icon: Rocket,
+    title: "Projects",
+    description: "Manage and delete projects",
+    color: "from-violet-600 to-violet-800",
+    borderColor: "border-violet-400",
   },
 ];
 
