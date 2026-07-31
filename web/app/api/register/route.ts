@@ -121,7 +121,7 @@ export async function POST(request: NextRequest) {
     const { data: association, error: associationError } = await supabaseAdmin
       .from("associations")
       .select("id")
-      .or(`code.eq.${associationQuery},name.ilike.%${associationQuery}%`)
+      .or(`code.ilike.${associationQuery},name.ilike.%${associationQuery}%`)
       .limit(1)
       .maybeSingle();
 
