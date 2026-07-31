@@ -116,7 +116,56 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ ok: true, status: "verify_email_sent" });
   }
 
-  // Branch B: no association was matched/selected. Nothing gets silently
+  // Branch B: Try to find association by code or name if query provided
+  if (associationQuery) {
+    const { data: association, error: associationError } = await supabaseAdmin
+      .from("associations")
+      .select("id")
+      .or(`code.eq.${associationQuery},name.ilike.%${associationQuery}%`)
+      .limit(1)
+      .maybeSingle();
+
+    if (associationError) {
+      console.error("Association code lookup failed:", associationError);
+      return NextResponse.json({ ok: false, error: "server_error" }, { status: 500 });
+    }
+
+    if (association) {
+      const token = generateToken();
+      const tokenExpiresAt = new Date(
+        Date.now() + TOKEN_EXPIRY_DAYS * 24 * 60 * 60 * 1000
+      ).toISOString();
+
+      const { error: insertError } = await supabaseAdmin.from("user_profiles").insert({
+        association_id: association.id,
+        nickname,
+        email,
+        photo_path: photoPath,
+        verification_token: token,
+        token_expires_at: tokenExpiresAt,
+        token_purpose: "signup",
+      });
+
+      if (insertError) {
+        console.error("Failed to create user_profiles row:", insertError);
+        return NextResponse.json({ ok: false, error: "server_error" }, { status: 500 });
+      }
+
+      const verificationUrl = `${siteUrl()}/api/verify?token=${token}&locale=${locale}`;
+      const { subject, html } = verifyEmail({ nickname, verificationUrl });
+
+      try {
+        await resend.emails.send({ from: RESEND_FROM, to: email, subject, html });
+      } catch (error) {
+        console.error("Failed to send verification email:", error);
+        return NextResponse.json({ ok: false, error: "email_send_failed" }, { status: 500 });
+      }
+
+      return NextResponse.json({ ok: true, status: "verify_email_sent" });
+    }
+  }
+
+  // Branch C: no association was matched/selected. Nothing gets silently
   // dropped -- log it for manual follow-up and let the user know by email.
   const { error: pendingError } = await supabaseAdmin.from("pending_submissions").insert({
     email,

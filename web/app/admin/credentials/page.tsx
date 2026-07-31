@@ -99,7 +99,7 @@ export default function CredentialsPage() {
 
               <div className="flex gap-2">
                 <div className="flex-1 bg-gray-50 rounded border border-gray-300 p-3 font-mono text-sm text-gray-700 break-all">
-                  {visibleKeys[cred.id] ? cred.value : maskValue(cred.value)}
+                  {visibleKeys[cred.id] ? cred.value : maskValue(cred.value || "")}
                 </div>
                 {cred.value && (
                   <button
