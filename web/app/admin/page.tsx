@@ -16,7 +16,7 @@ export default function AdminHubPage() {
       <div className="max-w-6xl mx-auto p-6">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           {/* Dashboard */}
-          <Link href="/admin/(dashboard)">
+          <Link href="/admin/dashboard">
             <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-xl shadow-2xl p-10 hover:shadow-3xl transition-all cursor-pointer transform hover:scale-105 border-2 border-blue-400">
               <div className="flex items-center gap-4 mb-4">
                 <LayoutDashboard className="w-16 h-16 text-white" />
