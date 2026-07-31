@@ -25,6 +25,10 @@ export default function MobileMenu() {
     { key: "contact", href: "#" },
   ];
 
+  const adminLinks: Array<{ key: string; href: string; label: string }> = [
+    { key: "admin", href: "/admin/login", label: "admin" },
+  ];
+
   return (
     <>
       <button
@@ -89,6 +93,20 @@ export default function MobileMenu() {
               </Link>
             )
           )}
+
+          {/* Admin Section */}
+          <div className="mt-4 pt-4 border-t border-white/10">
+            {adminLinks.map((link) => (
+              <Link
+                key={link.key}
+                href={link.href}
+                onClick={() => setIsOpen(false)}
+                className="block text-base font-bold tracking-wide text-wasp-yellow hover:text-yellow-300 py-2"
+              >
+                {link.label}
+              </Link>
+            ))}
+          </div>
         </nav>
 
         <a

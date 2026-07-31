@@ -1,10 +1,10 @@
 "use client";
 
-export const dynamic = "force-dynamic";
-
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { supabase } from "@/lib/supabase";
+
+export const dynamic = "force-dynamic";
 import AddDonorFormAssociation from "@/components/association/AddDonorFormAssociation";
 import EditDonorModal from "@/components/association/EditDonorModal";
 

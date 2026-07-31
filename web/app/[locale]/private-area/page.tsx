@@ -44,7 +44,13 @@ export default function PrivateAreaLoginPage() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center p-4">
+    <div className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-100 flex items-center justify-center p-4 relative">
+      <a
+        href={`/${locale}/admin/login`}
+        className="absolute top-6 right-6 text-sm text-gray-600 hover:text-gray-900 underline"
+      >
+        WASP Admin
+      </a>
       <div className="w-full max-w-md bg-white rounded-lg shadow-lg p-8">
         {/* Header */}
         <div className="text-center mb-8">

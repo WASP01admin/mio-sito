@@ -168,36 +168,72 @@ export default async function AdminAssociationsPage({
 
   const totalAllCountries = allCountriesList.length;
 
-  const PaginationControls = () => (
-    <div className="flex items-center justify-between">
-      <p className="text-sm text-gray-600">
-        Page <span className="font-semibold">{page}</span> of{" "}
-        <span className="font-semibold">{totalPages}</span>
-      </p>
-      <div className="flex gap-2">
-        {page > 1 && (
-          <Link
-            href={`/admin/associations?page=${page - 1}${sort ? `&sort=${sort}` : ""}${
-              country ? `&country=${country}` : ""
-            }${search ? `&search=${search}` : ""}`}
-            className="rounded bg-gray-200 px-3 py-1 text-sm hover:bg-gray-300"
-          >
-            ← Previous
-          </Link>
-        )}
-        {page < totalPages && (
-          <Link
-            href={`/admin/associations?page=${page + 1}${sort ? `&sort=${sort}` : ""}${
-              country ? `&country=${country}` : ""
-            }${search ? `&search=${search}` : ""}`}
-            className="rounded bg-wasp-yellow px-3 py-1 text-sm font-semibold hover:bg-yellow-400"
-          >
-            Next →
-          </Link>
-        )}
+  const PaginationControls = () => {
+    const getPageNumbers = () => {
+      const pages = [];
+      const maxVisible = 10;
+
+      if (totalPages <= maxVisible) {
+        // Show all pages if <= 10
+        for (let i = 1; i <= totalPages; i++) pages.push(i);
+      } else {
+        // Show first 5, dots, last 5, with current in the middle
+        for (let i = 1; i <= 5; i++) pages.push(i);
+        pages.push("...");
+        for (let i = totalPages - 4; i <= totalPages; i++) pages.push(i);
+      }
+      return pages;
+    };
+
+    const pageNumbers = getPageNumbers();
+    const queryParams = `${sort ? `&sort=${sort}` : ""}${country ? `&country=${country}` : ""}${search ? `&search=${search}` : ""}`;
+
+    return (
+      <div className="flex flex-col gap-4">
+        <p className="text-sm text-gray-600">
+          Page <span className="font-semibold">{page}</span> of{" "}
+          <span className="font-semibold">{totalPages}</span>
+        </p>
+        <div className="flex gap-1 flex-wrap items-center">
+          {page > 1 && (
+            <Link
+              href={`/admin/associations?page=${page - 1}${queryParams}`}
+              className="rounded bg-gray-200 px-2 py-1 text-sm hover:bg-gray-300"
+            >
+              ← Prev
+            </Link>
+          )}
+          {pageNumbers.map((num, idx) =>
+            num === "..." ? (
+              <span key={idx} className="px-1 text-gray-400">
+                ...
+              </span>
+            ) : (
+              <Link
+                key={num}
+                href={`/admin/associations?page=${num}${queryParams}`}
+                className={`rounded px-2 py-1 text-sm ${
+                  page === num
+                    ? "bg-wasp-yellow font-semibold text-gray-900"
+                    : "bg-gray-200 hover:bg-gray-300"
+                }`}
+              >
+                {num}
+              </Link>
+            )
+          )}
+          {page < totalPages && (
+            <Link
+              href={`/admin/associations?page=${page + 1}${queryParams}`}
+              className="rounded bg-wasp-yellow px-2 py-1 text-sm font-semibold hover:bg-yellow-400"
+            >
+              Next →
+            </Link>
+          )}
+        </div>
       </div>
-    </div>
-  );
+    );
+  };
 
   return (
     <div>
