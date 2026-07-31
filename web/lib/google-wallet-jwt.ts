@@ -177,7 +177,7 @@ export async function generateGoogleWalletJwt(
   const credentialsJson = Buffer.from(credentialsB64, "base64").toString("utf-8");
   const credentials = JSON.parse(credentialsJson);
 
-  const privateKey = credentials.private_key;
+  const privateKey = credentials.private_key.replace(/\\n/g, '\n');
 
   if (!privateKey) {
     throw new Error("Invalid Google Wallet credentials: missing private key");
@@ -226,7 +226,7 @@ async function getGoogleWalletOAuthToken(): Promise<string> {
   const credentialsJson = Buffer.from(credentialsB64, "base64").toString("utf-8");
   const credentials = JSON.parse(credentialsJson);
 
-  const privateKey = credentials.private_key;
+  const privateKey = credentials.private_key.replace(/\\n/g, '\n');
   if (!privateKey) {
     throw new Error("Invalid Google Wallet credentials: missing private key");
   }
