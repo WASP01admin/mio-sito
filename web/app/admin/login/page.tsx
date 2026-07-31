@@ -21,7 +21,7 @@ export default function AdminLoginPage() {
     });
 
     if (res.ok) {
-      router.replace("/admin");
+      router.replace("/admin/associations");
       router.refresh();
     } else {
       setError(true);
