@@ -1,5 +1,3 @@
-"use client";
-
 import { useState } from "react";
 
 interface WalletButtonsProps {
@@ -12,12 +10,17 @@ export default function WalletButtons({ code }: WalletButtonsProps) {
   const handleGoogleWallet = async () => {
     setIsLoading(true);
     try {
-      const response = await fetch(`/api/wallet/google-link?code=${encodeURIComponent(code)}`);
+      const url = `/api/wallet/google-link?code=${encodeURIComponent(code)}`;
+      console.log("🔗 Wallet URL:", url);
+      console.log("📍 Code value:", code);
+      
+      const response = await fetch(url);
       const data = await response.json();
 
-      if (response.ok && data.url) {
-        // Redirect to Google Wallet save URL
-        window.location.href = data.url;
+      console.log("📊 Response:", { ok: response.ok, status: response.status, data });
+
+      if (response.ok && data.saveUrl) {
+        window.location.href = data.saveUrl;
       } else {
         console.error("Wallet API error:", data);
         alert(data.error || "Failed to generate Google Wallet link");
