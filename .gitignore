@@ -18,3 +18,4 @@ dist/
 *.zip
 .cache/
 .turbo/
+web/service-account-key.json
