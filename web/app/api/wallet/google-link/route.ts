@@ -35,7 +35,7 @@ export async function GET(request: NextRequest) {
       associationName: association?.name || "WASP",
       associationCity: "Italy",
       userEmail: user.email,
-    }, siteUrl);
+    });
 
     const saveUrl = getGoogleWalletSaveUrl(jwt);
 

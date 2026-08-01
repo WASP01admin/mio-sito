@@ -9,6 +9,7 @@ export default function CardPage() {
   const [step, setStep] = useState<"check" | "choose" | "loading" | "success">("check");
   const [hasCard, setHasCard] = useState(false);
   const [isAssociated, setIsAssociated] = useState(false);
+  const [userId, setUserId] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [requesting, setRequesting] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -29,10 +30,11 @@ export default function CardPage() {
         }
       }
 
-      // Check if user is associated with an organization
+      // Get current user
       const userResponse = await fetch("/api/user/profile");
       if (userResponse.ok) {
         const userData = await userResponse.json();
+        setUserId(userData.id);
         setIsAssociated(!!userData.association_id);
       }
 
@@ -46,6 +48,11 @@ export default function CardPage() {
   }
 
   async function requestCard(type: "associated" | "direct") {
+    if (!userId) {
+      setError("User not found. Please log in.");
+      return;
+    }
+
     setRequesting(true);
     setError(null);
 
@@ -53,7 +60,10 @@ export default function CardPage() {
       const response = await fetch("/api/card/request", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ requestType: type }),
+        body: JSON.stringify({ 
+          userId,
+          requestType: type 
+        }),
       });
 
       if (!response.ok) {
@@ -84,7 +94,6 @@ export default function CardPage() {
   return (
     <main className="min-h-screen bg-gradient-to-br from-yellow-50 to-yellow-100 p-6">
       <div className="max-w-2xl mx-auto">
-        {/* Header */}
         <div className="mb-8 text-center">
           <h1 className="text-4xl font-bold text-gray-900 mb-2">🎫 WASP Card</h1>
           <p className="text-gray-600">
@@ -92,7 +101,6 @@ export default function CardPage() {
           </p>
         </div>
 
-        {/* Success State */}
         {step === "success" && hasCard && (
           <div className="space-y-6">
             <div className="rounded-lg bg-green-50 border-2 border-green-300 p-6 text-center mb-6">
@@ -104,7 +112,6 @@ export default function CardPage() {
           </div>
         )}
 
-        {/* Choose Type State */}
         {step === "choose" && !hasCard && (
           <div className="space-y-6">
             {error && (
@@ -113,9 +120,7 @@ export default function CardPage() {
               </div>
             )}
 
-            {/* Pricing Cards */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {/* Associated - Free */}
               <div
                 className={`rounded-lg border-3 p-8 cursor-pointer transition-all ${
                   isAssociated
@@ -123,18 +128,14 @@ export default function CardPage() {
                     : "border-gray-300 bg-gray-50 opacity-50 cursor-not-allowed"
                 }`}
               >
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  FREE
-                </h2>
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">FREE</h2>
                 <p className="text-sm text-gray-600 mb-6">
                   If you're associated with any animal welfare organization
                 </p>
-
                 <div className="mb-6 space-y-2">
                   <p className="text-3xl font-bold text-green-600">€0.00</p>
                   <p className="text-xs text-gray-500">No payment required</p>
                 </div>
-
                 <button
                   onClick={() => requestCard("associated")}
                   disabled={!isAssociated || requesting}
@@ -146,50 +147,37 @@ export default function CardPage() {
                 >
                   {requesting ? "Creating..." : "Get Free Card"}
                 </button>
-
                 {!isAssociated && (
-                  <p className="text-xs text-red-600 mt-3 text-center">
+                  <p className="text-sm text-red-600 mt-3">
                     You're not associated with an organization yet
                   </p>
                 )}
               </div>
 
-              {/* Direct - €2 */}
-              <div className="rounded-lg border-3 border-yellow-400 bg-yellow-50 p-8 cursor-pointer hover:shadow-lg transition-all">
-                <h2 className="text-2xl font-bold text-gray-900 mb-2">
-                  DIRECT
-                </h2>
+              <div className="rounded-lg border-3 border-yellow-400 bg-yellow-50 p-8 cursor-pointer transition-all hover:shadow-lg">
+                <h2 className="text-2xl font-bold text-gray-900 mb-2">DIRECT</h2>
                 <p className="text-sm text-gray-600 mb-6">
                   Request directly to WASP without an organization
                 </p>
-
                 <div className="mb-6 space-y-2">
-                  <p className="text-3xl font-bold text-wasp-yellow">€2.00</p>
+                  <p className="text-3xl font-bold text-yellow-600">€2.00</p>
                   <p className="text-xs text-gray-500">One-time payment</p>
                 </div>
-
                 <button
-                  onClick={() => {
-                    setError("Payment integration coming soon");
-                  }}
+                  onClick={() => requestCard("direct")}
                   disabled={requesting}
-                  className="w-full bg-wasp-yellow text-gray-900 py-3 rounded-lg font-bold hover:bg-yellow-500 transition-colors disabled:opacity-50"
+                  className={`w-full py-3 rounded-lg font-bold transition-colors ${
+                    !requesting
+                      ? "bg-yellow-600 text-white hover:bg-yellow-700"
+                      : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                  }`}
                 >
-                  {requesting ? "Processing..." : "Pay & Get Card"}
+                  {requesting ? "Creating..." : "Pay & Get Card"}
                 </button>
-
-                <p className="text-xs text-gray-500 mt-3 text-center">
+                <p className="text-sm text-gray-500 mt-3">
                   Payment method will be added soon
                 </p>
               </div>
-            </div>
-
-            {/* Info Box */}
-            <div className="rounded-lg bg-blue-50 border-2 border-blue-300 p-6">
-              <p className="text-sm text-blue-800">
-                <strong>Note:</strong> Your card is valid for 1 year from the date of issue.
-                You can renew it anytime before expiration.
-              </p>
             </div>
           </div>
         )}
